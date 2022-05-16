@@ -1,6 +1,7 @@
-import { SizeProps, SpaceProps } from "styled-system";
+import { ImgHTMLAttributes } from "react";
+import { SpaceProps } from "styled-system";
 
 export type ImageProps = {
   src: string;
 } & SpaceProps &
-  SizeProps;
+  ImgHTMLAttributes<HTMLInputElement>;

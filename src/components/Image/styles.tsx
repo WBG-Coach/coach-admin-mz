@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { size, space } from "styled-system";
-import { ImageProps } from "./types";
+import { space } from "styled-system";
 
-export const StyledImage = styled.img<ImageProps>`
-  ${size}
+export const StyledImage = styled.img<any>`
   ${space}
 `;

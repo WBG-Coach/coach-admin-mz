@@ -17,18 +17,19 @@ const Login: React.FC<{}> = () => {
   return (
     <Container
       width="100%"
-      height="100%"
+      background="#333"
+      minHeight="100vh"
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
     >
-      <Text fontSize={32} mt={24}>
-        Admin - Login
+      <Text fontSize={32} mt={24} color="#fff">
+        Admin - Home
       </Text>
       <Image src={WorldBank} />
       <Container flexDirection="row" mb={3}>
         <Button value="-" onClick={() => dispatch(decremented())} />
-        <Text fontSize={32} mx={12}>
+        <Text fontSize={32} mx={12} color="#fff">
           {value}
         </Text>
         <Button value="+" onClick={() => dispatch(incremented())} />
