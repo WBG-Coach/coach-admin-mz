@@ -24,9 +24,9 @@ const Login: React.FC<{}> = () => {
       flexDirection="column"
     >
       <Text fontSize={32} mt={24} color="#fff">
-        Admin - Home
+        Admin - Login
       </Text>
-      <Image src={WorldBank} />
+      <Image height={300} src={WorldBank} />
       <Container flexDirection="row" mb={3}>
         <Button value="-" onClick={() => dispatch(decremented())} />
         <Text fontSize={32} mx={12} color="#fff">
