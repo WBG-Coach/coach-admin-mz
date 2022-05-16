@@ -23,7 +23,7 @@ const Home: React.FC<{}> = () => {
       flexDirection="column"
     >
       <Text fontSize={32} mt={24}>
-        Home
+        Admin - Home
       </Text>
       <Image src={WorldBank} />
       <Container flexDirection="row" mb={3}>
