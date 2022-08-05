@@ -24,7 +24,7 @@ const Login: React.FC<{}> = () => {
       flexDirection="column"
     >
       <Text fontSize={32} mt={24} color="#fff">
-        Admin - Login
+        Admin - Login 2
       </Text>
       <Image height={300} src={WorldBank} />
       <Container flexDirection="row" mb={3}>
