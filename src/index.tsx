@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <BrowserRouter basename={process.env.REACT_APP_BASENAME}>
+  <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />

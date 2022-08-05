@@ -17,8 +17,7 @@ jobs:
         node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     env:
-      REACT_APP_BASENAME: coach-digital-admin
-      PUBLIC_URL: ./
+      PUBLIC_URL: https://api.coachdigital.org
 
     steps:
       - uses: actions/checkout@v3
@@ -44,7 +43,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://avatars.githubusercontent.com/u/105060288?s=48&v=4
-          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_MESSAGE: "Post Content :rocket:"
           SLACK_TITLE: Post Title
           SLACK_USERNAME: rtCamp
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
