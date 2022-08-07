@@ -2,7 +2,7 @@ import { BaseQueryApi } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { MaybePromise } from "@reduxjs/toolkit/dist/query/tsHelpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { User } from "../store/type";
+import { Competence, User } from "../store/type";
 
 type Prepare = {
   prepareHeaders?: (
@@ -34,7 +34,13 @@ export const api = createApi({
         body,
       }),
     }),
+    getCompetencies: builder.mutation<Competence[], void>({
+      query: () => ({
+        method: "POST",
+        url: "/api/competencies/search",
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation } = api;
+export const { useLoginMutation, useGetCompetenciesMutation } = api;

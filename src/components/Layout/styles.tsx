@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledLayoutContainer = styled.div`
   display: flex;
   flex-direction: row;
+  height: 100vh;
 `;
 
 export const StyledMenuContainer = styled.div`
@@ -23,9 +24,12 @@ export const StyledPageContent = styled.div`
   width: calc(100vw - 256px);
   max-height: 100vh;
   overflow-y: auto;
+  padding: 32px;
 `;
 
 export const StyledHeaderContainer = styled.div`
+  margin: -32px;
+  margin-bottom: 32px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
