@@ -3,6 +3,7 @@ import {
   background,
   border,
   flexbox,
+  gridGap,
   layout,
   position,
   space,
@@ -18,6 +19,7 @@ export const StyledContainer = styled.div<ContainerProps>`
   ${position}
   ${border}
   ${background}
+  ${gridGap}
 
   ${(props) =>
     props.rotate &&

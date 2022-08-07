@@ -3,6 +3,7 @@ import {
   BackgroundProps,
   BorderProps,
   FlexboxProps,
+  GridGapProps,
   LayoutProps,
   PositionProps,
   SpaceProps,
@@ -19,4 +20,5 @@ export type ContainerProps = {
   FlexboxProps &
   BorderProps &
   BackgroundProps &
-  PositionProps;
+  PositionProps &
+  GridGapProps;

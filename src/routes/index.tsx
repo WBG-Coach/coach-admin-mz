@@ -42,7 +42,7 @@ const RoutesConfig: React.FC = () => {
           <Route path="coaches" element={<Coaches />} />
           <Route path="teachers" element={<Teachers />} />
           <Route path="sessions" element={<Sessions />} />
-          <Route path="setting" element={<Settings />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

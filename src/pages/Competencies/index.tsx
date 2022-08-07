@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Container, Text } from "../../components";
+import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
+import { PROJECT } from "../../mock";
 import { useGetCompetenciesMutation } from "../../service";
+import { Competence } from "../../store/type";
 
 const Competencies: React.FC<{}> = () => {
   const { t } = useTranslation();
   const [getCompetencies, { isLoading, data }] = useGetCompetenciesMutation();
+  const [selectedCompetence, setSelectedCompetence] = useState<Competence>();
 
   useEffect(() => {
+    setSelectedCompetence(undefined);
     getCompetencies();
   }, [getCompetencies]);
 
@@ -21,32 +26,81 @@ const Competencies: React.FC<{}> = () => {
         value={t("Competencies.title")}
       />
 
-      {isLoading || !data ? (
-        <LoadingDots />
-      ) : (
-        data.map((competence) => (
-          <Container
-            onClick={() => {}}
-            padding="20px 16px"
-            border="1px solid #f4f5f5"
-          >
-            <Container width="24px">
-              <Text
-                fontSize="16px"
-                color="#49504C"
-                lineHeight="24px"
-                value={competence.id.toString()}
-              />
-            </Container>
+      <Container gridGap="32px">
+        <Container
+          flex={1}
+          overflow="hidden"
+          borderRadius="8px"
+          borderBottom="none"
+          flexDirection="column"
+          border="1px solid #f4f5f5"
+        >
+          {isLoading || !data ? (
+            <LoadingDots />
+          ) : (
+            data.map((competence) => (
+              <Container
+                onClick={() => setSelectedCompetence(competence)}
+                padding="20px 16px"
+                borderBottom="1px solid #f4f5f5"
+                background={
+                  selectedCompetence?.id === competence.id
+                    ? PROJECT.primaryColor + "10"
+                    : "#fff"
+                }
+              >
+                <Container width="24px">
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={competence.id.toString()}
+                  />
+                </Container>
+                <Text
+                  fontSize="16px"
+                  color="#49504C"
+                  lineHeight="24px"
+                  value={competence.subtitle}
+                />
+              </Container>
+            ))
+          )}
+        </Container>
+        {selectedCompetence && (
+          <Container flex={1} flexDirection="column">
             <Text
+              value={selectedCompetence.title}
+              fontSize="14px"
+              color="#000000"
+              fontWeight={400}
+              lineHeight="20px"
+              mb="8px"
+            />
+            <Text
+              mb="16px"
+              fontSize="24px"
+              color="#000000"
+              fontWeight={600}
+              lineHeight="28px"
+              value={selectedCompetence.subtitle}
+            />
+            <Text
+              mb="32px"
               fontSize="16px"
               color="#49504C"
+              fontWeight={500}
               lineHeight="24px"
-              value={competence.title}
+              value={selectedCompetence.description}
             />
           </Container>
-        ))
-      )}
+        )}
+      </Container>
+
+      <Container p="12px 16px" alignItems="center" onClick={() => {}}>
+        <Icon size={24} name="plus" mr="8px" color={PROJECT.primaryColor} />
+        <Text value={t("Competencies.add")} color={PROJECT.primaryColor} />
+      </Container>
     </Container>
   );
 };
