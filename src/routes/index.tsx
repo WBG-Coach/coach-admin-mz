@@ -28,7 +28,7 @@ const RoutesConfig: React.FC = () => {
           }
         >
           <Route index element={<Home />} />
-          <Route path="competencies" element={<Home />} />
+          <Route path="competencies" element={<Competencies />} />
           <Route path="reports" element={<Reports />} />
           <Route
             path="observation-questionnaire"
