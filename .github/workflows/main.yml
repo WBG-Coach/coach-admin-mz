@@ -41,7 +41,7 @@ jobs:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: general
+          SLACK_CHANNEL: github
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://avatars.githubusercontent.com/u/105060288?s=48&v=4
           SLACK_MESSAGE: "Post Content :rocket:"
