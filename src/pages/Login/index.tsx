@@ -19,7 +19,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) navigate("/");
+    if (user.id) navigate("/");
   }, [navigate, user]);
 
   useEffect(() => {

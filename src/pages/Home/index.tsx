@@ -4,14 +4,13 @@ import { Container, Text } from "../../components";
 const Home: React.FC<{}> = () => {
   return (
     <Container
-      background="#333"
       width="100%"
-      minHeight="100vh"
+      minHeight="200vh"
       alignItems="center"
       justifyContent="center"
       flexDirection="column"
     >
-      <Text fontSize={32} mt={24} color="#fff">
+      <Text fontSize={32} mt={24}>
         Admin - Home
       </Text>
     </Container>
