@@ -57,6 +57,24 @@ export const api = createApi({
         body: {},
       }),
     }),
+    getCoaches: builder.mutation<User[], void>({
+      query: () => ({
+        method: "POST",
+        url: "/api/users/search",
+        body: {
+          profile_id: 2,
+        },
+      }),
+    }),
+    getTeachers: builder.mutation<User[], void>({
+      query: () => ({
+        method: "POST",
+        url: "/api/users/search",
+        body: {
+          profile_id: 3,
+        },
+      }),
+    }),
   }),
 });
 
@@ -65,4 +83,6 @@ export const {
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
   useGetSchoolsMutation,
+  useGetCoachesMutation,
+  useGetTeachersMutation,
 } = api;
