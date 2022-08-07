@@ -1,10 +1,19 @@
 import { ReactNode } from "react";
-import { FontSizeProps, FontWeightProps, SpaceProps } from "styled-system";
+import {
+  ColorProps,
+  FontSizeProps,
+  FontWeightProps,
+  LineHeightProps,
+  SpaceProps,
+  TextAlignProps,
+} from "styled-system";
 
 export type TextProps = {
   value?: string;
   children?: ReactNode;
-  color?: string;
 } & SpaceProps &
   FontWeightProps &
-  FontSizeProps;
+  FontSizeProps &
+  TextAlignProps &
+  LineHeightProps &
+  ColorProps;

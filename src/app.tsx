@@ -1,17 +1,23 @@
-import { ThemeProvider } from "styled-components";
-import { Outlet } from "react-router-dom";
-import { Provider } from "react-redux";
-import { theme } from "./theme";
-import { store } from "./store";
+import RoutesConfig from "./routes";
+import { getLocalUser } from "./storage";
+import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { loadLocalUser } from "./store/auth";
+import { LoadingDots } from "./components/LoadingDots";
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Outlet />
-      </ThemeProvider>
-    </Provider>
-  );
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = getLocalUser();
+    if (user) {
+      dispatch(loadLocalUser(user));
+    }
+    setLoading(false);
+  }, [dispatch]);
+
+  return loading ? <LoadingDots /> : <RoutesConfig />;
 };
 
 export default App;

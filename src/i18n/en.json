@@ -1,0 +1,13 @@
+{
+  "Validations": {
+    "required": "Required"
+  },
+  "Login": {
+    "email": "Email",
+    "enter": "Enter",
+    "password": "Password",
+    "register": "Register",
+    "dont-you-have-account": "Don't have an account?",
+    "choose-another-project": "Choose another project"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Validations": {
+    "required": "Obrigatório"
+  },
+  "Login": {
+    "email": "Email",
+    "password": "Senha",
+    "enter": "Entrar",
+    "dont-you-have-account": "Não tem uma conta?",
+    "register": "Cadastre-se"
+  }
+}
