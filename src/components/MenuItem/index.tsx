@@ -10,7 +10,7 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const isSelected = pathname.endsWith(props?.route || "");
+  const isSelected = !!props?.route && pathname.endsWith(props.route || "");
 
   return (
     <StyledMenuItem

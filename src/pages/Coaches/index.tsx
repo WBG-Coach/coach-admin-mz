@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Text } from "../../components";
 
-const Home: React.FC<{}> = () => {
+const Coaches: React.FC<{}> = () => {
   return (
     <Container
       width="100%"
@@ -11,10 +11,10 @@ const Home: React.FC<{}> = () => {
       flexDirection="column"
     >
       <Text fontSize={32} mt={24}>
-        Admin - Home
+        Admin - Coaches
       </Text>
     </Container>
   );
 };
 
-export default Home;
+export default Coaches;
