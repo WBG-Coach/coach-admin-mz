@@ -24,7 +24,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Image src={selectedProject.image} height={32} />
         <Container flexDirection="column" width="100%" height="100%">
           <MenuItem icon="home-alt" route="/" label="Dashboard" />
-          <MenuItem icon="chart-line" route="/reports" label="Reports" />
           <MenuItem
             icon="puzzle-piece"
             route="/competencies"
