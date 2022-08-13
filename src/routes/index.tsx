@@ -7,7 +7,6 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import QuestionnairesFeedback from "../pages/QuestionnairesFeedback";
 import QuestionnairesObservation from "../pages/QuestionnairesObservation";
-import Reports from "../pages/Reports";
 import Schools from "../pages/Schools";
 import Sessions from "../pages/Sessions";
 import Settings from "../pages/Settings";
@@ -29,7 +28,6 @@ const RoutesConfig: React.FC = () => {
         >
           <Route index element={<Home />} />
           <Route path="competencies" element={<Competencies />} />
-          <Route path="reports" element={<Reports />} />
           <Route
             path="observation-questionnaire"
             element={<QuestionnairesObservation />}
