@@ -21,6 +21,7 @@ export const DateRange: React.FC<DateRangeProps> = ({
   return (
     <>
       <StyledDateRangeInputContainer onClick={() => setOpen(true)}>
+        <Icon name="schedule" size={24} />
         {format(startDate, "yyyy-MM-dd") +
           " - " +
           format(endDate, "yyyy-MM-dd")}
