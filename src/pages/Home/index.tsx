@@ -47,7 +47,7 @@ const Home: React.FC<{}> = () => {
             value="Sessions done"
           />
           <Text
-            value={"0"}
+            value={"150"}
             fontSize={"28px"}
             lineHeight={"32px"}
             fontWeight={600}
@@ -63,7 +63,7 @@ const Home: React.FC<{}> = () => {
             value="Schools"
           />
           <Text
-            value={"0"}
+            value={"5"}
             fontSize={"28px"}
             lineHeight={"32px"}
             fontWeight={600}
@@ -79,7 +79,7 @@ const Home: React.FC<{}> = () => {
             value="Coaches"
           />
           <Text
-            value={"0"}
+            value={"10"}
             fontSize={"28px"}
             lineHeight={"32px"}
             fontWeight={600}
@@ -95,7 +95,7 @@ const Home: React.FC<{}> = () => {
             value="Teachers"
           />
           <Text
-            value={"0"}
+            value={"25"}
             fontSize={"28px"}
             lineHeight={"32px"}
             fontWeight={600}

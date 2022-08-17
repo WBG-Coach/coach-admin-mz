@@ -1,5 +1,35 @@
 import { Container, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
+import { CompetenceProgress } from "./CompetenceProgress";
+import { UserProgress } from "./UserProgress";
+
+const DATA = [
+  {
+    name: "Construir relacionamentos",
+    quantity: 16,
+    percent: 0.35,
+  },
+  {
+    name: "Usar o guião do professor com eficácia",
+    quantity: 12,
+    percent: 0.26,
+  },
+  {
+    name: "Verificar a compreensão",
+    quantity: 12,
+    percent: 0.26,
+  },
+  {
+    name: "Estabelecer rotinas",
+    quantity: 4,
+    percent: 0.08,
+  },
+  {
+    name: "Demonstrar e praticar",
+    quantity: 1,
+    percent: 0.02,
+  },
+];
 
 export const DashboardReports = () => {
   return (
@@ -12,7 +42,9 @@ export const DashboardReports = () => {
             lineHeight="24px"
             value="Total feedback by competency"
           />
+          <CompetenceProgress data={DATA} />
         </Card>
+
         <Container flexDirection="column" maxWidth="360px" width="50%">
           <Card mb="16px">
             <Text
@@ -22,52 +54,12 @@ export const DashboardReports = () => {
               value="Teacher with the most sessions"
             />
 
-            <Container alignItems="center">
-              <Container
-                mr="16px"
-                width="40px"
-                height="40px"
-                overflow="hidden"
-                alignItems="center"
-                borderRadius="20px"
-                background="#F4F5F5"
-                justifyContent="center"
-              >
-                <Text fontSize="24px" color="#49504C" value={"D"} />
-              </Container>
-
-              <Container flexDirection="column" flex={1}>
-                <Text
-                  value="Dinho Barreto"
-                  fontWeight={500}
-                  fontSize="16px"
-                  lineHeight="24px"
-                />
-                <Text
-                  value="Opa! Escola de Design"
-                  fontWeight={400}
-                  color="#7D827F"
-                  fontSize="14px"
-                  lineHeight="20px"
-                />
-              </Container>
-
-              <Container>
-                <Text
-                  value="50"
-                  fontSize="24px"
-                  lineHeight="28px"
-                  fontWeight={600}
-                />
-              </Container>
-            </Container>
-            <Container
-              mt="8px"
-              height="4px"
-              borderRadius="2px"
-              width="100%"
-              background="#E4E7E5"
-            ></Container>
+            <UserProgress
+              description="Opa! Escola de Design"
+              name="Dinho Barreto"
+              value={50}
+              total={100}
+            />
           </Card>
           <Card>
             <Text
@@ -76,53 +68,12 @@ export const DashboardReports = () => {
               lineHeight="24px"
               value="Coach with the most sessions"
             />
-
-            <Container alignItems="center">
-              <Container
-                mr="16px"
-                width="40px"
-                height="40px"
-                overflow="hidden"
-                alignItems="center"
-                borderRadius="20px"
-                background="#F4F5F5"
-                justifyContent="center"
-              >
-                <Text fontSize="24px" color="#49504C" value={"D"} />
-              </Container>
-
-              <Container flexDirection="column" flex={1}>
-                <Text
-                  value="Dinho Barreto"
-                  fontWeight={500}
-                  fontSize="16px"
-                  lineHeight="24px"
-                />
-                <Text
-                  value="Opa! Escola de Design"
-                  fontWeight={400}
-                  color="#7D827F"
-                  fontSize="14px"
-                  lineHeight="20px"
-                />
-              </Container>
-
-              <Container>
-                <Text
-                  value="50"
-                  fontSize="24px"
-                  lineHeight="28px"
-                  fontWeight={600}
-                />
-              </Container>
-            </Container>
-            <Container
-              mt="8px"
-              height="4px"
-              borderRadius="2px"
-              width="100%"
-              background="#E4E7E5"
-            ></Container>
+            <UserProgress
+              description="jmoravec@worldbank.org"
+              name="John Moravec"
+              value={25}
+              total={100}
+            />
           </Card>
         </Container>
       </Container>
