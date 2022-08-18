@@ -151,3 +151,36 @@ export type ContentGuide = {
 export type Count = {
   quantity: number;
 };
+
+export type DashboardReport = {
+  schools_qty: number;
+  coaches_qty: number;
+  teachers_qty: number;
+  questionnaire_applications_qty: number;
+
+  teacher_most_sessions: {
+    user: User;
+    quantity: number;
+  };
+
+  coach_most_sessions: {
+    user: User;
+    quantity: number;
+  };
+
+  competencies: {
+    name: string;
+    quantity: number;
+  }[];
+};
+
+export type CompetenceEvolutionsReport = {
+  name: string;
+  data: {
+    percentYes: number;
+    percentNo: number;
+    yes: number;
+    no: number;
+    total: number;
+  }[];
+}[];

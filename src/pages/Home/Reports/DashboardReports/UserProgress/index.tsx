@@ -1,4 +1,5 @@
 import { useTheme } from "styled-components";
+import { Image } from "../../../../../components";
 import { Container } from "../../../../../components/Container";
 import { Text } from "../../../../../components/Text";
 import { UserProgressProps } from "./types";
@@ -19,11 +20,15 @@ export const UserProgress: React.FC<UserProgressProps> = (props) => {
           background="#F4F5F5"
           justifyContent="center"
         >
-          <Text
-            fontSize="24px"
-            color="#49504C"
-            value={props.name.substring(0, 1)}
-          />
+          {props.imageUrl ? (
+            <Image src={props.imageUrl} width="40px" height="40px" />
+          ) : (
+            <Text
+              fontSize="24px"
+              color="#49504C"
+              value={props.name.substring(0, 1)}
+            />
+          )}
         </Container>
 
         <Container flexDirection="column" flex={1}>

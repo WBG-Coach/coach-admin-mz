@@ -17,6 +17,7 @@ export const Tabs: React.FC<TabsProps> = ({
     <StyledTabContainer {...otherProps}>
       {titles.map((title, index) => (
         <StyledTabItem
+          key={index}
           isActive={currentIndex === index}
           onClick={() => setCurrentIndex(index)}
         >

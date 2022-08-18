@@ -1,8 +1,16 @@
 import { BaseQueryApi } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { MaybePromise } from "@reduxjs/toolkit/dist/query/tsHelpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { format } from "date-fns";
 import { RootState } from "../store";
-import { Competence, Questionnaire, School, User } from "../store/type";
+import {
+  Competence,
+  CompetenceEvolutionsReport,
+  DashboardReport,
+  Questionnaire,
+  School,
+  User,
+} from "../store/type";
 
 type Prepare = {
   prepareHeaders?: (
@@ -75,6 +83,29 @@ export const api = createApi({
         },
       }),
     }),
+    getReportDashboard: builder.mutation<
+      DashboardReport,
+      { start_date: Date; end_date: Date }
+    >({
+      query: ({ end_date, start_date }) => ({
+        method: "POST",
+        url: "/api/reports/dashboard",
+        body: {
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
+    getReportCompetenceEvolutions: builder.mutation<
+      CompetenceEvolutionsReport,
+      number
+    >({
+      query: (year) => ({
+        method: "POST",
+        url: "/api/reports/competence_evolutions",
+        body: { year },
+      }),
+    }),
   }),
 });
 
@@ -85,4 +116,6 @@ export const {
   useGetSchoolsMutation,
   useGetCoachesMutation,
   useGetTeachersMutation,
+  useGetReportDashboardMutation,
+  useGetReportCompetenceEvolutionsMutation,
 } = api;

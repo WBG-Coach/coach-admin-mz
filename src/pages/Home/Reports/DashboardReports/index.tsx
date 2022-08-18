@@ -1,38 +1,14 @@
 import { Container, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
+import { LoadingDots } from "../../../../components/LoadingDots";
 import { CompetenceProgress } from "./CompetenceProgress";
+import { DashboardReportsProps } from "./types";
 import { UserProgress } from "./UserProgress";
 
-const DATA = [
-  {
-    name: "Construir relacionamentos",
-    quantity: 16,
-    percent: 0.35,
-  },
-  {
-    name: "Usar o guião do professor com eficácia",
-    quantity: 12,
-    percent: 0.26,
-  },
-  {
-    name: "Verificar a compreensão",
-    quantity: 12,
-    percent: 0.26,
-  },
-  {
-    name: "Estabelecer rotinas",
-    quantity: 4,
-    percent: 0.08,
-  },
-  {
-    name: "Demonstrar e praticar",
-    quantity: 1,
-    percent: 0.02,
-  },
-];
-
-export const DashboardReports = () => {
-  return (
+export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
+  return props.isLoading ? (
+    <LoadingDots />
+  ) : (
     <Container flexDirection="column" gridGap="16px">
       <Container width="100%" gridGap="16px">
         <Card flex={1}>
@@ -42,7 +18,10 @@ export const DashboardReports = () => {
             lineHeight="24px"
             value="Total feedback by competency"
           />
-          <CompetenceProgress data={DATA} />
+          <CompetenceProgress
+            data={props.data?.competencies || []}
+            total={props.data?.questionnaire_applications_qty || 0}
+          />
         </Card>
 
         <Container flexDirection="column" maxWidth="360px" width="50%">
@@ -55,10 +34,11 @@ export const DashboardReports = () => {
             />
 
             <UserProgress
-              description="Opa! Escola de Design"
-              name="Dinho Barreto"
-              value={50}
-              total={100}
+              imageUrl={props.data?.teacher_most_sessions.user.image_url}
+              value={props.data?.teacher_most_sessions.quantity || 0}
+              name={props.data?.teacher_most_sessions.user.name || ""}
+              total={props.data?.questionnaire_applications_qty || 0}
+              description={props.data?.teacher_most_sessions.user.subject || ""}
             />
           </Card>
           <Card>
@@ -69,10 +49,11 @@ export const DashboardReports = () => {
               value="Coach with the most sessions"
             />
             <UserProgress
-              description="jmoravec@worldbank.org"
-              name="John Moravec"
-              value={25}
-              total={100}
+              imageUrl={props.data?.coach_most_sessions.user.image_url}
+              value={props.data?.coach_most_sessions.quantity || 0}
+              name={props.data?.coach_most_sessions.user.name || ""}
+              total={props.data?.questionnaire_applications_qty || 0}
+              description={props.data?.coach_most_sessions.user.email || ""}
             />
           </Card>
         </Container>

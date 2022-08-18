@@ -4,6 +4,7 @@ import { CompetenceProgressProps } from "./types";
 
 export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
   data,
+  total,
 }) => {
   const theme: any = useTheme();
 
@@ -42,8 +43,8 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
         </Container>
       </Container>
 
-      {data.map((item) => (
-        <>
+      {data.map((item, index) => (
+        <span key={index}>
           <Container pt="16px" pb="8px" alignItems="center">
             <Container flex={1}>
               <Text value={item.name} fontSize="16px" lineHeight="24px" />
@@ -59,7 +60,7 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
             <Container width={100}>
               <Text
                 ml="auto"
-                value={(item.percent * 100).toFixed(0) + "%"}
+                value={((item.quantity / total) * 100).toFixed(0) + "%"}
                 fontSize="16px"
                 lineHeight="24px"
               />
@@ -74,11 +75,11 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
           >
             <Container
               borderRadius="2px"
-              width={item.percent * 100 + "%"}
+              width={(item.quantity / total) * 100 + "%"}
               background={theme?.colors.primary}
             />
           </Container>
-        </>
+        </span>
       ))}
     </Container>
   );

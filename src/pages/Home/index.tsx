@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Text } from "../../components";
 import { Tabs } from "../../components/Tabs";
 import { DashboardReports } from "./Reports/DashboardReports";
@@ -8,6 +8,8 @@ import { CoachReports } from "./Reports/CoachReports";
 import { DateRange } from "../../components/DateRange";
 import { startOfMonth } from "date-fns";
 import { SessionReports } from "./Reports/SessionReports";
+import { useGetReportDashboardMutation } from "../../service";
+import { LoadingDots } from "../../components/LoadingDots";
 
 const TAB_TITLES = [
   "DASHBOARD",
@@ -19,10 +21,38 @@ const TAB_TITLES = [
 
 const Home: React.FC<{}> = () => {
   const [currentTab, setCurrentTab] = useState<number>();
+  const [getDashboardReport, { isLoading, data }] =
+    useGetReportDashboardMutation();
   const [dateRange, setDateRange] = useState({
     startDate: startOfMonth(new Date()),
     endDate: new Date(),
   });
+
+  useEffect(() => {
+    getDashboardReport({
+      end_date: dateRange.endDate,
+      start_date: dateRange.startDate,
+    });
+  }, [getDashboardReport, dateRange]);
+
+  const renderCountValue = (title: string, value: number) => (
+    <Container width="200px" height="auto" flexDirection="column">
+      <Text
+        mb="8px"
+        fontWeight={500}
+        color="#49504C"
+        fontSize={"14px"}
+        lineHeight={"20px"}
+        value={title}
+      />
+      <Text
+        value={value.toString()}
+        fontSize={"28px"}
+        lineHeight={"32px"}
+        fontWeight={600}
+      />
+    </Container>
+  );
 
   return (
     <Container width="100%" flexDirection="column">
@@ -36,74 +66,23 @@ const Home: React.FC<{}> = () => {
 
         <DateRange {...dateRange} onChange={setDateRange} />
       </Container>
-      <Container mb="24px" width="100%">
-        <Container width="200px" height="auto" flexDirection="column">
-          <Text
-            mb="8px"
-            fontWeight={500}
-            color="#49504C"
-            fontSize={"14px"}
-            lineHeight={"20px"}
-            value="Sessions done"
-          />
-          <Text
-            value={"150"}
-            fontSize={"28px"}
-            lineHeight={"32px"}
-            fontWeight={600}
-          />
+      {isLoading ? (
+        <LoadingDots />
+      ) : (
+        <Container mb="24px" width="100%">
+          {renderCountValue(
+            "Sessions done",
+            data?.questionnaire_applications_qty || 0
+          )}
+          {renderCountValue("Schools", data?.schools_qty || 0)}
+          {renderCountValue("Coaches", data?.coaches_qty || 0)}
+          {renderCountValue("Teachers", data?.teachers_qty || 0)}
         </Container>
-        <Container width="200px" height="auto" flexDirection="column">
-          <Text
-            mb="8px"
-            fontWeight={500}
-            color="#49504C"
-            fontSize={"14px"}
-            lineHeight={"20px"}
-            value="Schools"
-          />
-          <Text
-            value={"5"}
-            fontSize={"28px"}
-            lineHeight={"32px"}
-            fontWeight={600}
-          />
-        </Container>
-        <Container width="200px" height="auto" flexDirection="column">
-          <Text
-            mb="8px"
-            fontWeight={500}
-            color="#49504C"
-            fontSize={"14px"}
-            lineHeight={"20px"}
-            value="Coaches"
-          />
-          <Text
-            value={"10"}
-            fontSize={"28px"}
-            lineHeight={"32px"}
-            fontWeight={600}
-          />
-        </Container>
-        <Container width="200px" height="auto" flexDirection="column">
-          <Text
-            mb="8px"
-            fontWeight={500}
-            color="#49504C"
-            fontSize={"14px"}
-            lineHeight={"20px"}
-            value="Teachers"
-          />
-          <Text
-            value={"25"}
-            fontSize={"28px"}
-            lineHeight={"32px"}
-            fontWeight={600}
-          />
-        </Container>
-      </Container>
+      )}
       <Tabs mb="40px" titles={TAB_TITLES} onClickTab={setCurrentTab} />
-      {currentTab === 0 && <DashboardReports />}
+      {currentTab === 0 && (
+        <DashboardReports isLoading={isLoading} data={data} />
+      )}
       {currentTab === 1 && <CompetenceReports />}
       {currentTab === 2 && <SchoolReports />}
       {currentTab === 3 && <CoachReports />}
