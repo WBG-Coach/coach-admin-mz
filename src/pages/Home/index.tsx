@@ -10,16 +10,18 @@ import { startOfMonth } from "date-fns";
 import { SessionReports } from "./Reports/SessionReports";
 import { useGetReportDashboardMutation } from "../../service";
 import { LoadingDots } from "../../components/LoadingDots";
+import { useTranslation } from "react-i18next";
 
 const TAB_TITLES = [
-  "DASHBOARD",
-  "COMPETENCIES",
-  "SCHOOLS",
-  "COACHES",
-  "SESSIONS",
+  "Dashboard.tabs-dashboard",
+  "Dashboard.tabs-competencies",
+  "Dashboard.tabs-schools",
+  "Dashboard.tabs-coaches",
+  "Dashboard.tabs-sessions",
 ];
 
 const Home: React.FC<{}> = () => {
+  const { t } = useTranslation();
   const [currentTab, setCurrentTab] = useState<number>();
   const [getDashboardReport, { isLoading, data }] =
     useGetReportDashboardMutation();
@@ -58,7 +60,7 @@ const Home: React.FC<{}> = () => {
     <Container width="100%" flexDirection="column">
       <Container mb="40px" justifyContent="space-between">
         <Text
-          value="Dashboard"
+          value={t("Dashboard.title")}
           fontSize="32px"
           lineHeight="40px"
           fontWeight={600}

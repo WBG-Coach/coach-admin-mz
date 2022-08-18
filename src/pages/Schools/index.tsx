@@ -16,12 +16,7 @@ const Schools: React.FC = () => {
 
   return (
     <Container width="100%" flexDirection="column">
-      <Text
-        mb={40}
-        fontSize={32}
-        fontWeight={600}
-        value={t("Competencies.title")}
-      />
+      <Text mb={40} fontSize={32} fontWeight={600} value={t("Units.title")} />
 
       <Container
         flex={1}

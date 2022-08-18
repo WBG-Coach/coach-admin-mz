@@ -8,5 +8,31 @@
     "enter": "Entrar",
     "dont-you-have-account": "Não tem uma conta?",
     "register": "Cadastre-se"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "tabs-dashboard": "DASHBOARD",
+    "tabs-competencies": "COMPETÊNCIAS",
+    "tabs-schools": "ESCOLAS",
+    "tabs-coaches": "ORIENTADORES",
+    "tabs-sessions": "SESSÕES"
+  },
+  "Competencies": {
+    "title": "Competências"
+  },
+  "Observation": {
+    "title": "Questionarios de observação"
+  },
+  "Feedback": {
+    "title": "Questionarios de feedback"
+  },
+  "Units": {
+    "title": "Escolas"
+  },
+  "Coaches": {
+    "title": "Orientadores"
+  },
+  "Teachers": {
+    "title": "Professores"
   }
 }

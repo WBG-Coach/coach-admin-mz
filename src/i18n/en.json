@@ -9,5 +9,31 @@
     "register": "Register",
     "dont-you-have-account": "Don't have an account?",
     "choose-another-project": "Choose another project"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "tabs-dashboard": "DASHBOARD",
+    "tabs-competencies": "COMPETENCIES",
+    "tabs-schools": "SCHOOLS",
+    "tabs-coaches": "COACHES",
+    "tabs-sessions": "SESSIONS"
+  },
+  "Competencies": {
+    "title": "Competencies"
+  },
+  "Observation": {
+    "title": "Observation questionnaires"
+  },
+  "Feedback": {
+    "title": "Feedback questionnaires"
+  },
+  "Units": {
+    "title": "Units school"
+  },
+  "Coaches": {
+    "title": "Coaches"
+  },
+  "Teachers": {
+    "title": "Teachers"
   }
 }

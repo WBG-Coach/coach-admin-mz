@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { StyledTabContainer, StyledTabItem } from "./styles";
 import { TabsProps } from "./type";
 
@@ -7,6 +8,7 @@ export const Tabs: React.FC<TabsProps> = ({
   onClickTab,
   ...otherProps
 }) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export const Tabs: React.FC<TabsProps> = ({
           isActive={currentIndex === index}
           onClick={() => setCurrentIndex(index)}
         >
-          {title}
+          {t(title)}
         </StyledTabItem>
       ))}
     </StyledTabContainer>
