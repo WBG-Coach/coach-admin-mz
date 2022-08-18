@@ -13,7 +13,7 @@ import { LoadingDots } from "../../components/LoadingDots";
 
 const TAB_TITLES = [
   "DASHBOARD",
-  "COMPETENCES",
+  "COMPETENCIES",
   "SCHOOLS",
   "COACHES",
   "SESSIONS",
