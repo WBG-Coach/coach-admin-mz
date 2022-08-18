@@ -34,11 +34,13 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
             />
 
             <UserProgress
-              imageUrl={props.data?.teacher_most_sessions.user.image_url}
+              imageUrl={props.data?.teacher_most_sessions?.user?.image_url}
               value={props.data?.teacher_most_sessions.quantity || 0}
-              name={props.data?.teacher_most_sessions.user.name || ""}
+              name={props.data?.teacher_most_sessions.user?.name || ""}
               total={props.data?.questionnaire_applications_qty || 0}
-              description={props.data?.teacher_most_sessions.user.subject || ""}
+              description={
+                props.data?.teacher_most_sessions.user?.subject || ""
+              }
             />
           </Card>
           <Card>
@@ -49,11 +51,11 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
               value="Coach with the most sessions"
             />
             <UserProgress
-              imageUrl={props.data?.coach_most_sessions.user.image_url}
+              imageUrl={props.data?.coach_most_sessions?.user?.image_url}
               value={props.data?.coach_most_sessions.quantity || 0}
-              name={props.data?.coach_most_sessions.user.name || ""}
+              name={props.data?.coach_most_sessions.user?.name || ""}
               total={props.data?.questionnaire_applications_qty || 0}
-              description={props.data?.coach_most_sessions.user.email || ""}
+              description={props.data?.coach_most_sessions.user?.email || ""}
             />
           </Card>
         </Container>

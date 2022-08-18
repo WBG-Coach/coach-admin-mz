@@ -174,6 +174,13 @@ export type DashboardReport = {
   }[];
 };
 
+export type CompetencesWithFeedbackReport = {
+  name: string;
+  yes: number;
+  no: number;
+  total: number;
+}[];
+
 export type CompetenceEvolutionsReport = {
   name: string;
   data: {

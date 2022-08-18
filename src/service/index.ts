@@ -6,6 +6,7 @@ import { RootState } from "../store";
 import {
   Competence,
   CompetenceEvolutionsReport,
+  CompetencesWithFeedbackReport,
   DashboardReport,
   Questionnaire,
   School,
@@ -96,6 +97,19 @@ export const api = createApi({
         },
       }),
     }),
+    getReportCompetenceWithFeedbacks: builder.mutation<
+      CompetencesWithFeedbackReport,
+      { start_date: Date; end_date: Date }
+    >({
+      query: ({ end_date, start_date }) => ({
+        method: "POST",
+        url: "/api/reports/competence-with-feedbacks",
+        body: {
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
     getReportCompetenceEvolutions: builder.mutation<
       CompetenceEvolutionsReport,
       number
@@ -111,11 +125,12 @@ export const api = createApi({
 
 export const {
   useLoginMutation,
-  useGetCompetenciesMutation,
-  useGetQuestionnairesMutation,
   useGetSchoolsMutation,
   useGetCoachesMutation,
   useGetTeachersMutation,
+  useGetCompetenciesMutation,
+  useGetQuestionnairesMutation,
   useGetReportDashboardMutation,
   useGetReportCompetenceEvolutionsMutation,
+  useGetReportCompetenceWithFeedbacksMutation,
 } = api;

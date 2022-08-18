@@ -71,7 +71,7 @@ const Home: React.FC<{}> = () => {
       ) : (
         <Container mb="24px" width="100%">
           {renderCountValue(
-            "Sessions done",
+            "Sessions",
             data?.questionnaire_applications_qty || 0
           )}
           {renderCountValue("Schools", data?.schools_qty || 0)}
@@ -83,7 +83,12 @@ const Home: React.FC<{}> = () => {
       {currentTab === 0 && (
         <DashboardReports isLoading={isLoading} data={data} />
       )}
-      {currentTab === 1 && <CompetenceReports />}
+      {currentTab === 1 && (
+        <CompetenceReports
+          start_date={dateRange.startDate}
+          end_date={dateRange.endDate}
+        />
+      )}
       {currentTab === 2 && <SchoolReports />}
       {currentTab === 3 && <CoachReports />}
       {currentTab === 4 && <SessionReports />}
