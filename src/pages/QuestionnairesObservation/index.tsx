@@ -45,7 +45,7 @@ const QuestionnairesObservation: React.FC<{}> = () => {
               borderBottom="1px solid #f4f5f5"
               background={
                 selectedQuestionnaire?.id === questionnaire.id
-                  ? PROJECT.primaryColor + "10"
+                  ? PROJECT.primary_color + "10"
                   : "#fff"
               }
             >
@@ -69,8 +69,8 @@ const QuestionnairesObservation: React.FC<{}> = () => {
       </Container>
 
       <Container p="12px 16px" alignItems="center" onClick={() => {}}>
-        <Icon size={24} name="plus" mr="8px" color={PROJECT.primaryColor} />
-        <Text value={t("Observation.add")} color={PROJECT.primaryColor} />
+        <Icon size={24} name="plus" mr="8px" color={PROJECT.primary_color} />
+        <Text value={t("Observation.add")} color={PROJECT.primary_color} />
       </Container>
     </Container>
   );

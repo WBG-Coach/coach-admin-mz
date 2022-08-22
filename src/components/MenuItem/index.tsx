@@ -15,7 +15,7 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
   return (
     <StyledMenuItem
       isSelected={isSelected}
-      borderColor={PROJECT.primaryColor}
+      borderColor={PROJECT.primary_color}
       onClick={() =>
         props?.onClick ? props?.onClick() : navigate(props?.route || "")
       }
@@ -24,13 +24,13 @@ export const MenuItem: React.FC<MenuItemProps> = (props) => {
         size={24}
         name={props.icon}
         mr="12px"
-        color={isSelected ? PROJECT.primaryColor : "#49504C"}
+        color={isSelected ? PROJECT.primary_color : "#49504C"}
       />
       <Text
         value={props.label}
         fontSize="14px"
         lineHeight="20px"
-        color={isSelected ? PROJECT.primaryColor : "#49504C"}
+        color={isSelected ? PROJECT.primary_color : "#49504C"}
       />
     </StyledMenuItem>
   );

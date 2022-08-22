@@ -16,10 +16,10 @@ export type User = {
 
 export type Project = {
   id: number;
-  image: string;
+  image_url: string;
   name: string;
   country: string;
-  primaryColor: string;
+  primary_color: string;
 };
 
 export type School = {

@@ -21,9 +21,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <StyledLayoutContainer>
       <StyledMenuContainer>
-        <Image src={selectedProject.image} height={32} />
+        <Image src={selectedProject.image_url} height={32} />
         <Container flexDirection="column" width="100%" height="100%">
           <MenuItem icon="home-alt" route="/" label="Dashboard" />
+          <MenuItem icon="box" label="Projects" route="/projects" />
           <MenuItem
             icon="puzzle-piece"
             route="/competencies"

@@ -8,6 +8,7 @@ import {
   CompetenceEvolutionsReport,
   CompetencesWithFeedbackReport,
   DashboardReport,
+  Project,
   Questionnaire,
   School,
   User,
@@ -84,6 +85,20 @@ export const api = createApi({
         },
       }),
     }),
+    getProjects: builder.mutation<Project[], void>({
+      query: () => ({
+        method: "POST",
+        url: "/api/projects/search",
+        body: {},
+      }),
+    }),
+    createProjects: builder.mutation<void, Partial<Project>>({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/projects",
+        body,
+      }),
+    }),
     getReportDashboard: builder.mutation<
       DashboardReport,
       { start_date: Date; end_date: Date }
@@ -128,6 +143,8 @@ export const {
   useGetSchoolsMutation,
   useGetCoachesMutation,
   useGetTeachersMutation,
+  useGetProjectsMutation,
+  useCreateProjectsMutation,
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
   useGetReportDashboardMutation,

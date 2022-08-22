@@ -5,6 +5,7 @@ import Coaches from "../pages/Coaches";
 import Competencies from "../pages/Competencies";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Projects from "../pages/Projescts";
 import QuestionnairesFeedback from "../pages/QuestionnairesFeedback";
 import QuestionnairesObservation from "../pages/QuestionnairesObservation";
 import Schools from "../pages/Schools";
@@ -27,6 +28,7 @@ const RoutesConfig: React.FC = () => {
           }
         >
           <Route index element={<Home />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="competencies" element={<Competencies />} />
           <Route
             path="observation-questionnaire"
