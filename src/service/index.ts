@@ -44,7 +44,7 @@ export const api = createApi({
         body,
       }),
     }),
-    getCompetencies: builder.mutation<Competence[], void>({
+    getCompetencies: builder.mutation<Competence[], { project_id: number }>({
       query: () => ({
         method: "POST",
         url: "/api/competencies/search",
@@ -52,9 +52,9 @@ export const api = createApi({
     }),
     getQuestionnaires: builder.mutation<
       Questionnaire[],
-      "OBSERVATION" | "FEEDBACK"
+      { type: "OBSERVATION" | "FEEDBACK"; project_id: number }
     >({
-      query: (type) => ({
+      query: ({ type }) => ({
         method: "POST",
         url: "/api/questionnaires/search",
         body: { type },
@@ -101,12 +101,13 @@ export const api = createApi({
     }),
     getReportDashboard: builder.mutation<
       DashboardReport,
-      { start_date: Date; end_date: Date }
+      { start_date: Date; end_date: Date; project_id: number }
     >({
-      query: ({ end_date, start_date }) => ({
+      query: ({ end_date, start_date, project_id }) => ({
         method: "POST",
         url: "/api/reports/dashboard",
         body: {
+          project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
           end_date: format(end_date, "yyyy-MM-dd"),
         },
@@ -114,12 +115,13 @@ export const api = createApi({
     }),
     getReportCompetenceWithFeedbacks: builder.mutation<
       CompetencesWithFeedbackReport,
-      { start_date: Date; end_date: Date }
+      { start_date: Date; end_date: Date; project_id: number }
     >({
-      query: ({ end_date, start_date }) => ({
+      query: ({ end_date, start_date, project_id }) => ({
         method: "POST",
         url: "/api/reports/competence-with-feedbacks",
         body: {
+          project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
           end_date: format(end_date, "yyyy-MM-dd"),
         },
@@ -127,12 +129,12 @@ export const api = createApi({
     }),
     getReportCompetenceEvolutions: builder.mutation<
       CompetenceEvolutionsReport,
-      number
+      { year: number; project_id: number }
     >({
-      query: (year) => ({
+      query: ({ year, project_id }) => ({
         method: "POST",
         url: "/api/reports/competence_evolutions",
-        body: { year },
+        body: { project_id, year },
       }),
     }),
   }),

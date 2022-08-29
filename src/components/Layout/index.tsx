@@ -1,27 +1,32 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { PROJECT } from "../../mock";
-import { logout } from "../../store/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectCurrentUser } from "../../store/auth";
 import { Container } from "../Container";
 import { Image } from "../Image";
 import { LanguageButton } from "../LanguageButton";
 import { MenuItem } from "../MenuItem";
 import { Text } from "../Text";
+import logo from "../../assets/images/logo.svg";
+
 import {
   StyledPageContent,
   StyledLayoutContainer,
   StyledMenuContainer,
   StyledHeaderContainer,
 } from "./styles";
+import { Modal } from "../Modal";
+import { SelectProject } from "../SelectProject";
+import { SelectProjectButton } from "../SelectProjectButton";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const selectedProject = PROJECT;
   const dispatch = useDispatch();
+  const user = useSelector(selectCurrentUser);
 
   return (
     <StyledLayoutContainer>
       <StyledMenuContainer>
-        <Image src={selectedProject.image_url} height={32} />
+        <Image src={logo} height={32} />
+        <SelectProjectButton />
         <Container flexDirection="column" width="100%" height="100%">
           <MenuItem icon="home-alt" route="/" label="Dashboard" />
           <MenuItem icon="box" label="Projects" route="/projects" />
@@ -76,7 +81,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <StyledHeaderContainer>
           <LanguageButton />
         </StyledHeaderContainer>
-        {children}
+        {user.currentProject && children}
+        <Modal isOpen={!user.currentProject}>
+          <SelectProject />
+        </Modal>
       </StyledPageContent>
     </StyledLayoutContainer>
   );

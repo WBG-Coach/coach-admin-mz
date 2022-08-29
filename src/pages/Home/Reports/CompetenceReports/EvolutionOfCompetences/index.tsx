@@ -10,10 +10,12 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 import { Text } from "../../../../../components";
 import { Card } from "../../../../../components/Card";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service";
+import { selectCurrentUser } from "../../../../../store/auth";
 
 ChartJS.register(
   CategoryScale,
@@ -61,10 +63,11 @@ export const EvolutionOfCompetences = () => {
   const [requestReport, { data, isLoading }] =
     useGetReportCompetenceEvolutionsMutation();
   const [datasets, setDatasets] = useState<DateItem[]>([]);
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    requestReport(2022);
-  }, [requestReport]);
+    requestReport({ year: 2022, project_id: user.currentProject?.id || 0 });
+  }, [requestReport, user]);
 
   useEffect(() => {
     if (data) {

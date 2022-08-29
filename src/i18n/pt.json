@@ -17,6 +17,16 @@
     "tabs-coaches": "ORIENTADORES",
     "tabs-sessions": "SESSÕES"
   },
+  "Projects": {
+    "title": "Projetos",
+    "add": "Novo projeto",
+    "new-title": "Novo projeto",
+    "name": "Nome",
+    "image_url": "URL da imagem",
+    "primary_color": "Cor primária",
+    "country": "País",
+    "new-button": "Salvar"
+  },
   "Competencies": {
     "title": "Competências"
   },

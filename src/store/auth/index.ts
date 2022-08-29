@@ -2,9 +2,10 @@ import { RootState } from "..";
 import { api } from "../../service";
 import { createSlice } from "@reduxjs/toolkit";
 import { clearLocalStorage, setLocalUser } from "../../storage";
-import { User } from "../type";
+import { Project, User } from "../type";
 
-const INITIAL_STATE: User & { loginError?: string } = {};
+const INITIAL_STATE: User & { loginError?: string; currentProject?: Project } =
+  {};
 
 const authSlice = createSlice({
   name: "auth",
@@ -14,7 +15,7 @@ const authSlice = createSlice({
       return action.payload;
     },
     selectProject: (state, action) => {
-      const newState = { ...state, project: action.payload };
+      const newState = { ...state, currentProject: action.payload };
       setLocalUser(newState);
       return newState;
     },
@@ -36,7 +37,9 @@ const authSlice = createSlice({
   },
 });
 
-export const selectCurrentUser = (state: RootState): User => state.auth;
+export const selectCurrentUser = (
+  state: RootState
+): User & { loginError?: string; currentProject?: Project } => state.auth;
 
 export const selectLoginErrorMessage = (state: RootState) =>
   state.auth.loginError;

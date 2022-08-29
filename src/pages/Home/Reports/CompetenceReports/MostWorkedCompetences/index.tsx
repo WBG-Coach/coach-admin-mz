@@ -9,10 +9,12 @@ import {
 } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useSelector } from "react-redux";
 import { Text } from "../../../../../components";
 import { Card } from "../../../../../components/Card";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetReportCompetenceWithFeedbacksMutation } from "../../../../../service";
+import { selectCurrentUser } from "../../../../../store/auth";
 
 ChartJS.register(
   CategoryScale,
@@ -55,10 +57,15 @@ export const MostWorkedCompetences: React.FC<{
     useGetReportCompetenceWithFeedbacksMutation();
   const [datasets, setDatasets] = useState<DatesetItem[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    requestReport({ end_date, start_date });
-  }, [requestReport, end_date, start_date]);
+    requestReport({
+      end_date,
+      start_date,
+      project_id: user.currentProject?.id || 0,
+    });
+  }, [requestReport, end_date, start_date, user]);
 
   useEffect(() => {
     setDatasets(

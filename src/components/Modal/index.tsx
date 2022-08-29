@@ -18,9 +18,11 @@ export const Modal: React.FC<ModalProps> = ({
       {isOpen && (
         <StyleModalContainer {...otherProps}>
           <StyledModalContent>
-            <StyledCloseButton onClick={onClose}>
-              <Icon name="close" size={24} color="#49504C" />
-            </StyledCloseButton>
+            {onClose && (
+              <StyledCloseButton onClick={onClose}>
+                <Icon name="close" size={24} color="#49504C" />
+              </StyledCloseButton>
+            )}
             {children}
           </StyledModalContent>
         </StyleModalContainer>

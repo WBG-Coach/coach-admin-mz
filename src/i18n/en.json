@@ -18,6 +18,16 @@
     "tabs-coaches": "COACHES",
     "tabs-sessions": "SESSIONS"
   },
+  "Projects": {
+    "title": "Projects",
+    "add": "Create Project",
+    "new-title": "New project",
+    "name": "Name",
+    "image_url": "URL Image",
+    "primary_color": "Primary color",
+    "country": "Country",
+    "new-button": "Salvar"
+  },
   "Competencies": {
     "title": "Competencies"
   },

@@ -24,7 +24,7 @@ export const StyledModalContent = styled.div`
   position: relative;
   flex-direction: column;
   background-color: #ffffff;
-  padding-top: 80px;
+  padding-top: 40px;
 `;
 
 export const StyledCloseButton = styled.div`

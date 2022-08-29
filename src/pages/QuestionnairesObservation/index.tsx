@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useTheme } from "styled-components";
 import { Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import { PROJECT } from "../../mock";
 import { useGetQuestionnairesMutation } from "../../service";
+import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
@@ -13,10 +15,15 @@ const QuestionnairesObservation: React.FC<{}> = () => {
     useGetQuestionnairesMutation();
   const [selectedQuestionnaire, setSelectedQuestionnaire] =
     useState<Questionnaire>();
+  const user = useSelector(selectCurrentUser);
+  const theme = useTheme();
 
   useEffect(() => {
-    getQuestionnaires("OBSERVATION");
-  }, [getQuestionnaires]);
+    getQuestionnaires({
+      type: "OBSERVATION",
+      project_id: user.currentProject?.id || 0,
+    });
+  }, [user, getQuestionnaires]);
 
   return (
     <Container width="100%" flexDirection="column">
@@ -45,7 +52,7 @@ const QuestionnairesObservation: React.FC<{}> = () => {
               borderBottom="1px solid #f4f5f5"
               background={
                 selectedQuestionnaire?.id === questionnaire.id
-                  ? PROJECT.primary_color + "10"
+                  ? theme.colors.primary + "10"
                   : "#fff"
               }
             >
@@ -69,8 +76,8 @@ const QuestionnairesObservation: React.FC<{}> = () => {
       </Container>
 
       <Container p="12px 16px" alignItems="center" onClick={() => {}}>
-        <Icon size={24} name="plus" mr="8px" color={PROJECT.primary_color} />
-        <Text value={t("Observation.add")} color={PROJECT.primary_color} />
+        <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
+        <Text value={t("Observation.add")} color={theme.colors.primary} />
       </Container>
     </Container>
   );

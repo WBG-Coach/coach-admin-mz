@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { useTheme } from "styled-components";
 import { Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import { PROJECT } from "../../mock";
 import { useGetCompetenciesMutation } from "../../service";
+import { selectCurrentUser } from "../../store/auth";
 import { Competence } from "../../store/type";
 
 const Competencies: React.FC<{}> = () => {
   const { t } = useTranslation();
   const [getCompetencies, { isLoading, data }] = useGetCompetenciesMutation();
   const [selectedCompetence, setSelectedCompetence] = useState<Competence>();
+  const theme = useTheme();
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
     setSelectedCompetence(undefined);
-    getCompetencies();
-  }, [getCompetencies]);
+    getCompetencies({
+      project_id: user.currentProject?.id || 0,
+    });
+  }, [getCompetencies, user]);
 
   return (
     <Container width="100%" flexDirection="column">
@@ -45,7 +51,7 @@ const Competencies: React.FC<{}> = () => {
                 borderBottom="1px solid #f4f5f5"
                 background={
                   selectedCompetence?.id === competence.id
-                    ? PROJECT.primary_color + "10"
+                    ? theme.colors.primary + "10"
                     : "#fff"
                 }
               >
@@ -98,8 +104,8 @@ const Competencies: React.FC<{}> = () => {
       </Container>
 
       <Container p="12px 16px" alignItems="center" onClick={() => {}}>
-        <Icon size={24} name="plus" mr="8px" color={PROJECT.primary_color} />
-        <Text value={t("Competencies.add")} color={PROJECT.primary_color} />
+        <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
+        <Text value={t("Competencies.add")} color={theme.colors.primary} />
       </Container>
     </Container>
   );

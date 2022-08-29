@@ -135,7 +135,7 @@ const Projects: React.FC = () => {
             mb={40}
             fontSize={24}
             fontWeight={600}
-            value={t("Projects.new-tittle")}
+            value={t("Projects.new-title")}
           />
 
           <Formik
@@ -216,7 +216,7 @@ const Projects: React.FC = () => {
                   value={
                     createProjectRequest.isLoading
                       ? "Loading..."
-                      : t("Project.new-button")
+                      : t("Projects.new-button")
                   }
                   onClick={handleSubmit}
                 />

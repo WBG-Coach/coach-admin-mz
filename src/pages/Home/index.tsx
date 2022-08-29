@@ -11,6 +11,8 @@ import { SessionReports } from "./Reports/SessionReports";
 import { useGetReportDashboardMutation } from "../../service";
 import { LoadingDots } from "../../components/LoadingDots";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/auth";
 
 const TAB_TITLES = [
   "Dashboard.tabs-dashboard",
@@ -29,13 +31,15 @@ const Home: React.FC<{}> = () => {
     startDate: startOfMonth(new Date()),
     endDate: new Date(),
   });
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
     getDashboardReport({
       end_date: dateRange.endDate,
       start_date: dateRange.startDate,
+      project_id: user.currentProject?.id || 0,
     });
-  }, [getDashboardReport, dateRange]);
+  }, [getDashboardReport, dateRange, user]);
 
   const renderCountValue = (title: string, value: number) => (
     <Container width="200px" height="auto" flexDirection="column">
