@@ -1,3 +1,4 @@
+import { registerables } from "chart.js";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 import { Image } from "../Image";
@@ -5,6 +6,14 @@ import { Text } from "../Text";
 import { ColorTableProps } from "./types";
 
 export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
+  const getBgColor = (percent: number) => {
+    if (percent >= 90) return "rgb(214, 245, 222)";
+    if (percent >= 70) return "rgb(239, 251, 242)";
+    if (percent >= 50) return "rgb(255, 252, 235)";
+    if (percent >= 25) return "rgb(252, 238, 238)";
+    return "rgb(247, 212, 212)";
+  };
+
   return (
     <Container width="100%" flexDirection="column">
       <Container flexDirection="row" width="100%">
@@ -180,6 +189,11 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
             p="8px"
             borderRight="1px solid #ECEEED"
             justifyContent="center"
+            background={getBgColor(
+              item.sessions_qty === 0
+                ? 0
+                : (item.yes_qty / 5 / item.sessions_qty) * 100
+            )}
           >
             <Text
               fontSize={12}
@@ -192,10 +206,14 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
             />
           </Container>
           <Container
-            borderTop="1px solid #ECEEED"
             width={120}
             p="8px"
             justifyContent="center"
+            background={getBgColor(
+              item.sessions_qty === 0
+                ? 0
+                : (item.no_qty / 5 / item.sessions_qty) * 100
+            )}
           >
             <Text
               fontSize={12}
