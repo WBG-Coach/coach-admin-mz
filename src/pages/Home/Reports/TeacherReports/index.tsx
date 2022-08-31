@@ -16,7 +16,11 @@ export const TeacherReports: React.FC<{
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    getReport({ end_date, start_date, project_id: user.project?.id || 0 });
+    getReport({
+      end_date,
+      start_date,
+      project_id: user.currentProject?.id || 0,
+    });
   }, [getReport, end_date, start_date, user]);
 
   return (
