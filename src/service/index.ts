@@ -11,6 +11,7 @@ import {
   Project,
   Questionnaire,
   School,
+  SessionReport,
   User,
 } from "../store/type";
 
@@ -60,28 +61,30 @@ export const api = createApi({
         body: { type },
       }),
     }),
-    getSchools: builder.mutation<School[], void>({
-      query: () => ({
+    getSchools: builder.mutation<School[], { project_id: number }>({
+      query: (body) => ({
         method: "POST",
         url: "/api/schools/search",
-        body: {},
+        body,
       }),
     }),
-    getCoaches: builder.mutation<User[], void>({
-      query: () => ({
+    getCoaches: builder.mutation<User[], { project_id: number }>({
+      query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
         body: {
           profile_id: 2,
+          project_id,
         },
       }),
     }),
-    getTeachers: builder.mutation<User[], void>({
-      query: () => ({
+    getTeachers: builder.mutation<User[], { project_id: number }>({
+      query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
         body: {
           profile_id: 3,
+          project_id,
         },
       }),
     }),
@@ -137,6 +140,48 @@ export const api = createApi({
         body: { project_id, year },
       }),
     }),
+    getReportSessionPerSchool: builder.mutation<
+      SessionReport,
+      { start_date: Date; end_date: Date; project_id: number }
+    >({
+      query: ({ start_date, end_date, project_id }) => ({
+        method: "POST",
+        url: "/api/reports/sessionsBySchool",
+        body: {
+          project_id,
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
+    getReportSessionPerTeacher: builder.mutation<
+      SessionReport,
+      { start_date: Date; end_date: Date; project_id: number }
+    >({
+      query: ({ start_date, end_date, project_id }) => ({
+        method: "POST",
+        url: "/api/reports/sessionsByTeacher",
+        body: {
+          project_id,
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
+    getReportSessionPerCoach: builder.mutation<
+      SessionReport,
+      { start_date: Date; end_date: Date; project_id: number }
+    >({
+      query: ({ start_date, end_date, project_id }) => ({
+        method: "POST",
+        url: "/api/reports/sessionsByCoach",
+        body: {
+          project_id,
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
   }),
 });
 
@@ -150,6 +195,9 @@ export const {
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
   useGetReportDashboardMutation,
+  useGetReportSessionPerCoachMutation,
+  useGetReportSessionPerSchoolMutation,
+  useGetReportSessionPerTeacherMutation,
   useGetReportCompetenceEvolutionsMutation,
   useGetReportCompetenceWithFeedbacksMutation,
 } = api;

@@ -13,12 +13,14 @@ import { LoadingDots } from "../../components/LoadingDots";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/auth";
+import { TeacherReports } from "./Reports/TeacherReports";
 
 const TAB_TITLES = [
   "Dashboard.tabs-dashboard",
   "Dashboard.tabs-competencies",
   "Dashboard.tabs-schools",
   "Dashboard.tabs-coaches",
+  "Dashboard.tabs-teachers",
   "Dashboard.tabs-sessions",
 ];
 
@@ -95,9 +97,25 @@ const Home: React.FC<{}> = () => {
           end_date={dateRange.endDate}
         />
       )}
-      {currentTab === 2 && <SchoolReports />}
-      {currentTab === 3 && <CoachReports />}
-      {currentTab === 4 && <SessionReports />}
+      {currentTab === 2 && (
+        <SchoolReports
+          start_date={dateRange.startDate}
+          end_date={dateRange.endDate}
+        />
+      )}
+      {currentTab === 3 && (
+        <CoachReports
+          start_date={dateRange.startDate}
+          end_date={dateRange.endDate}
+        />
+      )}
+      {currentTab === 4 && (
+        <TeacherReports
+          start_date={dateRange.startDate}
+          end_date={dateRange.endDate}
+        />
+      )}
+      {currentTab === 5 && <SessionReports />}
     </Container>
   );
 };

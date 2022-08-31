@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { Container, Image, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
 import { useGetSchoolsMutation } from "../../service";
+import { selectCurrentUser } from "../../store/auth";
 
 const Schools: React.FC = () => {
   const { t } = useTranslation();
   const [getSchools, { isLoading, data }] = useGetSchoolsMutation();
   const theme = useTheme();
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    getSchools();
-  }, [getSchools]);
+    getSchools({ project_id: user.currentProject?.id || 0 });
+  }, [getSchools, user]);
 
   return (
     <Container width="100%" flexDirection="column">

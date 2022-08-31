@@ -191,3 +191,14 @@ export type CompetenceEvolutionsReport = {
     total: number;
   }[];
 }[];
+
+export type SessionReport = {
+  school?: School;
+  teacher?: User;
+  coach?: User;
+
+  sessions_qty: number;
+  yes_qty: number;
+  no_qty: number;
+  feedback_qty: number;
+}[];

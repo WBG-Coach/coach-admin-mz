@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { Container, Image, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
 import { useGetCoachesMutation } from "../../service";
+import { selectCurrentUser } from "../../store/auth";
 
 const Coaches: React.FC = () => {
   const { t } = useTranslation();
   const [getCoaches, { isLoading, data }] = useGetCoachesMutation();
   const theme = useTheme();
+  const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    getCoaches();
-  }, [getCoaches]);
+    getCoaches({ project_id: user.currentProject?.id || 0 });
+  }, [getCoaches, user]);
 
   return (
     <Container width="100%" flexDirection="column">
