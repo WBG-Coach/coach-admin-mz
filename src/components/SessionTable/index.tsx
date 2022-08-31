@@ -54,10 +54,10 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           borderRight="1px solid #ECEEED"
           justifyContent="center"
         >
-          <Text fontSize={12} value="Comp. positive" fontWeight={500} />
+          <Text fontSize={12} value="Positive comp." fontWeight={500} />
         </Container>
         <Container width={120} p="8px" justifyContent="center">
-          <Text fontSize={12} value="Comp. negative" fontWeight={500} />
+          <Text fontSize={12} value="Negative comp." fontWeight={500} />
         </Container>
       </Container>
       {data.map((item) => (
