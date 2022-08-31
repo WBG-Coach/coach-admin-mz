@@ -1,4 +1,3 @@
-import { registerables } from "chart.js";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 import { Image } from "../Image";
@@ -190,18 +189,20 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
             borderRight="1px solid #ECEEED"
             justifyContent="center"
             background={getBgColor(
-              item.sessions_qty === 0
+              item.yes_qty + item.no_qty === 0
                 ? 0
-                : (item.yes_qty / 5 / item.sessions_qty) * 100
+                : (item.yes_qty / (item.yes_qty + item.no_qty)) * 100
             )}
           >
             <Text
               fontSize={12}
               value={
-                item.sessions_qty === 0
+                item.yes_qty + item.no_qty === 0
                   ? "0%"
-                  : ((item.yes_qty / 5 / item.sessions_qty) * 100).toFixed(0) +
-                    "%"
+                  : (
+                      (item.yes_qty / (item.yes_qty + item.no_qty)) *
+                      100
+                    ).toFixed(0) + "%"
               }
             />
           </Container>
@@ -210,18 +211,20 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
             p="8px"
             justifyContent="center"
             background={getBgColor(
-              item.sessions_qty === 0
+              item.yes_qty + item.no_qty === 0
                 ? 0
-                : (item.no_qty / 5 / item.sessions_qty) * 100
+                : (item.no_qty / (item.yes_qty + item.no_qty)) * 100
             )}
           >
             <Text
               fontSize={12}
               value={
-                item.sessions_qty === 0
+                item.yes_qty + item.no_qty === 0
                   ? "0%"
-                  : ((item.no_qty / 5 / item.sessions_qty) * 100).toFixed(0) +
-                    "%"
+                  : (
+                      (item.no_qty / (item.yes_qty + item.no_qty)) *
+                      100
+                    ).toFixed(0) + "%"
               }
             />
           </Container>
