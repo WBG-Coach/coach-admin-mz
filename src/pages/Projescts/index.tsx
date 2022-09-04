@@ -1,24 +1,27 @@
-import { Formik } from "formik";
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button, Container, Image, Text } from "../../components";
-import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import { Modal } from "../../components/Modal";
-import { PROJECT } from "../../mock";
-import {
-  useCreateProjectsMutation,
-  useGetProjectsMutation,
-} from "../../service";
-import * as Yup from "yup";
-import { Project } from "../../store/type";
+import { useTranslation } from "react-i18next";
 import { Input } from "../../components/Input";
+import { Modal } from "../../components/Modal";
+import { Icon } from "../../components/Icon";
+import { Project } from "../../store/type";
+import { PROJECT } from "../../mock";
+import { Formik } from "formik";
+import * as Yup from "yup";
+import {
+  useCreateProjectMutation,
+  useGetProjectsMutation,
+  useUpdateProjectMutation,
+} from "../../service";
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
+  const [selectedProject, setSelectedProject] = useState<Project>();
   const [newProject, setNewProject] = useState(false);
   const [getProjects, { isLoading, data }] = useGetProjectsMutation();
-  const [createProject, createProjectRequest] = useCreateProjectsMutation();
+  const [createProject, createProjectRequest] = useCreateProjectMutation();
+  const [updateProject, updateProjectRequest] = useUpdateProjectMutation();
 
   useEffect(() => {
     getProjects();
@@ -31,11 +34,26 @@ const Projects: React.FC = () => {
     image_url: Yup.string().required(t("Validations.required")),
   });
 
-  const handlerNewProject = (values: Partial<Project>) => {
-    createProject(values).then(() => {
-      setNewProject(false);
-      getProjects();
-    });
+  const onSubmitProject = (values: Partial<Project>) => {
+    if (selectedProject) {
+      updateProject({
+        id: selectedProject.id,
+        ...values,
+      }).then(() => {
+        closeModal();
+        getProjects();
+      });
+    } else {
+      createProject(values).then(() => {
+        closeModal();
+        getProjects();
+      });
+    }
+  };
+
+  const closeModal = () => {
+    setNewProject(false);
+    setSelectedProject(undefined);
   };
 
   return (
@@ -64,6 +82,7 @@ const Projects: React.FC = () => {
                 padding="20px 16px"
                 alignItems="center"
                 borderBottom="1px solid #f4f5f5"
+                onClick={() => setSelectedProject(project)}
               >
                 <Container
                   mr="16px"
@@ -129,82 +148,60 @@ const Projects: React.FC = () => {
         </Container>
       </Container>
 
-      <Modal isOpen={newProject} onClose={() => setNewProject(false)}>
+      <Modal isOpen={newProject || !!selectedProject} onClose={closeModal}>
         <Container flexDirection="column" minWidth={400}>
           <Text
             mb={40}
             fontSize={24}
             fontWeight={600}
-            value={t("Projects.new-title")}
+            value={
+              newProject ? t("Projects.new-title") : t("Projects.update-title")
+            }
           />
 
           <Formik
             initialValues={{
-              name: "",
-              primary_color: "",
-              country: "",
-              image_url: "",
+              name: selectedProject?.name,
+              country: selectedProject?.country,
+              image_url: selectedProject?.image_url,
+              primary_color: selectedProject?.primary_color,
             }}
             validationSchema={signInSchema}
-            onSubmit={handlerNewProject}
+            onSubmit={onSubmitProject}
           >
-            {({ handleSubmit, setFieldValue, errors, submitCount }) => (
+            {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
               <Container width="100%" flexDirection="column">
-                <Text
-                  mb="4px"
-                  fontSize="14px"
-                  lineHeight="18px"
-                  fontWeight={600}
-                  value={t("Project.name")}
-                />
-
                 <Input
                   mb="16px"
+                  label={t("Projects.name")}
+                  value={values.name}
                   handlePressEnter={handleSubmit}
                   errorMessage={(!!submitCount && errors.name) || ""}
                   onChangeText={(text) => setFieldValue("name", text)}
                 />
 
-                <Text
-                  mb="4px"
-                  fontSize="14px"
-                  lineHeight="18px"
-                  fontWeight={600}
-                  value={t("Projects.image_url")}
-                />
-
                 <Input
                   mb="16px"
+                  label={t("Projects.image_url")}
+                  value={values.image_url}
                   handlePressEnter={handleSubmit}
                   errorMessage={(!!submitCount && errors.image_url) || ""}
                   onChangeText={(text) => setFieldValue("image_url", text)}
                 />
 
-                <Text
-                  mb="4px"
-                  fontSize="14px"
-                  lineHeight="18px"
-                  fontWeight={600}
-                  value={t("Projects.primary_color")}
-                />
-
                 <Input
                   mb="16px"
+                  value={values.primary_color}
+                  label={t("Projects.primary_color")}
                   handlePressEnter={handleSubmit}
                   errorMessage={(!!submitCount && errors.primary_color) || ""}
                   onChangeText={(text) => setFieldValue("primary_color", text)}
                 />
 
-                <Text
-                  mb="4px"
-                  fontSize="14px"
-                  lineHeight="18px"
-                  fontWeight={600}
-                  value={t("Projects.country")}
-                />
-
                 <Input
                   mb="16px"
+                  value={values.country}
+                  label={t("Projects.country")}
                   handlePressEnter={handleSubmit}
                   errorMessage={(!!submitCount && errors.country) || ""}
                   onChangeText={(text) => setFieldValue("country", text)}
@@ -212,9 +209,13 @@ const Projects: React.FC = () => {
 
                 <Button
                   mt="40px"
-                  isDisabled={createProjectRequest.isLoading}
+                  isDisabled={
+                    createProjectRequest.isLoading ||
+                    updateProjectRequest.isLoading
+                  }
                   value={
-                    createProjectRequest.isLoading
+                    createProjectRequest.isLoading ||
+                    updateProjectRequest.isLoading
                       ? "Loading..."
                       : t("Projects.new-button")
                   }

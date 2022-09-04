@@ -95,9 +95,16 @@ export const api = createApi({
         body: {},
       }),
     }),
-    createProjects: builder.mutation<void, Partial<Project>>({
+    createProject: builder.mutation<void, Partial<Project>>({
       query: (body) => ({
         method: "POST",
+        url: "/api/projects",
+        body,
+      }),
+    }),
+    updateProject: builder.mutation<void, Partial<Project>>({
+      query: (body) => ({
+        method: "PUT",
         url: "/api/projects",
         body,
       }),
@@ -191,7 +198,8 @@ export const {
   useGetCoachesMutation,
   useGetTeachersMutation,
   useGetProjectsMutation,
-  useCreateProjectsMutation,
+  useCreateProjectMutation,
+  useUpdateProjectMutation,
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
   useGetReportDashboardMutation,

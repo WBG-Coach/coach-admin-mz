@@ -4,6 +4,7 @@ export type InputProps = {
   value?: string;
   icon?: "search";
   type?: string;
+  label?: string;
   errorMessage?: string;
   placeholder?: string;
   onChangeText: (text: string) => void;
