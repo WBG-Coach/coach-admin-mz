@@ -68,6 +68,26 @@ export const api = createApi({
         body,
       }),
     }),
+    createSchools: builder.mutation<
+      School[],
+      Partial<School> & { project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/schools",
+        body,
+      }),
+    }),
+    updateSchools: builder.mutation<
+      School[],
+      Partial<School> & { project_id: number }
+    >({
+      query: (body) => ({
+        method: "PUT",
+        url: "/api/schools",
+        body,
+      }),
+    }),
     getCoaches: builder.mutation<User[], { project_id: number }>({
       query: ({ project_id }) => ({
         method: "POST",
@@ -200,6 +220,8 @@ export const {
   useGetProjectsMutation,
   useCreateProjectMutation,
   useUpdateProjectMutation,
+  useCreateSchoolsMutation,
+  useUpdateSchoolsMutation,
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
   useGetReportDashboardMutation,

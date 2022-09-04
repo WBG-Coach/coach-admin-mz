@@ -27,7 +27,7 @@ const Projects: React.FC = () => {
     getProjects();
   }, [getProjects]);
 
-  const signInSchema = Yup.object().shape({
+  const projectSchema = Yup.object().shape({
     name: Yup.string().required(t("Validations.required")),
     primary_color: Yup.string().required(t("Validations.required")),
     country: Yup.string().required(t("Validations.required")),
@@ -166,7 +166,7 @@ const Projects: React.FC = () => {
               image_url: selectedProject?.image_url,
               primary_color: selectedProject?.primary_color,
             }}
-            validationSchema={signInSchema}
+            validationSchema={projectSchema}
             onSubmit={onSubmitProject}
           >
             {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
