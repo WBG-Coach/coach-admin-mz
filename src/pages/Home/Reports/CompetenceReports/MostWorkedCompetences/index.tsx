@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { Text } from "../../../../../components";
 import { Card } from "../../../../../components/Card";
 import { LoadingDots } from "../../../../../components/LoadingDots";
-import { useGetReportCompetenceWithFeedbacksMutation } from "../../../../../service";
+import { useGetReportCompetencesMutation } from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
 
 ChartJS.register(
@@ -54,7 +54,7 @@ export const MostWorkedCompetences: React.FC<{
   end_date: Date;
 }> = ({ end_date, start_date }) => {
   const [requestReport, { isLoading, data }] =
-    useGetReportCompetenceWithFeedbacksMutation();
+    useGetReportCompetencesMutation();
   const [datasets, setDatasets] = useState<DatesetItem[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
   const user = useSelector(selectCurrentUser);

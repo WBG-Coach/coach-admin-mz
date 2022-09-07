@@ -6,7 +6,7 @@ import { RootState } from "../store";
 import {
   Competence,
   CompetenceEvolutionsReport,
-  CompetencesWithFeedbackReport,
+  CompetencesReport,
   DashboardReport,
   Project,
   Questionnaire,
@@ -143,13 +143,13 @@ export const api = createApi({
         },
       }),
     }),
-    getReportCompetenceWithFeedbacks: builder.mutation<
-      CompetencesWithFeedbackReport,
+    getReportCompetences: builder.mutation<
+      CompetencesReport,
       { start_date: Date; end_date: Date; project_id: number }
     >({
       query: ({ end_date, start_date, project_id }) => ({
         method: "POST",
-        url: "/api/reports/competence-with-feedbacks",
+        url: "/api/reports/competences",
         body: {
           project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
@@ -163,7 +163,7 @@ export const api = createApi({
     >({
       query: ({ year, project_id }) => ({
         method: "POST",
-        url: "/api/reports/competence_evolutions",
+        url: "/api/reports/competence-evolutions",
         body: { project_id, year },
       }),
     }),
@@ -173,7 +173,7 @@ export const api = createApi({
     >({
       query: ({ start_date, end_date, project_id }) => ({
         method: "POST",
-        url: "/api/reports/sessionsBySchool",
+        url: "/api/reports/sessions-by-school",
         body: {
           project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
@@ -187,7 +187,7 @@ export const api = createApi({
     >({
       query: ({ start_date, end_date, project_id }) => ({
         method: "POST",
-        url: "/api/reports/sessionsByTeacher",
+        url: "/api/reports/sessions-by-teacher",
         body: {
           project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
@@ -201,7 +201,7 @@ export const api = createApi({
     >({
       query: ({ start_date, end_date, project_id }) => ({
         method: "POST",
-        url: "/api/reports/sessionsByCoach",
+        url: "/api/reports/sessions-by-coach",
         body: {
           project_id,
           start_date: format(start_date, "yyyy-MM-dd"),
@@ -229,5 +229,5 @@ export const {
   useGetReportSessionPerSchoolMutation,
   useGetReportSessionPerTeacherMutation,
   useGetReportCompetenceEvolutionsMutation,
-  useGetReportCompetenceWithFeedbacksMutation,
+  useGetReportCompetencesMutation,
 } = api;

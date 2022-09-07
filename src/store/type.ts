@@ -174,7 +174,7 @@ export type DashboardReport = {
   }[];
 };
 
-export type CompetencesWithFeedbackReport = {
+export type CompetencesReport = {
   name: string;
   yes: number;
   no: number;
