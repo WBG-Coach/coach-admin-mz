@@ -3,4 +3,5 @@ import { space } from "styled-system";
 
 export const StyledImage = styled.img<any>`
   ${space}
+  transform: ${(props) => props.transform};
 `;

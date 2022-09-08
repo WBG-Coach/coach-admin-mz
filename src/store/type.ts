@@ -25,9 +25,18 @@ export type Project = {
 export type School = {
   id?: number;
   name: string;
+  image_url?: string;
+  address?: string;
+  project_id?: number;
+  application_date?: string;
+  city?: string;
+  country?: string;
+  district?: string;
+  state?: string;
+  town?: string;
+  village?: string;
   created_at?: Date;
   updated_at?: Date;
-  image_url?: string;
   users?: { user: User }[];
 };
 
@@ -190,6 +199,13 @@ export type CompetenceEvolutionsReport = {
     no: number;
     total: number;
   }[];
+}[];
+export type CompetenceBySchoolReport = {
+  name: string;
+  yes: number;
+  no: number;
+  total: number;
+  feedbacks_quantity: number;
 }[];
 
 export type SessionReport = {

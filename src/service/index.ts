@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { RootState } from "../store";
 import {
   Competence,
+  CompetenceBySchoolReport,
   CompetenceEvolutionsReport,
   CompetencesReport,
   DashboardReport,
@@ -161,10 +162,20 @@ export const api = createApi({
       CompetenceEvolutionsReport,
       { year: number; project_id: number }
     >({
-      query: ({ year, project_id }) => ({
+      query: (body) => ({
         method: "POST",
         url: "/api/reports/competence-evolutions",
-        body: { project_id, year },
+        body,
+      }),
+    }),
+    getReportCompetenciesBySchool: builder.mutation<
+      CompetenceBySchoolReport,
+      { school_id: number; project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/competences-by-school",
+        body,
       }),
     }),
     getReportSessionPerSchool: builder.mutation<
@@ -228,6 +239,7 @@ export const {
   useGetReportSessionPerCoachMutation,
   useGetReportSessionPerSchoolMutation,
   useGetReportSessionPerTeacherMutation,
+  useGetReportCompetenciesBySchoolMutation,
   useGetReportCompetenceEvolutionsMutation,
   useGetReportCompetencesMutation,
 } = api;

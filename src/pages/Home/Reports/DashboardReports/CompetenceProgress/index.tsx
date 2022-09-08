@@ -60,7 +60,10 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
             <Container width={100}>
               <Text
                 ml="auto"
-                value={((item.quantity / total) * 100).toFixed(0) + "%"}
+                value={
+                  (total === 0 ? 0 : (item.quantity / total) * 100).toFixed(0) +
+                  "%"
+                }
                 fontSize="16px"
                 lineHeight="24px"
               />
@@ -75,7 +78,7 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
           >
             <Container
               borderRadius="2px"
-              width={(item.quantity / total) * 100 + "%"}
+              width={total === 0 ? 0 : (item.quantity / total) * 100 + "%"}
               background={theme?.colors.primary}
             />
           </Container>
