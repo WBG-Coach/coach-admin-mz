@@ -1,10 +1,25 @@
+import { useEffect, useState } from "react";
+import { SessionReport } from "../../store/type";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 import { Image } from "../Image";
+import { Paginator } from "../Paginator";
 import { Text } from "../Text";
 import { ColorTableProps } from "./types";
 
 export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [paginatedItems, setPaginatedItems] = useState<SessionReport>([]);
+
+  useEffect(() => {
+    if (data.length > itemsPerPage)
+      setPaginatedItems(
+        data.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+      );
+    else setPaginatedItems(data);
+  }, [data, currentPage, itemsPerPage]);
+
   const getBgColor = (percent: number) => {
     if (percent >= 90) return "rgb(214, 245, 222)";
     if (percent >= 70) return "rgb(239, 251, 242)";
@@ -60,7 +75,7 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           <Text fontSize={12} value="Negative comp." fontWeight={500} />
         </Container>
       </Container>
-      {data.map((item) => (
+      {paginatedItems.map((item) => (
         <Container
           flexDirection="row"
           width="100%"
@@ -278,6 +293,13 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
         />
         <Container width={"120px"} p="8px" />
       </Container>
+      <Paginator
+        currentPage={currentPage}
+        itemsPerPage={itemsPerPage}
+        onChangePage={(newPage) => setCurrentPage(newPage)}
+        onChangeItemsPerPage={(newValue) => setItemsPerPage(newValue)}
+        totalItems={data?.length}
+      />
     </Container>
   );
 };

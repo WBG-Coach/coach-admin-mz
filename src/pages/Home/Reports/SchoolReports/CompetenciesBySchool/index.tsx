@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
+import Select from "../../../../../components/Select";
 import { useGetReportCompetenciesBySchoolMutation } from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
 import { SessionReport } from "../../../../../store/type";
@@ -29,7 +30,9 @@ export const CompetenciesBySchool: React.FC<{
   const [getCompetenciesBySchool, { data }] =
     useGetReportCompetenciesBySchoolMutation();
   const user = useSelector(selectCurrentUser);
-  const [schoolId, setSchoolId] = useState<number>();
+  const [schoolId, setSchoolId] = useState<number | undefined>(
+    sessionReport[0].school?.id
+  );
 
   useEffect(() => {
     if (schoolId)
@@ -77,11 +80,12 @@ export const CompetenciesBySchool: React.FC<{
 
   return (
     <>
-      <select onChange={(event) => setSchoolId(parseInt(event.target.value))}>
-        {sessionReport.map((item) => (
-          <option value={item.school?.id}>{item.school?.name}</option>
-        ))}
-      </select>
+      <Select
+        value={sessionReport.findIndex((item) => item.school?.id === schoolId)}
+        onChange={(option) => setSchoolId(option?.school?.id)}
+        options={sessionReport}
+        renderOption={(option) => option.school?.name}
+      />
       <Bar options={options} data={config} />
     </>
   );
