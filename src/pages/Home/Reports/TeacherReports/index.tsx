@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
@@ -13,6 +14,7 @@ export const TeacherReports: React.FC<{
   end_date: Date;
 }> = ({ end_date, start_date }) => {
   const [getReport, { data }] = useGetReportSessionPerTeacherMutation();
+  const { t } = useTranslation();
 
   const user = useSelector(selectCurrentUser);
 
@@ -67,7 +69,11 @@ export const TeacherReports: React.FC<{
           </Card>
 
           <Container width="50%" maxWidth="360px" flexDirection="column">
-            <Text value="Teachers" fontWeight={500} fontSize="18px" />
+            <Text
+              value={t("Dashboard.tabs-teachers")}
+              fontWeight={500}
+              fontSize="18px"
+            />
 
             <Container
               my="16px"
@@ -76,7 +82,7 @@ export const TeacherReports: React.FC<{
               width="100%"
             />
 
-            <Text value="Professor com mais sessões" fontSize="14px" />
+            <Text value="Teachers with most sessions" fontSize="14px" />
 
             <Container my="8px">
               {moreSessions?.teacher &&
@@ -93,7 +99,7 @@ export const TeacherReports: React.FC<{
               width="100%"
             />
 
-            <Text value="Professor com menos sessões" fontSize="14px" />
+            <Text value="Teacher with fewer sessions" fontSize="14px" />
 
             <Container my="8px">
               {lessSessions?.teacher &&

@@ -1,4 +1,8 @@
 {
+  "Paginator": {
+    "items-per-page": "Itens por pagina:",
+    "page-details": "Página {{current}} de {{total}}"
+  },
   "Validations": {
     "required": "Obrigatório"
   },
@@ -15,6 +19,7 @@
     "tabs-competencies": "COMPETÊNCIAS",
     "tabs-schools": "ESCOLAS",
     "tabs-coaches": "ORIENTADORES",
+    "tabs-teachers": "PROFESSORES",
     "tabs-sessions": "SESSÕES"
   },
   "Projects": {

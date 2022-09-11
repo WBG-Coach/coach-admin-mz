@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Icon } from "../Icon";
 import Select from "../Select";
 import { Text } from "../Text";
@@ -14,6 +15,7 @@ export const Paginator: React.FC<PaginatorProps> = ({
   totalItems,
 }) => {
   const [totalPages, setTotalPages] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setTotalPages(Math.ceil(totalItems / itemsPerPage));
@@ -26,7 +28,7 @@ export const Paginator: React.FC<PaginatorProps> = ({
         fontSize={12}
         color="#757575"
         data-testid="text-items-per-page"
-        value={"Itens por pagina:"}
+        value={t("Paginator.items-per-page")}
       />
 
       <Select
@@ -46,7 +48,10 @@ export const Paginator: React.FC<PaginatorProps> = ({
         fontSize={12}
         color="#757575"
         data-testid="text-current-and-total-pages"
-        value={`Pagina ${currentPage + 1} de ${totalPages}`}
+        value={t("Paginator.page-details", {
+          current: currentPage + 1,
+          total: totalPages,
+        })}
       />
 
       <StyledPaginatorButton

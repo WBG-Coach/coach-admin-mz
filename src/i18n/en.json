@@ -1,4 +1,8 @@
 {
+  "Paginator": {
+    "items-per-page": "Items per page:",
+    "page-details": "Page {{current}} of {{total}}"
+  },
   "Validations": {
     "required": "Required"
   },

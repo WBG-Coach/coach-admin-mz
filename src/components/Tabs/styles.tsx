@@ -4,7 +4,7 @@ import { space } from "styled-system";
 export const StyledTabContainer = styled.div`
   display: flex;
   border-bottom: 1px solid #f4f5f5;
-  gap: 40px;
+  gap: 20px;
   ${space}
 `;
 
