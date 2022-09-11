@@ -45,12 +45,7 @@ export const SchoolReports: React.FC<{
         )}
       </Container>
       <Container flexDirection="column">
-        <Text
-          mb="2px"
-          fontSize={14}
-          fontWeight={500}
-          value={moreSessions?.school?.name}
-        />
+        <Text mb="2px" fontSize={14} fontWeight={500} value={school?.name} />
         <Text
           color="#7D827F"
           fontSize={14}

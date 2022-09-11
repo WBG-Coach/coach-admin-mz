@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Container } from "../../../../components";
+import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerTeacherMutation } from "../../../../service";
 import { selectCurrentUser } from "../../../../store/auth";
+import { User } from "../../../../store/type";
 
 export const TeacherReports: React.FC<{
   start_date: Date;
@@ -23,14 +24,86 @@ export const TeacherReports: React.FC<{
     });
   }, [getReport, end_date, start_date, user]);
 
+  const moreSessions = data && data[0];
+  const lessSessions = data && data[data.length - 1];
+
+  const renderSchoolInfos = (teacher: User, qtd: number) => (
+    <Container flex={1} minWidth={120} alignItems="center">
+      <Container
+        mr="8px"
+        width="24px"
+        height="24px"
+        overflow="hidden"
+        alignItems="center"
+        borderRadius="20px"
+        background="#F4F5F5"
+        justifyContent="center"
+      >
+        {teacher?.image_url ? (
+          <Image src={teacher?.image_url} width="24px" height="24px" />
+        ) : (
+          <Text
+            fontSize={16}
+            value={teacher.name?.substring(0, 1)}
+            color="#49504C"
+          />
+        )}
+      </Container>
+      <Container flexDirection="column">
+        <Text mb="2px" fontSize={14} fontWeight={500} value={teacher?.name} />
+      </Container>
+      <Text ml="auto" fontSize="20px" fontWeight={600} value={qtd.toString()} />
+    </Container>
+  );
+
   return (
     <Container flexDirection="column" gridGap="16px">
       {!data ? (
         <LoadingDots />
       ) : (
-        <Card flex={1}>
-          <SessionTable data={data} />
-        </Card>
+        <Container>
+          <Card mr="20px" flex={1}>
+            <SessionTable data={data} />
+          </Card>
+
+          <Container width="50%" maxWidth="360px" flexDirection="column">
+            <Text value="Teachers" fontWeight={500} fontSize="18px" />
+
+            <Container
+              my="16px"
+              height="1px"
+              background="#ECEEED"
+              width="100%"
+            />
+
+            <Text value="Professor com mais sessões" fontSize="14px" />
+
+            <Container my="8px">
+              {moreSessions?.teacher &&
+                renderSchoolInfos(
+                  moreSessions.teacher,
+                  moreSessions?.sessions_qty || 0
+                )}
+            </Container>
+
+            <Container
+              my="16px"
+              height="1px"
+              background="#ECEEED"
+              width="100%"
+            />
+
+            <Text value="Professor com menos sessões" fontSize="14px" />
+
+            <Container my="8px">
+              {lessSessions?.teacher &&
+                renderSchoolInfos(
+                  lessSessions.teacher,
+                  lessSessions?.sessions_qty || 0
+                )}
+            </Container>
+          </Container>
+        </Container>
       )}
     </Container>
   );
