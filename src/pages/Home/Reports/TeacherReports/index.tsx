@@ -8,6 +8,7 @@ import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerTeacherMutation } from "../../../../service";
 import { selectCurrentUser } from "../../../../store/auth";
 import { User } from "../../../../store/type";
+import { PersonChart } from "./PersonChart";
 
 export const TeacherReports: React.FC<{
   start_date: Date;
@@ -111,6 +112,18 @@ export const TeacherReports: React.FC<{
           </Container>
         </Container>
       )}
+      <Container>
+        <Card>
+          <Text
+            mb="32px"
+            fontSize="18px"
+            lineHeight="24px"
+            value={t("Dashboard.teacher-person-chart-title")}
+          />
+
+          <PersonChart end_date={end_date} start_date={start_date} />
+        </Card>
+      </Container>
     </Container>
   );
 };

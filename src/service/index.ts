@@ -231,6 +231,20 @@ export const api = createApi({
         body,
       }),
     }),
+    getSessionsQuantity: builder.mutation<
+      { sessions_qty: number; pending_feedback_sessions_qty: number },
+      { start_date: Date; end_date: Date; project_id: number }
+    >({
+      query: ({ end_date, project_id, start_date }) => ({
+        method: "POST",
+        url: "/api/reports/sessions-qty-by-project",
+        body: {
+          project_id,
+          start_date: format(start_date, "yyyy-MM-dd"),
+          end_date: format(end_date, "yyyy-MM-dd"),
+        },
+      }),
+    }),
   }),
 });
 
@@ -246,6 +260,7 @@ export const {
   useUpdateSchoolsMutation,
   useGetCompetenciesMutation,
   useGetQuestionnairesMutation,
+  useGetSessionsQuantityMutation,
   useGetReportDashboardMutation,
   useGetReportSessionPerCoachMutation,
   useGetReportSessionPerSchoolMutation,

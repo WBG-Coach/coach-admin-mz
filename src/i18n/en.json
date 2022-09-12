@@ -23,7 +23,9 @@
     "tabs-teachers": "TEACHERS",
     "tabs-sessions": "SESSIONS",
     "competencies-by-school": "Competencies by school",
-    "session-evolution": "Evolution of sessions in 2022"
+    "session-evolution": "Evolution of sessions in 2022",
+    "teacher-person-chart-title": "Teachers who didn't receive any feedback session",
+    "coaches-person-chart-title": "Coaches who did not give any feedback sessions"
   },
   "Projects": {
     "title": "Projects",

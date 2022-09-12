@@ -22,7 +22,9 @@
     "tabs-teachers": "PROFESSORES",
     "tabs-sessions": "SESSÕES",
     "competencies-by-school": "Competências por escola",
-    "session-evolution": "Evolição das sessões em 2022"
+    "session-evolution": "Evolição das sessões em 2022",
+    "teacher-person-chart-title": "Professores que não receberam nenhuma sessão de feedback",
+    "coaches-person-chart-title": "Orientadores que não deram nenhuma sessão de feedback"
   },
   "Projects": {
     "title": "Projetos",
