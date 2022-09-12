@@ -21,7 +21,9 @@
     "tabs-schools": "SCHOOLS",
     "tabs-coaches": "COACHES",
     "tabs-teachers": "TEACHERS",
-    "tabs-sessions": "SESSIONS"
+    "tabs-sessions": "SESSIONS",
+    "competencies-by-school": "Competencies by school",
+    "session-evolution": "Evolution of sessions in 2022"
   },
   "Projects": {
     "title": "Projects",

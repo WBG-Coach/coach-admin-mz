@@ -20,7 +20,9 @@
     "tabs-schools": "ESCOLAS",
     "tabs-coaches": "ORIENTADORES",
     "tabs-teachers": "PROFESSORES",
-    "tabs-sessions": "SESSÕES"
+    "tabs-sessions": "SESSÕES",
+    "competencies-by-school": "Competências por escola",
+    "session-evolution": "Evolição das sessões em 2022"
   },
   "Projects": {
     "title": "Projetos",

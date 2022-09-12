@@ -12,6 +12,7 @@ import {
   Project,
   Questionnaire,
   School,
+  SessionByYearReport,
   SessionReport,
   User,
 } from "../store/type";
@@ -220,6 +221,16 @@ export const api = createApi({
         },
       }),
     }),
+    getReportSessionByYear: builder.mutation<
+      SessionByYearReport,
+      { year: number; project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/sessions-by-year",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -242,4 +253,5 @@ export const {
   useGetReportCompetenciesBySchoolMutation,
   useGetReportCompetenceEvolutionsMutation,
   useGetReportCompetencesMutation,
+  useGetReportSessionByYearMutation,
 } = api;

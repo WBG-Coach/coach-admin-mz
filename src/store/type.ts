@@ -218,3 +218,8 @@ export type SessionReport = {
   no_qty: number;
   feedback_qty: number;
 }[];
+
+export type SessionByYearReport = {
+  feedback_qty: number;
+  sessions_qty: number;
+}[];

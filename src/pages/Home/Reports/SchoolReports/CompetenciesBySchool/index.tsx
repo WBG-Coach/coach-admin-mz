@@ -9,7 +9,9 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { Text } from "../../../../../components";
 import Select from "../../../../../components/Select";
 import { useGetReportCompetenciesBySchoolMutation } from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
@@ -27,6 +29,7 @@ ChartJS.register(
 export const CompetenciesBySchool: React.FC<{
   sessionReport: SessionReport;
 }> = ({ sessionReport }) => {
+  const { t } = useTranslation();
   const [getCompetenciesBySchool, { data }] =
     useGetReportCompetenciesBySchoolMutation();
   const user = useSelector(selectCurrentUser);
@@ -80,6 +83,12 @@ export const CompetenciesBySchool: React.FC<{
 
   return (
     <>
+      <Text
+        mb="32px"
+        fontSize="18px"
+        lineHeight="24px"
+        value={t("Dashboard.competencies-by-school")}
+      />
       <Select
         value={sessionReport.findIndex((item) => item.school?.id === schoolId)}
         onChange={(option) => setSchoolId(option?.school?.id)}

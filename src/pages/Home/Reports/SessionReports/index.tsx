@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -12,6 +12,12 @@ import {
   BarController,
 } from "chart.js";
 import { Chart } from "react-chartjs-2";
+import { Card } from "../../../../components/Card";
+import { Text } from "../../../../components";
+import { useTranslation } from "react-i18next";
+import { useGetReportSessionByYearMutation } from "../../../../service";
+import { selectCurrentUser } from "../../../../store/auth";
+import { useSelector } from "react-redux";
 
 ChartJS.register(
   LinearScale,
@@ -40,28 +46,49 @@ const labels = [
   "Dec",
 ];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      type: "bar" as const,
-      label: "Sessions with feedback",
-      backgroundColor: "rgb(75, 192, 192)",
-      borderColor: "white",
-      borderWidth: 2,
-      data: [0, 2, 35, 65, 10, 10, 22, 17, 29, 91, 70, 15],
-    },
-    {
-      type: "line" as const,
-      label: "Sessions created",
-      borderColor: "rgb(255, 99, 132)",
-      borderWidth: 2,
-      fill: false,
-      data: [20, 10, 40, 100, 25, 12, 50, 27, 30, 100, 80, 75],
-    },
-  ],
-};
-
 export const SessionReports = () => {
-  return <Chart type="bar" data={data} />;
+  const { t } = useTranslation();
+  const user = useSelector(selectCurrentUser);
+  const [getReport, { data }] = useGetReportSessionByYearMutation();
+
+  const report = {
+    labels,
+    datasets: [
+      {
+        type: "bar" as const,
+        label: "Sessions with feedback",
+        backgroundColor: "rgb(75, 192, 192)",
+        borderColor: "white",
+        borderWidth: 2,
+        data: data?.map((item) => item.feedback_qty),
+      },
+      {
+        type: "line" as const,
+        label: "Sessions created",
+        borderColor: "rgb(255, 99, 132)",
+        borderWidth: 2,
+        fill: false,
+        data: data?.map((item) => item.sessions_qty),
+      },
+    ],
+  };
+
+  useEffect(() => {
+    getReport({
+      project_id: user.currentProject?.id || 0,
+      year: new Date().getFullYear(),
+    });
+  }, [getReport, user]);
+
+  return (
+    <Card>
+      <Text
+        mb="32px"
+        fontSize="18px"
+        lineHeight="24px"
+        value={t("Dashboard.session-evolution")}
+      />
+      <Chart type="bar" data={report} />
+    </Card>
+  );
 };
