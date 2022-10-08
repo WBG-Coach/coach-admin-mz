@@ -1,6 +1,7 @@
 import { Container } from "../../../../components";
 import { EvolutionOfCompetences } from "./EvolutionOfCompetences";
 import { MostWorkedCompetences } from "./MostWorkedCompetences";
+import { PerformancePerCompetence } from "./PerformancePerCompetence";
 
 export const CompetenceReports: React.FC<{
   start_date: Date;
@@ -8,11 +9,11 @@ export const CompetenceReports: React.FC<{
 }> = (props) => {
   return (
     <Container flexDirection="column" gridGap="16px">
-      <Container width="100%" gridGap="16px">
-        <MostWorkedCompetences {...props} />
-      </Container>
+      <MostWorkedCompetences {...props} />
 
       <EvolutionOfCompetences />
+
+      <PerformancePerCompetence />
     </Container>
   );
 };

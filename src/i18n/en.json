@@ -35,7 +35,11 @@
     "image_url": "URL Image",
     "primary_color": "Primary color",
     "country": "Country",
-    "new-button": "Salvar"
+    "new-button": "Save",
+    "update-title": "Update"
+  },
+  "Schools": {
+    "change-photo": "Change photo"
   },
   "Competencies": {
     "title": "Competencies"

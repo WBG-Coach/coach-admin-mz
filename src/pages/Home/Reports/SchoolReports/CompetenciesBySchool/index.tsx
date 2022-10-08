@@ -52,7 +52,7 @@ export const CompetenciesBySchool: React.FC<{
         position: "top" as const,
       },
       title: {
-        display: true,
+        display: false,
         text: "Chart.js Bar Chart",
       },
     },

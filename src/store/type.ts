@@ -187,6 +187,7 @@ export type CompetencesReport = {
   name: string;
   yes: number;
   no: number;
+  feedback?: number;
   total: number;
 }[];
 

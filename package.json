@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
+    "aws-sdk": "^2.1230.0",
     "chart.js": "^3.9.1",
     "date-fns": "^2.29.1",
     "formik": "^2.2.9",

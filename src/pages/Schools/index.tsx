@@ -16,6 +16,7 @@ import { School } from "../../store/type";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Modal } from "../../components/Modal";
+import { uploadFileToS3 } from "../../util";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
@@ -26,6 +27,7 @@ const Schools: React.FC = () => {
   const [getSchools, { isLoading, data }] = useGetSchoolsMutation();
   const [createSchool, requestCreateScool] = useCreateSchoolsMutation();
   const [updateSchool, requestUpdateSchool] = useUpdateSchoolsMutation();
+  const [imageUrl, setImageUrl] = useState<string>();
 
   const schoolSchema = Yup.object().shape({
     name: Yup.string().required(t("Validations.required")),
@@ -39,6 +41,7 @@ const Schools: React.FC = () => {
     if (selectedSchool) {
       updateSchool({
         id: selectedSchool.id,
+        image_url: imageUrl || selectedSchool.image_url,
         project_id: user.currentProject?.id || 0,
         ...values,
       }).then(() => {
@@ -58,6 +61,18 @@ const Schools: React.FC = () => {
     setSelectedSchool(undefined);
     setNewSchool(false);
     getSchools({ project_id: user.currentProject?.id || 0 });
+  };
+
+  const addImage = async (file?: File | null) => {
+    try {
+      if (file) {
+        const fileUrl = await uploadFileToS3(file);
+
+        setImageUrl(fileUrl.url);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -130,6 +145,47 @@ const Schools: React.FC = () => {
               newSchool ? t("Projects.new-title") : t("Projects.update-title")
             }
           />
+
+          <Container mb="40px" flexDirection="column" alignItems="center">
+            <Container
+              width="120px"
+              height="120px"
+              overflow="hidden"
+              borderRadius="60px"
+              alignItems="center"
+              background="#E3E5E8"
+              justifyContent="center"
+            >
+              {imageUrl || selectedSchool?.image_url ? (
+                <Image
+                  src={imageUrl || selectedSchool?.image_url || ""}
+                  width="120px"
+                  height="120px"
+                  borderRadius="60px"
+                />
+              ) : (
+                <Icon name="university" size={60} />
+              )}
+            </Container>
+            <Container mt="16px">
+              <label htmlFor="file" style={{ cursor: "pointer" }}>
+                <Text
+                  fontSize="14px"
+                  color="primary"
+                  value={t("Schools.change-photo")}
+                />
+              </label>
+            </Container>
+
+            <input
+              id="file"
+              type="file"
+              style={{ display: "none" }}
+              onChange={(e) => {
+                addImage(e.target.files?.item(0));
+              }}
+            />
+          </Container>
 
           <Formik
             initialValues={{

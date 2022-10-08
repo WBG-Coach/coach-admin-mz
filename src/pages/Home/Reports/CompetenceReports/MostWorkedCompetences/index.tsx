@@ -28,14 +28,6 @@ ChartJS.register(
 export const options = {
   plugins: {},
   responsive: true,
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
 };
 
 type DatesetItem = {
@@ -44,9 +36,10 @@ type DatesetItem = {
   backgroundColor: string;
 };
 
-const TYPES: { label: "yes" | "no"; backgroundColor: string }[] = [
-  { label: "yes", backgroundColor: "#0080FF" },
-  { label: "no", backgroundColor: "#EC9393" },
+const TYPES: { label: string; backgroundColor: string; attr: string }[] = [
+  { label: "Marked as yes", attr: "yes", backgroundColor: "#33CC5A" },
+  { label: "Marked as no", attr: "no", backgroundColor: "#D92626" },
+  { label: "Feedback sessions", attr: "no", backgroundColor: "#0080FF" },
 ];
 
 export const MostWorkedCompetences: React.FC<{
@@ -71,10 +64,7 @@ export const MostWorkedCompetences: React.FC<{
     setDatasets(
       TYPES?.map((type) => ({
         ...type,
-        data:
-          data?.map(
-            (item): number => (item[type.label] / item.total) * 100 || 0
-          ) || [],
+        data: data?.map((item: any): number => item[type.attr] || 0) || [],
       })) || []
     );
 
