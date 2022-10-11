@@ -25,7 +25,7 @@ const Schools: React.FC = () => {
   const [newSchool, setNewSchool] = useState(false);
   const [selectedSchool, setSelectedSchool] = useState<School>();
   const [getSchools, { isLoading, data }] = useGetSchoolsMutation();
-  const [createSchool, requestCreateScool] = useCreateSchoolsMutation();
+  const [createSchool, requestCreateSchool] = useCreateSchoolsMutation();
   const [updateSchool, requestUpdateSchool] = useUpdateSchoolsMutation();
   const [imageUrl, setImageUrl] = useState<string>();
 
@@ -208,11 +208,11 @@ const Schools: React.FC = () => {
                 <Button
                   mt="40px"
                   isDisabled={
-                    requestCreateScool.isLoading ||
+                    requestCreateSchool.isLoading ||
                     requestUpdateSchool.isLoading
                   }
                   value={
-                    requestCreateScool.isLoading ||
+                    requestCreateSchool.isLoading ||
                     requestUpdateSchool.isLoading
                       ? "Loading..."
                       : t("Projects.new-button")

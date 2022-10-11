@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../../components";
 import { Card } from "../../../../../components/Card";
 import { Dropdown } from "../../../../../components/Dropdown";
-import { useGetTeachersMutation } from "../../../../../service";
+import {
+  useGetTeacherCompetencesMutation,
+  useGetTeachersMutation,
+} from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
 import { User } from "../../../../../store/type";
 
@@ -13,13 +17,63 @@ export const options = {
 };
 
 export const PerformancePerCompetence: React.FC = () => {
+  const { t } = useTranslation();
   const user = useSelector(selectCurrentUser);
   const [getTeachers, teacherRequest] = useGetTeachersMutation();
   const [selectedTeacher, setSelectedTeacher] = useState<User>();
+  const [getTeacherCompetences, { data }] = useGetTeacherCompetencesMutation();
 
   useEffect(() => {
     getTeachers({ project_id: user.currentProject?.id || 0 });
   }, [getTeachers, user]);
+
+  useEffect(() => {
+    if (teacherRequest.data && teacherRequest.data[0]) {
+      setSelectedTeacher(teacherRequest.data[0]);
+    }
+  }, [teacherRequest]);
+
+  useEffect(() => {
+    if (selectedTeacher?.id) {
+      getTeacherCompetences({ teacher_id: selectedTeacher.id });
+    }
+  }, [getTeacherCompetences, selectedTeacher]);
+
+  const getBoll = (type?: "Y" | "N" | "Y_F" | "N_F") => {
+    switch (type) {
+      case "Y":
+        return (
+          <Container
+            m="auto"
+            width="24px"
+            height="24px"
+            borderRadius="12px"
+            background="#33CC5A"
+          />
+        );
+      case "N":
+        return (
+          <Container
+            m="auto"
+            width="24px"
+            height="24px"
+            borderRadius="12px"
+            background="#D92626"
+          />
+        );
+
+      default:
+        return (
+          <Container
+            m="auto"
+            width="24px"
+            height="24px"
+            borderRadius="12px"
+            background="#0080FF"
+          />
+        );
+    }
+  };
 
   const renderItem = (teacher: User) => (
     <Container
@@ -96,6 +150,26 @@ export const PerformancePerCompetence: React.FC = () => {
           {renderLegend("Marked as no", "#D92626")}
           {renderLegend("With feedback", "#0080FF")}
         </Container>
+      </Container>
+
+      <Container flexDirection="column" mt="32px">
+        <table>
+          <tr>
+            {data?.headers.map((header) => (
+              <td>
+                {header?.order &&
+                  t("Dashboard.session-name", { value: header?.order })}
+              </td>
+            ))}
+          </tr>
+          {data?.data.map((item) => (
+            <tr>
+              {item.map((row) => (
+                <td>{row?.subtitle ? row.subtitle : getBoll(row.type)}</td>
+              ))}
+            </tr>
+          ))}
+        </table>
       </Container>
     </Card>
   );

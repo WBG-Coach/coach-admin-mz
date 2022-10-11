@@ -187,7 +187,7 @@ export type CompetencesReport = {
   name: string;
   yes: number;
   no: number;
-  feedback?: number;
+  feedback_qty: number;
   total: number;
 }[];
 
@@ -224,3 +224,13 @@ export type SessionByYearReport = {
   feedback_qty: number;
   sessions_qty: number;
 }[];
+
+export type TeacherCompetencesReport = {
+  headers: Array<{
+    order: 1;
+  } | null>;
+  data: {
+    subtitle?: string;
+    type?: "Y" | "N" | "Y_F" | "N_F";
+  }[][];
+};

@@ -39,7 +39,11 @@ type DatesetItem = {
 const TYPES: { label: string; backgroundColor: string; attr: string }[] = [
   { label: "Marked as yes", attr: "yes", backgroundColor: "#33CC5A" },
   { label: "Marked as no", attr: "no", backgroundColor: "#D92626" },
-  { label: "Feedback sessions", attr: "no", backgroundColor: "#0080FF" },
+  {
+    label: "Feedback sessions",
+    attr: "feedback_qty",
+    backgroundColor: "#0080FF",
+  },
 ];
 
 export const MostWorkedCompetences: React.FC<{

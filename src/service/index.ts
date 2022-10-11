@@ -14,6 +14,7 @@ import {
   School,
   SessionByYearReport,
   SessionReport,
+  TeacherCompetencesReport,
   User,
 } from "../store/type";
 
@@ -245,6 +246,16 @@ export const api = createApi({
         },
       }),
     }),
+    getTeacherCompetences: builder.mutation<
+      TeacherCompetencesReport,
+      { teacher_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/teacher-competences",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -269,4 +280,5 @@ export const {
   useGetReportCompetenceEvolutionsMutation,
   useGetReportCompetencesMutation,
   useGetReportSessionByYearMutation,
+  useGetTeacherCompetencesMutation,
 } = api;
