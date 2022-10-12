@@ -36,6 +36,12 @@
     "country": "País",
     "new-button": "Salvar"
   },
+  "Schools": {
+    "name": "Escola",
+    "new-title": "Nova escola",
+    "address": "Endereço",
+    "region": "Região"
+  },
   "Competencies": {
     "title": "Competências"
   },
@@ -51,7 +57,13 @@
   "Coaches": {
     "title": "Orientadores"
   },
+  "Sessions": {
+    "title": "Sessóes"
+  },
   "Teachers": {
-    "title": "Professores"
+    "new-title": "Novo professor",
+    "title": "Professores",
+    "surname": "Apelido",
+    "subject": "Subject"
   }
 }

@@ -17,6 +17,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
+import PicSelect from "../../components/PicSelect";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
@@ -37,24 +38,22 @@ const Schools: React.FC = () => {
     getSchools({ project_id: user.currentProject?.id || 0 });
   }, [getSchools, user]);
 
-  const onSubmitSchool = (values: Partial<School>) => {
+  const onSubmitSchool = async (values: Partial<School>) => {
     if (selectedSchool) {
-      updateSchool({
+      await updateSchool({
         id: selectedSchool.id,
         image_url: imageUrl || selectedSchool.image_url,
         project_id: user.currentProject?.id || 0,
         ...values,
-      }).then(() => {
-        closeModal();
       });
     } else {
-      createSchool({
+      await createSchool({
         project_id: user.currentProject?.id || 0,
         ...values,
-      }).then(() => {
-        closeModal();
       });
     }
+    setImageUrl(undefined);
+    closeModal();
   };
 
   const closeModal = () => {
@@ -67,7 +66,6 @@ const Schools: React.FC = () => {
     try {
       if (file) {
         const fileUrl = await uploadFileToS3(file);
-
         setImageUrl(fileUrl.url);
       }
     } catch (err) {
@@ -142,54 +140,22 @@ const Schools: React.FC = () => {
             fontSize={24}
             fontWeight={600}
             value={
-              newSchool ? t("Projects.new-title") : t("Projects.update-title")
+              newSchool ? t("Schools.new-title") : t("Projects.update-title")
             }
           />
 
-          <Container mb="40px" flexDirection="column" alignItems="center">
-            <Container
-              width="120px"
-              height="120px"
-              overflow="hidden"
-              borderRadius="60px"
-              alignItems="center"
-              background="#E3E5E8"
-              justifyContent="center"
-            >
-              {imageUrl || selectedSchool?.image_url ? (
-                <Image
-                  src={imageUrl || selectedSchool?.image_url || ""}
-                  width="120px"
-                  height="120px"
-                  borderRadius="60px"
-                />
-              ) : (
-                <Icon name="university" size={60} />
-              )}
-            </Container>
-            <Container mt="16px">
-              <label htmlFor="file" style={{ cursor: "pointer" }}>
-                <Text
-                  fontSize="14px"
-                  color="primary"
-                  value={t("Schools.change-photo")}
-                />
-              </label>
-            </Container>
-
-            <input
-              id="file"
-              type="file"
-              style={{ display: "none" }}
-              onChange={(e) => {
-                addImage(e.target.files?.item(0));
-              }}
-            />
-          </Container>
+          <PicSelect
+            defaultIconName="university"
+            imageUrl={imageUrl || selectedSchool?.image_url || ""}
+            onSelectImage={addImage}
+          />
 
           <Formik
             initialValues={{
               name: selectedSchool?.name,
+              address: selectedSchool?.address,
+              village: selectedSchool?.village,
+              country: selectedSchool?.country,
             }}
             validationSchema={schoolSchema}
             onSubmit={onSubmitSchool}
@@ -203,6 +169,33 @@ const Schools: React.FC = () => {
                   handlePressEnter={handleSubmit}
                   errorMessage={(!!submitCount && errors.name) || ""}
                   onChangeText={(text) => setFieldValue("name", text)}
+                />
+
+                <Input
+                  mb="16px"
+                  label={t("Schools.address")}
+                  value={values.address}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.address) || ""}
+                  onChangeText={(text) => setFieldValue("address", text)}
+                />
+
+                <Input
+                  mb="16px"
+                  label={t("Schools.region")}
+                  value={values.village}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.village) || ""}
+                  onChangeText={(text) => setFieldValue("village", text)}
+                />
+
+                <Input
+                  mb="16px"
+                  label={t("Projects.country")}
+                  value={values.country}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.country) || ""}
+                  onChangeText={(text) => setFieldValue("country", text)}
                 />
 
                 <Button
