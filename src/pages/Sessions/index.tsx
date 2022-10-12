@@ -15,7 +15,6 @@ import {
 } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { ApplicationWithRelation, School, User } from "../../store/type";
-import * as Yup from "yup";
 import Select from "../../components/Select";
 
 const Sessions: React.FC = () => {
@@ -34,15 +33,16 @@ const Sessions: React.FC = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    getSessions({ project_id: user.currentProject?.id || 0 });
-    getSchools({});
-    getTeachers({});
-    getCoachs({});
-  }, [getSessions, getSchools, user]);
+    const project_id = user.currentProject?.id || 0;
+    getSessions({ teacher_project_id: project_id || 0 });
+    getSchools({ project_id });
+    getTeachers({ project_id });
+    getCoachs({ project_id });
+  }, [getSessions, getSchools, getCoachs, getTeachers, user]);
 
   const closeModal = () => {
     setCurrentSession(undefined);
-    getSessions({ project_id: user.currentProject?.id || 0 });
+    getSessions({ teacher_project_id: user.currentProject?.id || 0 });
   };
 
   const onSubmitSession = async (
@@ -75,7 +75,7 @@ const Sessions: React.FC = () => {
         >
           {isLoading || !data ? (
             <LoadingDots />
-          ) : (
+          ) : data.length >= 1 ? (
             data.map((session) => (
               <Container
                 padding="20px 16px"
@@ -99,10 +99,22 @@ const Sessions: React.FC = () => {
                   fontSize="16px"
                   color="#49504C"
                   lineHeight="24px"
-                  value={session.questionnaire.title}
+                  value={"Session: " + session.order}
                 />
               </Container>
             ))
+          ) : (
+            <Container
+              minHeight={"200px"}
+              alignItems={"center"}
+              justifyContent={"center"}
+            >
+              <Text
+                fontSize={20}
+                fontWeight={400}
+                value={t("Sessions.data-not-found")}
+              />
+            </Container>
           )}
         </Container>
       </Container>

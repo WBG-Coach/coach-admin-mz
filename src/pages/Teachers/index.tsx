@@ -42,7 +42,7 @@ const Teachers: React.FC = () => {
   useEffect(() => {
     getTeachers({ project_id: user.currentProject?.id || 0 });
     getSchools({ project_id: user.currentProject?.id || 0 });
-  }, [getTeachers, user]);
+  }, [getTeachers, getSchools, user]);
 
   const closeModal = () => {
     setSelectedTeacher(undefined);

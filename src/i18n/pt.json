@@ -37,6 +37,7 @@
     "new-button": "Salvar"
   },
   "Schools": {
+    "add": "Adicionar escola",
     "name": "Escola",
     "new-title": "Nova escola",
     "address": "Endereço",
@@ -55,13 +56,17 @@
     "title": "Escolas"
   },
   "Coaches": {
+    "add": "Adicionar orientador",
     "name": "Orientador",
     "title": "Orientadores"
   },
   "Sessions": {
-    "title": "Sessóes"
+    "add": "Adicionar sessão",
+    "title": "Sessóes",
+    "data-not-found": "Nenhum dado foi encontrado referente as sessões desse projeto."
   },
   "Teachers": {
+    "add": "Adicionar professor",
     "new-title": "Novo professor",
     "title": "Professores",
     "surname": "Apelido",

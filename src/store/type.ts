@@ -69,6 +69,7 @@ export type Application = {
   updated_at: Date;
   school_id: number;
   teacher: User;
+  order?: number;
   notes: Note[];
   application_date: Date;
   questionnaire: Questionnaire;

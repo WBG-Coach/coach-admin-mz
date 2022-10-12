@@ -40,6 +40,7 @@
     "update-title": "Update"
   },
   "Schools": {
+    "add": "Create school",
     "name": "School",
     "new-title": "New School",
     "change-photo": "Change photo",
@@ -59,13 +60,17 @@
     "title": "Units school"
   },
   "Coaches": {
+    "add": "Create Coach",
     "name": "Coach",
     "title": "Coaches"
   },
   "Sessions": {
-    "title": "Sessions"
+    "add": "Create Session",
+    "title": "Sessions",
+    "data-not-found": "No data was found regarding the sessions of this project."
   },
   "Teachers": {
+    "add": "Create Teacher",
     "name": "Teacher",
     "new-title": "New Teacher",
     "title": "Teacher",

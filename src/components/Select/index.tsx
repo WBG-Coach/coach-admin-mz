@@ -20,7 +20,6 @@ const Select: <T>(props: SelectProps<T>) => React.ReactElement = ({
   label,
   ...otherProps
 }) => {
-  console.log(value);
   return (
     <StyledSelectContainer {...otherProps}>
       {label && (

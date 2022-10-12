@@ -307,7 +307,7 @@ export const api = createApi({
     }),
     getSessions: builder.mutation<
       ApplicationWithRelation[],
-      { project_id: number }
+      { teacher_project_id: number }
     >({
       query: (body) => ({
         method: "POST",
