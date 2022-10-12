@@ -8,6 +8,7 @@ export type User = {
   created_at?: Date;
   updated_at?: Date;
   image_url?: string;
+  school_id?: string;
   subject?: string;
   answers?: Answer[];
   api_token?: string;
@@ -68,9 +69,17 @@ export type Application = {
   updated_at: Date;
   school_id: number;
   teacher: User;
+  order?: number;
   notes: Note[];
   application_date: Date;
   questionnaire: Questionnaire;
+};
+
+export type ApplicationWithRelation = Application & {
+  feedback_questionnaire: Feedback;
+  teacher: User;
+  coach: User;
+  school: School;
 };
 
 export type Option = {

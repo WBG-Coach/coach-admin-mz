@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { format } from "date-fns";
 import { RootState } from "../store";
 import {
+  ApplicationWithRelation,
   Competence,
   CompetenceBySchoolReport,
   CompetenceEvolutionsReport,
@@ -64,7 +65,7 @@ export const api = createApi({
         body: { type },
       }),
     }),
-    getSchools: builder.mutation<School[], { project_id: number }>({
+    getSchools: builder.mutation<School[], { project_id?: number }>({
       query: (body) => ({
         method: "POST",
         url: "/api/schools/search",
@@ -91,7 +92,7 @@ export const api = createApi({
         body,
       }),
     }),
-    getCoaches: builder.mutation<User[], { project_id: number }>({
+    getCoaches: builder.mutation<User[], { project_id?: number }>({
       query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
@@ -101,7 +102,7 @@ export const api = createApi({
         },
       }),
     }),
-    getTeachers: builder.mutation<User[], { project_id: number }>({
+    getTeachers: builder.mutation<User[], { project_id?: number }>({
       query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
@@ -256,6 +257,64 @@ export const api = createApi({
         body,
       }),
     }),
+    createTeacher: builder.mutation<
+      User,
+      {
+        project_id: number;
+        name: string;
+        last_name: string;
+        school_id: number;
+        subject: string;
+        image_url?: string;
+      }
+    >({
+      query: ({
+        project_id,
+        last_name,
+        name,
+        school_id,
+        subject,
+        image_url,
+      }) => ({
+        method: "POST",
+        url: "/api/createTeacher",
+        body: {
+          project_id,
+          last_name,
+          name,
+          school_id,
+          subject,
+          image_url,
+        },
+      }),
+    }),
+    updateUser: builder.mutation<User, Partial<User>>({
+      query: (body) => ({
+        method: "PUT",
+        url: "/api/users",
+        body,
+      }),
+    }),
+    updateQuestionnaireApplication: builder.mutation<
+      void,
+      Partial<ApplicationWithRelation>
+    >({
+      query: (body) => ({
+        method: "PUT",
+        url: "/api/questionnaire-applications",
+        body,
+      }),
+    }),
+    getSessions: builder.mutation<
+      ApplicationWithRelation[],
+      { teacher_project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/questionnaire-applications/search",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -281,4 +340,8 @@ export const {
   useGetReportCompetencesMutation,
   useGetReportSessionByYearMutation,
   useGetTeacherCompetencesMutation,
+  useCreateTeacherMutation,
+  useUpdateUserMutation,
+  useGetSessionsMutation,
+  useUpdateQuestionnaireApplicationMutation,
 } = api;

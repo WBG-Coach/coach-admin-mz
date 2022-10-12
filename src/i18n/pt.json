@@ -36,6 +36,13 @@
     "country": "País",
     "new-button": "Salvar"
   },
+  "Schools": {
+    "add": "Adicionar escola",
+    "name": "Escola",
+    "new-title": "Nova escola",
+    "address": "Endereço",
+    "region": "Região"
+  },
   "Competencies": {
     "title": "Competências"
   },
@@ -49,9 +56,20 @@
     "title": "Escolas"
   },
   "Coaches": {
+    "add": "Adicionar orientador",
+    "name": "Orientador",
     "title": "Orientadores"
   },
+  "Sessions": {
+    "add": "Adicionar sessão",
+    "title": "Sessóes",
+    "data-not-found": "Nenhum dado foi encontrado referente as sessões desse projeto."
+  },
   "Teachers": {
-    "title": "Professores"
+    "add": "Adicionar professor",
+    "new-title": "Novo professor",
+    "title": "Professores",
+    "surname": "Apelido",
+    "subject": "Subject"
   }
 }

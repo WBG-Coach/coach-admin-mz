@@ -23,9 +23,13 @@ const Select: <T>(props: SelectProps<T>) => React.ReactElement = ({
   return (
     <StyledSelectContainer {...otherProps}>
       {label && (
-        <Text mb="4px">
-          <label htmlFor={id}>{label}</label>
-        </Text>
+        <Text
+          mb="4px"
+          fontSize="14px"
+          lineHeight="18px"
+          fontWeight={600}
+          value={label}
+        />
       )}
 
       <StyledSelectGroup hasError={!!errorMessage}>

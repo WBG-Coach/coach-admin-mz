@@ -40,7 +40,12 @@
     "update-title": "Update"
   },
   "Schools": {
-    "change-photo": "Change photo"
+    "add": "Create school",
+    "name": "School",
+    "new-title": "New School",
+    "change-photo": "Change photo",
+    "address": "Address",
+    "region": "Region"
   },
   "Competencies": {
     "title": "Competencies"
@@ -55,9 +60,21 @@
     "title": "Units school"
   },
   "Coaches": {
+    "add": "Create Coach",
+    "name": "Coach",
     "title": "Coaches"
   },
+  "Sessions": {
+    "add": "Create Session",
+    "title": "Sessions",
+    "data-not-found": "No data was found regarding the sessions of this project."
+  },
   "Teachers": {
-    "title": "Teachers"
+    "add": "Create Teacher",
+    "name": "Teacher",
+    "new-title": "New Teacher",
+    "title": "Teacher",
+    "surname": "Surname",
+    "subject": "Subject"
   }
 }
