@@ -65,7 +65,7 @@ export const api = createApi({
         body: { type },
       }),
     }),
-    getSchools: builder.mutation<School[], { project_id: number }>({
+    getSchools: builder.mutation<School[], { project_id?: number }>({
       query: (body) => ({
         method: "POST",
         url: "/api/schools/search",
@@ -92,7 +92,7 @@ export const api = createApi({
         body,
       }),
     }),
-    getCoaches: builder.mutation<User[], { project_id: number }>({
+    getCoaches: builder.mutation<User[], { project_id?: number }>({
       query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
@@ -102,7 +102,7 @@ export const api = createApi({
         },
       }),
     }),
-    getTeachers: builder.mutation<User[], { project_id: number }>({
+    getTeachers: builder.mutation<User[], { project_id?: number }>({
       query: ({ project_id }) => ({
         method: "POST",
         url: "/api/users/search",
@@ -295,6 +295,16 @@ export const api = createApi({
         body,
       }),
     }),
+    updateQuestionnaireApplication: builder.mutation<
+      void,
+      Partial<ApplicationWithRelation>
+    >({
+      query: (body) => ({
+        method: "PUT",
+        url: "/api/questionnaire-applications",
+        body,
+      }),
+    }),
     getSessions: builder.mutation<
       ApplicationWithRelation[],
       { project_id: number }
@@ -333,4 +343,5 @@ export const {
   useCreateTeacherMutation,
   useUpdateUserMutation,
   useGetSessionsMutation,
+  useUpdateQuestionnaireApplicationMutation,
 } = api;

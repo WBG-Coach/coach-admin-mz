@@ -59,14 +59,16 @@
     "title": "Units school"
   },
   "Coaches": {
+    "name": "Coach",
     "title": "Coaches"
   },
   "Sessions": {
     "title": "Sessions"
   },
   "Teachers": {
+    "name": "Teacher",
     "new-title": "New Teacher",
-    "title": "Teachers",
+    "title": "Teacher",
     "surname": "Surname",
     "subject": "Subject"
   }
