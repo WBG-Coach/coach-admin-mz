@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { StyledDropDownContainer, StyledDropdownContent } from "./styles";
 import { DropdownProps } from "./types";
 import { Container } from "../Container";
@@ -6,22 +6,22 @@ import { Icon } from "../Icon";
 
 export const Dropdown: React.FC<DropdownProps> = ({
   id,
+  isOpen,
   children,
   buttonContent,
+  toggleDropdown,
 }) => {
   const toggleContainer = useRef<HTMLDivElement>(null);
-  const [isOpen, setOpen] = useState(false);
-  const toggleDropdown = () => setOpen(!isOpen);
 
   const onClickOutside = useCallback(
     (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (isOpen && !toggleContainer?.current?.contains(target)) {
-        setOpen(false);
+        toggleDropdown();
         window.removeEventListener("click", onClickOutside, true);
       }
     },
-    [isOpen]
+    [isOpen, toggleDropdown]
   );
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   return (
     <StyledDropDownContainer id={id} ref={toggleContainer}>
       <Container
-        minWidth="80px"
+        minWidth="120px"
         minHeight="36px"
         justifyContent="flex-end"
         width="fit-content"

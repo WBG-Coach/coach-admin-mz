@@ -13,4 +13,6 @@ export const StyledDropdownContent = styled.div`
   border-radius: 4px;
   background-color: #fff;
   border: 1px solid #cccccc;
+  max-height: 280px;
+  overflow-y: auto;
 `;

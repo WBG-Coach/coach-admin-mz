@@ -22,6 +22,8 @@ export const PerformancePerCompetence: React.FC = () => {
   const [getTeachers, teacherRequest] = useGetTeachersMutation();
   const [selectedTeacher, setSelectedTeacher] = useState<User>();
   const [getTeacherCompetences, { data }] = useGetTeacherCompetencesMutation();
+  const [isOpen, setOpen] = useState(false);
+  const toggleDropdown = () => setOpen(!isOpen);
 
   useEffect(() => {
     getTeachers({ project_id: user.currentProject?.id || 0 });
@@ -79,7 +81,10 @@ export const PerformancePerCompetence: React.FC = () => {
     <Container
       p="8px"
       key={teacher.id}
-      onClick={() => setSelectedTeacher(teacher)}
+      onClick={() => {
+        setSelectedTeacher(teacher);
+        toggleDropdown();
+      }}
       borderBottom="1px solid #E3E6E9"
     >
       {teacher.image_url && (
@@ -139,6 +144,8 @@ export const PerformancePerCompetence: React.FC = () => {
       </Container>
       <Dropdown
         id="select-teacher"
+        isOpen={isOpen}
+        toggleDropdown={toggleDropdown}
         buttonContent={<>{selectedTeacher && renderItem(selectedTeacher)}</>}
       >
         {teacherRequest?.data?.map((teacher) => renderItem(teacher))}
@@ -153,19 +160,60 @@ export const PerformancePerCompetence: React.FC = () => {
       </Container>
 
       <Container flexDirection="column" mt="32px">
-        <table>
+        <table style={{ width: "fit-content", borderSpacing: "0 16px" }}>
           <tr>
-            {data?.headers.map((header) => (
-              <td>
-                {header?.order &&
-                  t("Dashboard.session-name", { value: header?.order })}
+            {data?.headers.map((header, index) => (
+              <td
+                width={index === 0 ? 200 : 120}
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                {header?.order && (
+                  <Text
+                    fontSize="12px"
+                    lineHeight="16px"
+                    color="#576375"
+                    value={t("Dashboard.session-name", {
+                      value: header?.order,
+                    })}
+                  />
+                )}
               </td>
             ))}
           </tr>
           {data?.data.map((item) => (
             <tr>
-              {item.map((row) => (
-                <td>{row?.subtitle ? row.subtitle : getBoll(row.type)}</td>
+              {item.map((row, index) => (
+                <td
+                  width={index === 0 ? 200 : 120}
+                  style={{
+                    textAlign: "center",
+                    position: "relative",
+                  }}
+                >
+                  {row?.subtitle ? (
+                    <Text
+                      textAlign="center"
+                      fontSize="12px"
+                      lineHeight="16px"
+                      color="#576375"
+                      value={row.subtitle}
+                    />
+                  ) : (
+                    getBoll(row.type)
+                  )}
+                  {index !== 0 && (
+                    <Container
+                      zIndex="-1"
+                      width="100%"
+                      height="1px"
+                      background="#F0F2F4"
+                      position="absolute"
+                      top="50%"
+                    />
+                  )}
+                </td>
               ))}
             </tr>
           ))}
