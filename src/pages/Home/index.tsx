@@ -7,7 +7,6 @@ import { SchoolReports } from "./Reports/SchoolReports";
 import { CoachReports } from "./Reports/CoachReports";
 import { DateRange } from "../../components/DateRange";
 import { startOfMonth } from "date-fns";
-import { SessionReports } from "./Reports/SessionReports";
 import { useGetReportDashboardMutation } from "../../service";
 import { LoadingDots } from "../../components/LoadingDots";
 import { useTranslation } from "react-i18next";
@@ -21,7 +20,6 @@ const TAB_TITLES = [
   "Dashboard.tabs-schools",
   "Dashboard.tabs-coaches",
   "Dashboard.tabs-teachers",
-  "Dashboard.tabs-sessions",
 ];
 
 const Home: React.FC<{}> = () => {
@@ -115,7 +113,6 @@ const Home: React.FC<{}> = () => {
           end_date={dateRange.endDate}
         />
       )}
-      {currentTab === 5 && <SessionReports />}
     </Container>
   );
 };

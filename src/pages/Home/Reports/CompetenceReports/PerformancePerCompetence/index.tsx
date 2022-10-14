@@ -159,13 +159,13 @@ export const PerformancePerCompetence: React.FC = () => {
         </Container>
       </Container>
 
-      <Container flexDirection="column" mt="32px">
+      <Container flexDirection="column" mt="32px" overflowX="scroll">
         <table style={{ width: "fit-content", borderSpacing: "0 16px" }}>
           <tr>
             {data?.headers.map((header, index) => (
               <td
-                width={index === 0 ? 200 : 120}
                 style={{
+                  minWidth: index === 0 ? 200 : 80,
                   textAlign: "center",
                 }}
               >
@@ -186,7 +186,6 @@ export const PerformancePerCompetence: React.FC = () => {
             <tr>
               {item.map((row, index) => (
                 <td
-                  width={index === 0 ? 200 : 120}
                   style={{
                     textAlign: "center",
                     position: "relative",
