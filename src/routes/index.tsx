@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Projects from "../pages/Projescts";
 import QuestionnairesFeedback from "../pages/QuestionnairesFeedback";
+import QuestionnairesDocumentation from "../pages/QuestionnairesDocumentation";
 import QuestionnairesObservation from "../pages/QuestionnairesObservation";
 import Schools from "../pages/Schools";
 import Sessions from "../pages/Sessions";
@@ -37,6 +38,10 @@ const RoutesConfig: React.FC = () => {
           <Route
             path="feedbacks-questionnaire"
             element={<QuestionnairesFeedback />}
+          />
+          <Route
+            path="documentations-questionnaire"
+            element={<QuestionnairesDocumentation />}
           />
           <Route path="schools" element={<Schools />} />
           <Route path="coaches" element={<Coaches />} />

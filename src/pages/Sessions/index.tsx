@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button, Container, Text } from "../../components";
-import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
 import { Modal } from "../../components/Modal";
 import {
@@ -24,7 +23,7 @@ const Sessions: React.FC = () => {
 
   const [getSchools, requestGetSchools] = useGetSchoolsMutation();
   const [getTeachers, requestGetTeachers] = useGetTeachersMutation();
-  const [getCoachs, requestGetCoachs] = useGetCoachesMutation();
+  const [getCoaches, requestGetCoachs] = useGetCoachesMutation();
 
   const user = useSelector(selectCurrentUser);
   const [currentSession, setCurrentSession] = useState<
@@ -37,8 +36,8 @@ const Sessions: React.FC = () => {
     getSessions({ teacher_project_id: project_id || 0 });
     getSchools({ project_id });
     getTeachers({ project_id });
-    getCoachs({ project_id });
-  }, [getSessions, getSchools, getCoachs, getTeachers, user]);
+    getCoaches({ project_id });
+  }, [getSessions, getSchools, getCoaches, getTeachers, user]);
 
   const closeModal = () => {
     setCurrentSession(undefined);
@@ -68,11 +67,47 @@ const Sessions: React.FC = () => {
         <Container
           flex={1}
           overflow="hidden"
-          borderRadius="8px"
           borderBottom="none"
           flexDirection="column"
-          border="1px solid #f4f5f5"
         >
+          <Container
+            padding="20px 16px"
+            alignItems="center"
+            borderBottom="1px solid #f4f5f5"
+          >
+            <Container flex={1}>
+              <Text
+                fontSize="16px"
+                color="#49504C"
+                lineHeight="24px"
+                value={t("Sessions.session-title")}
+              />
+            </Container>
+            <Container flex={1}>
+              <Text
+                fontSize="16px"
+                color="#49504C"
+                lineHeight="24px"
+                value={t("Sessions.school-name")}
+              />
+            </Container>
+            <Container flex={1}>
+              <Text
+                fontSize="16px"
+                color="#49504C"
+                lineHeight="24px"
+                value={t("Sessions.teacher-name")}
+              />
+            </Container>
+            <Container flex={1}>
+              <Text
+                fontSize="16px"
+                color="#49504C"
+                lineHeight="24px"
+                value={t("Sessions.coach-name")}
+              />
+            </Container>
+          </Container>
           {isLoading || !data ? (
             <LoadingDots />
           ) : data.length >= 1 ? (
@@ -83,24 +118,38 @@ const Sessions: React.FC = () => {
                 borderBottom="1px solid #f4f5f5"
                 onClick={() => setCurrentSession(session)}
               >
-                <Container
-                  mr="16px"
-                  width="40px"
-                  height="40px"
-                  overflow="hidden"
-                  alignItems="center"
-                  borderRadius="20px"
-                  background="#F4F5F5"
-                  justifyContent="center"
-                >
-                  <Icon size={24} name="user" color="#49504C" />
+                <Container flex={1}>
+                  <Text
+                    fontSize="16px"
+                    color="#000000"
+                    lineHeight="24px"
+                    value={"Session " + session.order}
+                  />
                 </Container>
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={"Session: " + session.order}
-                />
+                <Container flex={1}>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={session.school.name}
+                  />
+                </Container>
+                <Container flex={1}>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={session.teacher.name}
+                  />
+                </Container>
+                <Container flex={1}>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={session.coach.name}
+                  />
+                </Container>
               </Container>
             ))
           ) : (

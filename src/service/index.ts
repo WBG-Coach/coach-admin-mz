@@ -12,6 +12,7 @@ import {
   DashboardReport,
   Project,
   Questionnaire,
+  QuestionnaireQuestion,
   School,
   SessionByYearReport,
   SessionReport,
@@ -57,7 +58,7 @@ export const api = createApi({
     }),
     getQuestionnaires: builder.mutation<
       Questionnaire[],
-      { type: "OBSERVATION" | "FEEDBACK"; project_id: number }
+      { type: "OBSERVATION" | "FEEDBACK" | "DOCUMENTATION"; project_id: number }
     >({
       query: ({ type }) => ({
         method: "POST",
@@ -315,6 +316,16 @@ export const api = createApi({
         body,
       }),
     }),
+    getQuestions: builder.mutation<
+      { questions: QuestionnaireQuestion[] },
+      { questionnaire_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/questionnaire-questions/search",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -344,4 +355,5 @@ export const {
   useUpdateUserMutation,
   useGetSessionsMutation,
   useUpdateQuestionnaireApplicationMutation,
+  useGetQuestionsMutation,
 } = api;

@@ -35,7 +35,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             route="/competencies"
             label="Competencies"
           />
-
           <Text
             py="8px"
             px="16px"
@@ -43,7 +42,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             fontSize="12px"
             color="#7D827F"
           />
-
           <MenuItem
             icon="clipboard-notes"
             route="/observation-questionnaire"
@@ -54,7 +52,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             route="/feedbacks-questionnaire"
             label="Feedback"
           />
-
+          <MenuItem
+            icon="clipboard-notes"
+            route="/documentations-questionnaire"
+            label="Documentation"
+          />
           <Text
             py="8px"
             px="16px"
@@ -62,13 +64,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             fontSize="12px"
             color="#7D827F"
           />
-
           <MenuItem icon="university" route="/schools" label="Units" />
           <MenuItem icon="user" route="/coaches" label="Coaches" />
           <MenuItem icon="user-circle" route="/teachers" label="Teachers" />
           <MenuItem icon="notes" route="/sessions" label="Sessions" />
           <MenuItem icon="setting" route="/settings" label="Settings" />
-
           <Container mt="auto" />
           <MenuItem
             icon="signout"

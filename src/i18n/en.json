@@ -26,7 +26,8 @@
     "session-evolution": "Evolution of sessions in 2022",
     "teacher-person-chart-title": "Teachers who didn't receive any feedback session",
     "coaches-person-chart-title": "Coaches who did not give any feedback sessions",
-    "session-name": "Session {{value}}"
+    "session-name": "Session {{value}}",
+    "schools-without-sessions-chart-title": "Schools that have all teachers without competence assessment"
   },
   "Projects": {
     "title": "Projects",
@@ -56,6 +57,9 @@
   "Feedback": {
     "title": "Feedback questionnaires"
   },
+  "Documentation": {
+    "title": "Documentations"
+  },
   "Units": {
     "title": "Units school"
   },
@@ -67,7 +71,11 @@
   "Sessions": {
     "add": "Create Session",
     "title": "Sessions",
-    "data-not-found": "No data was found regarding the sessions of this project."
+    "data-not-found": "No data was found regarding the sessions of this project.",
+    "session-title": "Session title",
+    "school-name": "School",
+    "teacher-name": "Teacher",
+    "coach-name": "Coach"
   },
   "Teachers": {
     "add": "Create Teacher",

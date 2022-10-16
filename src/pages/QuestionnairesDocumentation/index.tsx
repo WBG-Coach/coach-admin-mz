@@ -5,18 +5,14 @@ import { useTheme } from "styled-components";
 import { Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import {
-  useGetQuestionnairesMutation,
-  useGetQuestionsMutation,
-} from "../../service";
+import { useGetQuestionnairesMutation } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
 
-const QuestionnairesObservation: React.FC<{}> = () => {
+const QuestionnairesDocumentation: React.FC<{}> = () => {
   const { t } = useTranslation();
   const [getQuestionnaires, { isLoading, data }] =
     useGetQuestionnairesMutation();
-  const [getQuestions] = useGetQuestionsMutation();
   const [selectedQuestionnaire, setSelectedQuestionnaire] =
     useState<Questionnaire>();
   const user = useSelector(selectCurrentUser);
@@ -24,15 +20,10 @@ const QuestionnairesObservation: React.FC<{}> = () => {
 
   useEffect(() => {
     getQuestionnaires({
-      type: "OBSERVATION",
+      type: "DOCUMENTATION",
       project_id: user.currentProject?.id || 0,
     });
   }, [user, getQuestionnaires]);
-
-  useEffect(() => {
-    if (selectedQuestionnaire)
-      getQuestions({ questionnaire_id: selectedQuestionnaire.id });
-  }, [selectedQuestionnaire, getQuestions]);
 
   return (
     <Container width="100%" flexDirection="column">
@@ -40,7 +31,7 @@ const QuestionnairesObservation: React.FC<{}> = () => {
         mb={40}
         fontSize={32}
         fontWeight={600}
-        value={t("Observation.title")}
+        value={t("Documentation.title")}
       />
 
       <Container
@@ -86,10 +77,10 @@ const QuestionnairesObservation: React.FC<{}> = () => {
 
       <Container p="12px 16px" alignItems="center" onClick={() => {}}>
         <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
-        <Text value={t("Observation.add")} color={theme.colors.primary} />
+        <Text value={t("Documentation.add")} color={theme.colors.primary} />
       </Container>
     </Container>
   );
 };
 
-export default QuestionnairesObservation;
+export default QuestionnairesDocumentation;

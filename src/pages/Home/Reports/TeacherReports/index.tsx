@@ -114,12 +114,14 @@ export const TeacherReports: React.FC<{
       )}
       <Container>
         <Card>
-          <Text
-            mb="32px"
-            fontSize="18px"
-            lineHeight="24px"
-            value={t("Dashboard.teacher-person-chart-title")}
-          />
+          <Container mb="32px">
+            <Text
+              mb="32px"
+              fontSize="18px"
+              lineHeight="24px"
+              value={t("Dashboard.teacher-person-chart-title")}
+            />
+          </Container>
 
           <PersonChart end_date={end_date} start_date={start_date} />
         </Card>

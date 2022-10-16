@@ -9,7 +9,7 @@ import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerSchoolMutation } from "../../../../service";
 import { selectCurrentUser } from "../../../../store/auth";
 import { School } from "../../../../store/type";
-import { CompetenciesBySchool } from "./CompetenciesBySchool";
+import { PersonChart } from "../TeacherReports/PersonChart";
 
 export const SchoolReports: React.FC<{
   start_date: Date;
@@ -83,10 +83,19 @@ export const SchoolReports: React.FC<{
             <Card flex={1}>
               <SessionTable data={data} />
             </Card>
-            <Card mt="16px" flex={1}>
-              <CompetenciesBySchool sessionReport={data} />
+            <Card mt="32px" width={400}>
+              <Container mb="32px">
+                <Text
+                  fontSize="18px"
+                  lineHeight="24px"
+                  value={t("Dashboard.schools-without-sessions-chart-title")}
+                />
+              </Container>
+
+              <PersonChart end_date={end_date} start_date={start_date} />
             </Card>
           </Container>
+
           <Container width="50%" maxWidth="360px" flexDirection="column">
             <Text
               value={t("Dashboard.tabs-schools")}
