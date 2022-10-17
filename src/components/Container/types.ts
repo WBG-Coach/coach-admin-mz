@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import {
   BackgroundProps,
   BorderProps,
+  BoxShadowProps,
   FlexboxProps,
   GridGapProps,
   LayoutProps,
@@ -15,10 +16,12 @@ export type ContainerProps = {
   hoverColor?: string;
   rotate?: number;
   hideScrollbar?: boolean;
+  ref?: any;
 } & LayoutProps &
   SpaceProps &
   FlexboxProps &
   BorderProps &
   BackgroundProps &
   PositionProps &
-  GridGapProps;
+  GridGapProps &
+  BoxShadowProps;

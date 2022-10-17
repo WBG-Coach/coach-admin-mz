@@ -76,7 +76,7 @@ const Teachers: React.FC = () => {
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
-        const fileUrl = await uploadFileToS3(file);
+        const fileUrl = await uploadFileToS3(file, "teachers");
         setImageUrl(fileUrl.url);
       }
     } catch (err) {
@@ -226,20 +226,34 @@ const Teachers: React.FC = () => {
                   />
                 )}
 
-                <Button
-                  mt="40px"
-                  isDisabled={
-                    requestCreateTeacher.isLoading ||
-                    requestUpdateUser.isLoading
-                  }
-                  value={
-                    requestCreateTeacher.isLoading ||
-                    requestUpdateUser.isLoading
-                      ? "Loading..."
-                      : t("Projects.new-button")
-                  }
-                  onClick={handleSubmit}
-                />
+                <Container width={"100%"} justifyContent={"flex-end"}>
+                  <Button
+                    mt="40px"
+                    width={"fit-content"}
+                    isDisabled={
+                      requestCreateTeacher.isLoading ||
+                      requestUpdateUser.isLoading
+                    }
+                    value={t("Global.cancel")}
+                    onClick={closeModal}
+                    mr={"16px"}
+                    variant={"secondary"}
+                  />
+                  <Button
+                    mt="40px"
+                    isDisabled={
+                      requestCreateTeacher.isLoading ||
+                      requestUpdateUser.isLoading
+                    }
+                    value={
+                      requestCreateTeacher.isLoading ||
+                      requestUpdateUser.isLoading
+                        ? "Loading..."
+                        : t("Projects.new-button")
+                    }
+                    onClick={handleSubmit}
+                  />
+                </Container>
               </Container>
             )}
           </Formik>

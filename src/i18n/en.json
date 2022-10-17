@@ -1,4 +1,7 @@
 {
+  "Global": {
+    "cancel": "Cancel"
+  },
   "Paginator": {
     "items-per-page": "Items per page:",
     "page-details": "Page {{current}} of {{total}}"

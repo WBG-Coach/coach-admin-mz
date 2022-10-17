@@ -1,4 +1,7 @@
 {
+  "Global": {
+    "cancel": "Cancelar"
+  },
   "Paginator": {
     "items-per-page": "Itens por pagina:",
     "page-details": "Página {{current}} de {{total}}"
@@ -62,7 +65,7 @@
   },
   "Sessions": {
     "add": "Adicionar sessão",
-    "title": "Sessóes",
+    "title": "Sessões",
     "data-not-found": "Nenhum dado foi encontrado referente as sessões desse projeto."
   },
   "Teachers": {

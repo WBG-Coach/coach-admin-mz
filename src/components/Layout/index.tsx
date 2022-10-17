@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectCurrentUser } from "../../store/auth";
 import { Container } from "../Container";
 import { Image } from "../Image";
-import { LanguageButton } from "../LanguageButton";
 import { MenuItem } from "../MenuItem";
 import { Text } from "../Text";
 import logo from "../../assets/images/logo.svg";
@@ -12,11 +11,11 @@ import {
   StyledPageContent,
   StyledLayoutContainer,
   StyledMenuContainer,
-  StyledHeaderContainer,
 } from "./styles";
 import { Modal } from "../Modal";
 import { SelectProject } from "../SelectProject";
 import { SelectProjectButton } from "../SelectProjectButton";
+import Header from "../Header";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dispatch = useDispatch();
@@ -78,9 +77,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </Container>
       </StyledMenuContainer>
       <StyledPageContent>
-        <StyledHeaderContainer>
-          <LanguageButton />
-        </StyledHeaderContainer>
+        <Header />
         {user.currentProject && children}
         <Modal isOpen={!user.currentProject}>
           <SelectProject />

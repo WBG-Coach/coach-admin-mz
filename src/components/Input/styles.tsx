@@ -9,10 +9,13 @@ export const StyledInputContainer = styled.span<any>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border: 1px solid ${(props) => (props.hasError ? "#e53935" : "#e3e5e8")};
+  border: 1px solid
+    ${(props) =>
+      props.hasError ? "#e53935" : props.inFocus ? "#3373CC" : "#e3e5e8"};
 `;
 
 export const StyledInput = styled.input`
+  outline: none;
   font-family: "Inter", sans-serif;
   padding: 16px;
   margin: 0;

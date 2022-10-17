@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 import { Text } from "../Text";
@@ -19,6 +19,8 @@ export const Input: React.FC<InputProps> = ({
   onChangeText: onChange,
   ...props
 }) => {
+  const [InFocus, setInFocus] = useState(false);
+
   return (
     <Container flexDirection="column" {...props}>
       {label && (
@@ -30,12 +32,14 @@ export const Input: React.FC<InputProps> = ({
           value={label}
         />
       )}
-      <StyledInputContainer hasError={errorMessage}>
+      <StyledInputContainer hasError={errorMessage} inFocus={InFocus}>
         {icon && <Icon ml="8px" color="#494B50" size={24} name={icon} />}
         <StyledInput
           type={type}
           value={value}
           placeholder={placeholder}
+          onFocus={() => setInFocus(true)}
+          onBlur={() => setInFocus(false)}
           onChange={(e: any): void => onChange(e.target.value)}
           onKeyPress={(event: React.KeyboardEvent) => {
             if (event.key === "Enter" && props?.handlePressEnter) {

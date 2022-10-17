@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Button, Container, Image, Text } from "../../components";
-import { LanguageButton } from "../../components/LanguageButton";
+import { LanguageButton } from "../../components/Header/LanguageButton";
 import { selectCurrentUser, selectLoginErrorMessage } from "../../store/auth";
 import { useLoginMutation } from "../../service";
 import { useNavigate } from "react-router-dom";

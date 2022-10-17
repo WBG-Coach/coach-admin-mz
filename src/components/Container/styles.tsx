@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import {
   background,
   border,
+  boxShadow,
   flexbox,
   gridGap,
   layout,
@@ -20,6 +21,7 @@ export const StyledContainer = styled.div<ContainerProps>`
   ${border}
   ${background}
   ${gridGap}
+  ${boxShadow}
 
   ${(props) =>
     props.rotate &&

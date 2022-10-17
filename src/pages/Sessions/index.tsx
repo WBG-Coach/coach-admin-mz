@@ -226,16 +226,27 @@ const Sessions: React.FC = () => {
                   />
                 )}
 
-                <Button
-                  mt="40px"
-                  isDisabled={requestUpdateQuestionnaire.isLoading}
-                  value={
-                    requestUpdateQuestionnaire.isLoading
-                      ? "Loading..."
-                      : t("Projects.new-button")
-                  }
-                  onClick={handleSubmit}
-                />
+                <Container width={"100%"} justifyContent={"flex-end"}>
+                  <Button
+                    mt="40px"
+                    width={"fit-content"}
+                    isDisabled={requestUpdateQuestionnaire.isLoading}
+                    value={t("Global.cancel")}
+                    onClick={closeModal}
+                    mr={"16px"}
+                    variant={"secondary"}
+                  />
+                  <Button
+                    mt="40px"
+                    isDisabled={requestUpdateQuestionnaire.isLoading}
+                    value={
+                      requestUpdateQuestionnaire.isLoading
+                        ? "Loading..."
+                        : t("Projects.new-button")
+                    }
+                    onClick={handleSubmit}
+                  />
+                </Container>
               </Container>
             )}
           </Formik>

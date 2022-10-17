@@ -18,6 +18,7 @@ import * as Yup from "yup";
 import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
+import ListMenu from "../../components/ListMenu";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
@@ -65,7 +66,7 @@ const Schools: React.FC = () => {
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
-        const fileUrl = await uploadFileToS3(file);
+        const fileUrl = await uploadFileToS3(file, "schools");
         setImageUrl(fileUrl.url);
       }
     } catch (err) {
@@ -80,7 +81,6 @@ const Schools: React.FC = () => {
 
         <Container
           flex={1}
-          overflow="hidden"
           borderRadius="8px"
           borderBottom="none"
           flexDirection="column"
@@ -94,29 +94,46 @@ const Schools: React.FC = () => {
                 padding="20px 16px"
                 alignItems="center"
                 borderBottom="1px solid #f4f5f5"
-                onClick={() => setSelectedSchool(school)}
               >
                 <Container
-                  mr="16px"
-                  width="40px"
-                  height="40px"
-                  overflow="hidden"
-                  alignItems="center"
-                  borderRadius="20px"
-                  background="#F4F5F5"
-                  justifyContent="center"
+                  alignItems={"center"}
+                  onClick={() => setSelectedSchool(school)}
+                  flex={1}
                 >
-                  {school.image_url ? (
-                    <Image src={school.image_url} width="40px" height="40px" />
-                  ) : (
-                    <Icon size={24} name="university" color="#49504C" />
-                  )}
+                  <Container
+                    mr="16px"
+                    width="40px"
+                    height="40px"
+                    overflow="hidden"
+                    alignItems="center"
+                    borderRadius="20px"
+                    background="#F4F5F5"
+                    justifyContent="center"
+                  >
+                    {school.image_url ? (
+                      <Image
+                        src={school.image_url}
+                        width="40px"
+                        height="40px"
+                      />
+                    ) : (
+                      <Icon size={24} name="university" color="#49504C" />
+                    )}
+                  </Container>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={school.name}
+                  />
                 </Container>
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={school.name}
+                <ListMenu
+                  options={[
+                    {
+                      label: "Adicionar Escola",
+                      onClick: () => console.log("add school"),
+                    },
+                  ]}
                 />
               </Container>
             ))
@@ -126,6 +143,7 @@ const Schools: React.FC = () => {
         <Container
           p="12px 16px"
           alignItems="center"
+          width={"fit-content"}
           onClick={() => setNewSchool(true)}
         >
           <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
@@ -197,21 +215,35 @@ const Schools: React.FC = () => {
                   errorMessage={(!!submitCount && errors.country) || ""}
                   onChangeText={(text) => setFieldValue("country", text)}
                 />
-
-                <Button
-                  mt="40px"
-                  isDisabled={
-                    requestCreateSchool.isLoading ||
-                    requestUpdateSchool.isLoading
-                  }
-                  value={
-                    requestCreateSchool.isLoading ||
-                    requestUpdateSchool.isLoading
-                      ? "Loading..."
-                      : t("Projects.new-button")
-                  }
-                  onClick={handleSubmit}
-                />
+                <Container width={"100%"} justifyContent={"flex-end"}>
+                  <Button
+                    mt="40px"
+                    width={"fit-content"}
+                    isDisabled={
+                      requestCreateSchool.isLoading ||
+                      requestUpdateSchool.isLoading
+                    }
+                    value={t("Global.cancel")}
+                    onClick={closeModal}
+                    mr={"16px"}
+                    variant={"secondary"}
+                  />
+                  <Button
+                    mt="40px"
+                    width={"fit-content"}
+                    isDisabled={
+                      requestCreateSchool.isLoading ||
+                      requestUpdateSchool.isLoading
+                    }
+                    value={
+                      requestCreateSchool.isLoading ||
+                      requestUpdateSchool.isLoading
+                        ? "Loading..."
+                        : t("Projects.new-button")
+                    }
+                    onClick={handleSubmit}
+                  />
+                </Container>
               </Container>
             )}
           </Formik>

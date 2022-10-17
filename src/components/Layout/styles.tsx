@@ -26,14 +26,3 @@ export const StyledPageContent = styled.div`
   overflow-y: auto;
   padding: 32px;
 `;
-
-export const StyledHeaderContainer = styled.div`
-  margin: -32px;
-  margin-bottom: 32px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  height: 64px;
-  border-bottom: 1px solid #f4f5f5;
-`;
