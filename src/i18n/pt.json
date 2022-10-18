@@ -40,36 +40,45 @@
     "new-button": "Salvar"
   },
   "Schools": {
-    "add": "Adicionar escola",
+    "add": "Add escola",
     "name": "Escola",
     "new-title": "Nova escola",
     "address": "Endereço",
     "region": "Região"
   },
   "Competencies": {
-    "title": "Competências"
+    "title": "Competências",
+    "add": "Add competência"
   },
   "Observation": {
-    "title": "Questionarios de observação"
+    "title": "Questionarios de observação",
+    "seeQuestion": "Ver questões",
+    "editQuestion": "Editar questionário",
+    "add": "Add observação"
   },
   "Feedback": {
-    "title": "Questionarios de feedback"
+    "title": "Questionarios de feedback",
+    "add": "add feedback"
+  },
+  "Documentation": {
+    "title": "Documentações",
+    "add": "Add documentação"
   },
   "Units": {
     "title": "Escolas"
   },
   "Coaches": {
-    "add": "Adicionar orientador",
+    "add": "Add orientador",
     "name": "Orientador",
     "title": "Orientadores"
   },
   "Sessions": {
-    "add": "Adicionar sessão",
+    "add": "Add sessão",
     "title": "Sessões",
     "data-not-found": "Nenhum dado foi encontrado referente as sessões desse projeto."
   },
   "Teachers": {
-    "add": "Adicionar professor",
+    "add": "Add professor",
     "new-title": "Novo professor",
     "title": "Professores",
     "surname": "Apelido",

@@ -20,6 +20,7 @@ import * as Yup from "yup";
 import { Input } from "../../components/Input";
 import PicSelect from "../../components/PicSelect";
 import Select from "../../components/Select";
+import { motion } from "framer-motion";
 
 const Teachers: React.FC = () => {
   const { t } = useTranslation();
@@ -105,41 +106,48 @@ const Teachers: React.FC = () => {
           <LoadingDots />
         ) : (
           data.map((teacher) => (
-            <Container
-              padding="20px 16px"
-              alignItems="center"
-              borderBottom="1px solid #f4f5f5"
-              onClick={() => {
-                setSelectedTeacher(teacher);
-              }}
+            <motion.div
+              key={teacher.id}
+              style={{ width: "100%" }}
+              initial={{ height: 0 }}
+              animate={{ height: "fit-content" }}
             >
               <Container
-                mr="16px"
-                width="40px"
-                height="40px"
-                overflow="hidden"
+                padding="20px 16px"
                 alignItems="center"
-                borderRadius="20px"
-                background="#F4F5F5"
-                justifyContent="center"
+                borderBottom="1px solid #f4f5f5"
+                onClick={() => {
+                  setSelectedTeacher(teacher);
+                }}
               >
-                {teacher.image_url ? (
-                  <Image src={teacher.image_url} width="40px" height="40px" />
-                ) : (
-                  <Text
-                    fontSize="24px"
-                    color="#49504C"
-                    value={teacher?.name?.substring(0, 1)}
-                  />
-                )}
+                <Container
+                  mr="16px"
+                  width="40px"
+                  height="40px"
+                  overflow="hidden"
+                  alignItems="center"
+                  borderRadius="20px"
+                  background="#F4F5F5"
+                  justifyContent="center"
+                >
+                  {teacher.image_url ? (
+                    <Image src={teacher.image_url} width="40px" height="40px" />
+                  ) : (
+                    <Text
+                      fontSize="24px"
+                      color="#49504C"
+                      value={teacher?.name?.substring(0, 1)}
+                    />
+                  )}
+                </Container>
+                <Text
+                  fontSize="16px"
+                  color="#49504C"
+                  lineHeight="24px"
+                  value={teacher.name}
+                />
               </Container>
-              <Text
-                fontSize="16px"
-                color="#49504C"
-                lineHeight="24px"
-                value={teacher.name}
-              />
-            </Container>
+            </motion.div>
           ))
         )}
       </Container>

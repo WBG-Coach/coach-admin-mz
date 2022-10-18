@@ -12,6 +12,7 @@ import { selectCurrentUser } from "../../store/auth";
 import { User } from "../../store/type";
 import { useUpdateUserMutation } from "../../service";
 import { uploadFileToS3 } from "../../util";
+import { motion } from "framer-motion";
 
 const Coaches: React.FC = () => {
   const { t } = useTranslation();
@@ -76,40 +77,47 @@ const Coaches: React.FC = () => {
             <LoadingDots />
           ) : (
             data.map((coach) => (
-              <Container
+              <motion.div
                 key={coach.id}
-                padding="20px 16px"
-                alignItems="center"
-                borderBottom="1px solid #f4f5f5"
-                onClick={() => setSelectedCoach(coach)}
+                style={{ width: "100%" }}
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
               >
                 <Container
-                  mr="16px"
-                  width="40px"
-                  height="40px"
-                  overflow="hidden"
+                  key={coach.id}
+                  padding="20px 16px"
                   alignItems="center"
-                  borderRadius="20px"
-                  background="#F4F5F5"
-                  justifyContent="center"
+                  borderBottom="1px solid #f4f5f5"
+                  onClick={() => setSelectedCoach(coach)}
                 >
-                  {coach.image_url ? (
-                    <Image src={coach.image_url} width="40px" height="40px" />
-                  ) : (
-                    <Text
-                      fontSize="24px"
-                      color="#49504C"
-                      value={coach?.name?.substring(0, 1)}
-                    />
-                  )}
+                  <Container
+                    mr="16px"
+                    width="40px"
+                    height="40px"
+                    overflow="hidden"
+                    alignItems="center"
+                    borderRadius="20px"
+                    background="#F4F5F5"
+                    justifyContent="center"
+                  >
+                    {coach.image_url ? (
+                      <Image src={coach.image_url} width="40px" height="40px" />
+                    ) : (
+                      <Text
+                        fontSize="24px"
+                        color="#49504C"
+                        value={coach?.name?.substring(0, 1)}
+                      />
+                    )}
+                  </Container>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={coach.name}
+                  />
                 </Container>
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={coach.name}
-                />
-              </Container>
+              </motion.div>
             ))
           )}
         </Container>

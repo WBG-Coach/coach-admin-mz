@@ -52,16 +52,22 @@
     "region": "Region"
   },
   "Competencies": {
-    "title": "Competencies"
+    "title": "Competencies",
+    "add": "Add competency"
   },
   "Observation": {
-    "title": "Observation questionnaires"
+    "title": "Observation questionnaires",
+    "seeQuestion": "See questions",
+    "editQuestion": "Edit questionnaire",
+    "add": "Add observation"
   },
   "Feedback": {
-    "title": "Feedback questionnaires"
+    "title": "Feedback questionnaires",
+    "add": "Add feedback"
   },
   "Documentation": {
-    "title": "Documentations"
+    "title": "Documentations",
+    "add": "Add documentation"
   },
   "Units": {
     "title": "Units school"

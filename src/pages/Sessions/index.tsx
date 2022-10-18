@@ -15,6 +15,7 @@ import {
 import { selectCurrentUser } from "../../store/auth";
 import { ApplicationWithRelation, School, User } from "../../store/type";
 import Select from "../../components/Select";
+import { motion } from "framer-motion";
 
 const Sessions: React.FC = () => {
   const [getSessions, { isLoading, data }] = useGetSessionsMutation();
@@ -112,45 +113,52 @@ const Sessions: React.FC = () => {
             <LoadingDots />
           ) : data.length >= 1 ? (
             data.map((session) => (
-              <Container
-                padding="20px 16px"
-                alignItems="center"
-                borderBottom="1px solid #f4f5f5"
-                onClick={() => setCurrentSession(session)}
+              <motion.div
+                key={session.id}
+                style={{ width: "100%" }}
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
               >
-                <Container flex={1}>
-                  <Text
-                    fontSize="16px"
-                    color="#000000"
-                    lineHeight="24px"
-                    value={"Session " + session.order}
-                  />
+                <Container
+                  padding="20px 16px"
+                  alignItems="center"
+                  borderBottom="1px solid #f4f5f5"
+                  onClick={() => setCurrentSession(session)}
+                >
+                  <Container flex={1}>
+                    <Text
+                      fontSize="16px"
+                      color="#000000"
+                      lineHeight="24px"
+                      value={"Session " + session.order}
+                    />
+                  </Container>
+                  <Container flex={1}>
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={session.school.name}
+                    />
+                  </Container>
+                  <Container flex={1}>
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={session.teacher.name}
+                    />
+                  </Container>
+                  <Container flex={1}>
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={session.coach.name}
+                    />
+                  </Container>
                 </Container>
-                <Container flex={1}>
-                  <Text
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={session.school.name}
-                  />
-                </Container>
-                <Container flex={1}>
-                  <Text
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={session.teacher.name}
-                  />
-                </Container>
-                <Container flex={1}>
-                  <Text
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={session.coach.name}
-                  />
-                </Container>
-              </Container>
+              </motion.div>
             ))
           ) : (
             <Container

@@ -8,6 +8,7 @@ import { LoadingDots } from "../../components/LoadingDots";
 import { useGetQuestionnairesMutation } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
+import { motion } from "framer-motion";
 
 const QuestionnairesFeedback: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -46,31 +47,38 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
           <LoadingDots />
         ) : (
           data.map((questionnaire) => (
-            <Container
-              onClick={() => setSelectedQuestionnaire(questionnaire)}
-              padding="20px 16px"
-              borderBottom="1px solid #f4f5f5"
-              background={
-                selectedQuestionnaire?.id === questionnaire.id
-                  ? theme.colors.primary + "10"
-                  : "#fff"
-              }
+            <motion.div
+              key={questionnaire.id}
+              style={{ width: "100%" }}
+              initial={{ height: 0 }}
+              animate={{ height: "fit-content" }}
             >
-              <Container width="24px">
+              <Container
+                onClick={() => setSelectedQuestionnaire(questionnaire)}
+                padding="20px 16px"
+                borderBottom="1px solid #f4f5f5"
+                background={
+                  selectedQuestionnaire?.id === questionnaire.id
+                    ? theme.colors.primary + "10"
+                    : "#fff"
+                }
+              >
+                <Container width="24px">
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={questionnaire.id.toString()}
+                  />
+                </Container>
                 <Text
                   fontSize="16px"
                   color="#49504C"
                   lineHeight="24px"
-                  value={questionnaire.id.toString()}
+                  value={questionnaire.title}
                 />
               </Container>
-              <Text
-                fontSize="16px"
-                color="#49504C"
-                lineHeight="24px"
-                value={questionnaire.title}
-              />
-            </Container>
+            </motion.div>
           ))
         )}
       </Container>

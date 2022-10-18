@@ -14,6 +14,7 @@ import {
   useGetProjectsMutation,
   useUpdateProjectMutation,
 } from "../../service";
+import { motion } from "framer-motion";
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -78,62 +79,69 @@ const Projects: React.FC = () => {
             <LoadingDots />
           ) : (
             data.map((project) => (
-              <Container
-                padding="20px 16px"
-                alignItems="center"
-                borderBottom="1px solid #f4f5f5"
-                onClick={() => setSelectedProject(project)}
+              <motion.div
+                key={project.id}
+                style={{ width: "100%" }}
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
               >
                 <Container
-                  mr="16px"
-                  width="40px"
-                  height="40px"
-                  overflow="hidden"
+                  padding="20px 16px"
                   alignItems="center"
-                  borderRadius="20px"
-                  background="#F4F5F5"
-                  justifyContent="center"
+                  borderBottom="1px solid #f4f5f5"
+                  onClick={() => setSelectedProject(project)}
                 >
-                  {project.image_url ? (
-                    <Image src={project.image_url} width="40px" />
-                  ) : (
+                  <Container
+                    mr="16px"
+                    width="40px"
+                    height="40px"
+                    overflow="hidden"
+                    alignItems="center"
+                    borderRadius="20px"
+                    background="#F4F5F5"
+                    justifyContent="center"
+                  >
+                    {project.image_url ? (
+                      <Image src={project.image_url} width="40px" />
+                    ) : (
+                      <Text
+                        fontSize="24px"
+                        color="#49504C"
+                        value={project?.name?.substring(0, 1)}
+                      />
+                    )}
+                  </Container>
+                  <Container flex={1}>
                     <Text
-                      fontSize="24px"
-                      color="#49504C"
-                      value={project?.name?.substring(0, 1)}
+                      fontSize="16px"
+                      lineHeight="24px"
+                      value={project.name}
                     />
-                  )}
+                  </Container>
+                  <Container
+                    width={80}
+                    borderRadius="4px"
+                    alignItems="center"
+                    justifyContent="center"
+                    background={project.primary_color}
+                  >
+                    <Text
+                      fontSize="16px"
+                      color="#FFFFFF"
+                      lineHeight="24px"
+                      value={project.primary_color}
+                    />
+                  </Container>
+                  <Container width={120}>
+                    <Text
+                      ml="auto"
+                      fontSize="16px"
+                      lineHeight="24px"
+                      value={project.country}
+                    />
+                  </Container>
                 </Container>
-                <Container flex={1}>
-                  <Text
-                    fontSize="16px"
-                    lineHeight="24px"
-                    value={project.name}
-                  />
-                </Container>
-                <Container
-                  width={80}
-                  borderRadius="4px"
-                  alignItems="center"
-                  justifyContent="center"
-                  background={project.primary_color}
-                >
-                  <Text
-                    fontSize="16px"
-                    color="#FFFFFF"
-                    lineHeight="24px"
-                    value={project.primary_color}
-                  />
-                </Container>
-                <Container width={120}>
-                  <Text
-                    ml="auto"
-                    fontSize="16px"
-                    lineHeight="24px"
-                    value={project.country}
-                  />
-                </Container>
-              </Container>
+              </motion.div>
             ))
           )}
         </Container>

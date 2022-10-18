@@ -19,6 +19,7 @@ import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
 import ListMenu from "../../components/ListMenu";
+import { motion } from "framer-motion";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
@@ -90,52 +91,51 @@ const Schools: React.FC = () => {
             <LoadingDots />
           ) : (
             data.map((school) => (
-              <Container
-                padding="20px 16px"
-                alignItems="center"
-                borderBottom="1px solid #f4f5f5"
+              <motion.div
+                key={school.id}
+                style={{ width: "100%" }}
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
               >
                 <Container
-                  alignItems={"center"}
-                  onClick={() => setSelectedSchool(school)}
-                  flex={1}
+                  padding="20px 16px"
+                  alignItems="center"
+                  borderBottom="1px solid #f4f5f5"
                 >
                   <Container
-                    mr="16px"
-                    width="40px"
-                    height="40px"
-                    overflow="hidden"
-                    alignItems="center"
-                    borderRadius="20px"
-                    background="#F4F5F5"
-                    justifyContent="center"
+                    alignItems={"center"}
+                    onClick={() => setSelectedSchool(school)}
+                    flex={1}
                   >
-                    {school.image_url ? (
-                      <Image
-                        src={school.image_url}
-                        width="40px"
-                        height="40px"
-                      />
-                    ) : (
-                      <Icon size={24} name="university" color="#49504C" />
-                    )}
+                    <Container
+                      mr="16px"
+                      width="40px"
+                      height="40px"
+                      overflow="hidden"
+                      alignItems="center"
+                      borderRadius="20px"
+                      background="#F4F5F5"
+                      justifyContent="center"
+                    >
+                      {school.image_url ? (
+                        <Image
+                          src={school.image_url}
+                          width="40px"
+                          height="40px"
+                        />
+                      ) : (
+                        <Icon size={24} name="university" color="#49504C" />
+                      )}
+                    </Container>
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={school.name}
+                    />
                   </Container>
-                  <Text
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={school.name}
-                  />
                 </Container>
-                <ListMenu
-                  options={[
-                    {
-                      label: "Adicionar Escola",
-                      onClick: () => console.log("add school"),
-                    },
-                  ]}
-                />
-              </Container>
+              </motion.div>
             ))
           )}
         </Container>

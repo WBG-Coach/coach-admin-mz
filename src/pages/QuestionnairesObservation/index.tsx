@@ -11,6 +11,8 @@ import {
 } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
+import { motion } from "framer-motion";
+import ListMenu from "../../components/ListMenu";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -45,7 +47,6 @@ const QuestionnairesObservation: React.FC<{}> = () => {
 
       <Container
         flex={1}
-        overflow="hidden"
         borderRadius="8px"
         borderBottom="none"
         flexDirection="column"
@@ -55,31 +56,55 @@ const QuestionnairesObservation: React.FC<{}> = () => {
           <LoadingDots />
         ) : (
           data.map((questionnaire) => (
-            <Container
-              onClick={() => setSelectedQuestionnaire(questionnaire)}
-              padding="20px 16px"
-              borderBottom="1px solid #f4f5f5"
-              background={
-                selectedQuestionnaire?.id === questionnaire.id
-                  ? theme.colors.primary + "10"
-                  : "#fff"
-              }
+            <motion.div
+              key={questionnaire.id}
+              style={{ width: "100%" }}
+              initial={{ height: 0 }}
+              animate={{ height: "fit-content" }}
             >
-              <Container width="24px">
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={questionnaire.id.toString()}
+              <Container
+                padding="20px 16px"
+                borderBottom="1px solid #f4f5f5"
+                background={
+                  selectedQuestionnaire?.id === questionnaire.id
+                    ? theme.colors.primary + "10"
+                    : "#fff"
+                }
+                alignItems={"center"}
+              >
+                <Container
+                  flex={1}
+                  onClick={() => setSelectedQuestionnaire(questionnaire)}
+                >
+                  <Container width="24px">
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={questionnaire.id.toString()}
+                    />
+                  </Container>
+                  <Text
+                    fontSize="16px"
+                    color="#49504C"
+                    lineHeight="24px"
+                    value={questionnaire.title}
+                  />
+                </Container>
+                <ListMenu
+                  options={[
+                    {
+                      label: t("Observation.seeQuestion"),
+                      onClick: () => console.log("add school"),
+                    },
+                    {
+                      label: t("Observation.editQuestion"),
+                      onClick: () => setSelectedQuestionnaire(questionnaire),
+                    },
+                  ]}
                 />
               </Container>
-              <Text
-                fontSize="16px"
-                color="#49504C"
-                lineHeight="24px"
-                value={questionnaire.title}
-              />
-            </Container>
+            </motion.div>
           ))
         )}
       </Container>

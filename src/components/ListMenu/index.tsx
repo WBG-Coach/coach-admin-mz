@@ -20,7 +20,7 @@ const ListMenu: React.FC<Props> = ({ options }) => {
     <Container position={"relative"}>
       <Container
         onClick={() => setMenuIsOpen(!menuIsOpen)}
-        background={"#3373CC"}
+        background={"#306abb"}
         position={"relative"}
         width={"40px"}
         height={"40px"}

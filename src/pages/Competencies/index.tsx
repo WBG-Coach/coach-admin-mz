@@ -8,6 +8,7 @@ import { LoadingDots } from "../../components/LoadingDots";
 import { useGetCompetenciesMutation } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { Competence } from "../../store/type";
+import { motion } from "framer-motion";
 
 const Competencies: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -45,31 +46,38 @@ const Competencies: React.FC<{}> = () => {
             <LoadingDots />
           ) : (
             data.map((competence) => (
-              <Container
-                onClick={() => setSelectedCompetence(competence)}
-                padding="20px 16px"
-                borderBottom="1px solid #f4f5f5"
-                background={
-                  selectedCompetence?.id === competence.id
-                    ? theme.colors.primary + "10"
-                    : "#fff"
-                }
+              <motion.div
+                key={competence.id}
+                style={{ width: "100%" }}
+                initial={{ height: 0 }}
+                animate={{ height: "fit-content" }}
               >
-                <Container width="24px">
+                <Container
+                  onClick={() => setSelectedCompetence(competence)}
+                  padding="20px 16px"
+                  borderBottom="1px solid #f4f5f5"
+                  background={
+                    selectedCompetence?.id === competence.id
+                      ? theme.colors.primary + "10"
+                      : "#fff"
+                  }
+                >
+                  <Container width="24px">
+                    <Text
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={competence.id.toString()}
+                    />
+                  </Container>
                   <Text
                     fontSize="16px"
                     color="#49504C"
                     lineHeight="24px"
-                    value={competence.id.toString()}
+                    value={competence.subtitle}
                   />
                 </Container>
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={competence.subtitle}
-                />
-              </Container>
+              </motion.div>
             ))
           )}
         </Container>
