@@ -18,7 +18,6 @@ import * as Yup from "yup";
 import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
-import ListMenu from "../../components/ListMenu";
 import { motion } from "framer-motion";
 
 const Schools: React.FC = () => {

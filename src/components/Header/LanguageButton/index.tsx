@@ -1,5 +1,5 @@
 import "react-spring-bottom-sheet/dist/style.css";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../Icon";
 import { setLocalLanguage } from "../../../storage";
