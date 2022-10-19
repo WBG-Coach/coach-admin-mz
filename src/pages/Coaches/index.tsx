@@ -123,15 +123,12 @@ const Coaches: React.FC = () => {
         </Container>
       </Container>
 
-      <Modal isOpen={!!selectedCoach} onClose={closeModal}>
-        <Container flexDirection="column" minWidth={400}>
-          <Text
-            mb={40}
-            fontSize={24}
-            fontWeight={600}
-            value={t("Projects.update-title")}
-          />
-
+      <Modal
+        isOpen={!!selectedCoach}
+        onClose={closeModal}
+        title={t("Coaches.update-title")}
+      >
+        <Container flexDirection="column" minWidth={548} mt={40}>
           <PicSelect
             defaultIconName="user"
             imageUrl={imageUrl || selectedCoach?.image_url || ""}

@@ -66,6 +66,66 @@ export const api = createApi({
         body: { type },
       }),
     }),
+    createObservationQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "POST",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "OBSERVATION" },
+      }),
+    }),
+    updateObservationQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "PUT",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "OBSERVATION" },
+      }),
+    }),
+    createFeedbackQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "POST",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "FEEDBACK" },
+      }),
+    }),
+    updateFeedbackQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "PUT",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "FEEDBACK" },
+      }),
+    }),
+    createDocumentationQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "POST",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "DOCUMENTATION" },
+      }),
+    }),
+    updateDocumentationQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "PUT",
+        url: "/api/questionnaires",
+        body: { ...questionnaire, type: "DOCUMENTATION" },
+      }),
+    }),
     getSchools: builder.mutation<School[], { project_id?: number }>({
       query: (body) => ({
         method: "POST",
@@ -356,4 +416,10 @@ export const {
   useGetSessionsMutation,
   useUpdateQuestionnaireApplicationMutation,
   useGetQuestionsMutation,
+  useCreateObservationQuestionnaireMutation,
+  useUpdateObservationQuestionnaireMutation,
+  useCreateDocumentationQuestionnaireMutation,
+  useUpdateDocumentationQuestionnaireMutation,
+  useCreateFeedbackQuestionnaireMutation,
+  useUpdateFeedbackQuestionnaireMutation,
 } = api;

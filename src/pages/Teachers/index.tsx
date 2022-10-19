@@ -166,17 +166,11 @@ const Teachers: React.FC = () => {
           newTeacher || (!!selectedTeacher && !requestGetSchools.isLoading)
         }
         onClose={closeModal}
+        title={
+          newTeacher ? t("Teachers.new-title") : t("Teachers.update-title")
+        }
       >
-        <Container flexDirection="column" minWidth={400}>
-          <Text
-            mb={40}
-            fontSize={24}
-            fontWeight={600}
-            value={
-              newTeacher ? t("Teachers.new-title") : t("Projects.update-title")
-            }
-          />
-
+        <Container flexDirection="column" mt={40} minWidth={548}>
           <PicSelect
             defaultIconName="university"
             imageUrl={imageUrl || selectedTeacher?.image_url || ""}

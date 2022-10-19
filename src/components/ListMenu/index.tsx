@@ -4,6 +4,7 @@ import { Container } from "../Container";
 import { motion } from "framer-motion";
 import { Text } from "../Text";
 import Props from "./types";
+import { StyledOption } from "./styles";
 
 const defaultTransitionVariant = {
   visible: { opacity: 1, scale: 1 },
@@ -20,31 +21,32 @@ const ListMenu: React.FC<Props> = ({ options }) => {
     <Container position={"relative"}>
       <Container
         onClick={() => setMenuIsOpen(!menuIsOpen)}
-        background={"#306abb"}
+        background={!menuIsOpen ? "transparent" : "#306abb"}
         position={"relative"}
         width={"40px"}
         height={"40px"}
+        border={`1px solid ${!menuIsOpen ? "#ECEEED" : "transparent"}`}
         borderRadius={"12px"}
         flexDirection={"column"}
         justifyContent={"center"}
         alignItems={"center"}
       >
         <Container
-          background={"#FFFFFF"}
+          background={!menuIsOpen ? "#7D827F" : "#FFFFFF"}
           width={"4px"}
           height={"4px"}
           borderRadius={"50%"}
         />
         <Container
           mt={"4px"}
-          background={"#FFFFFF"}
+          background={!menuIsOpen ? "#7D827F" : "#FFFFFF"}
           width={"4px"}
           height={"4px"}
           borderRadius={"50%"}
         />
         <Container
           mt={"4px"}
-          background={"#FFFFFF"}
+          background={!menuIsOpen ? "#7D827F" : "#FFFFFF"}
           width={"4px"}
           height={"4px"}
           borderRadius={"50%"}
@@ -56,7 +58,6 @@ const ListMenu: React.FC<Props> = ({ options }) => {
           top={48}
           right={0}
           borderRadius={"12px"}
-          background={"#FFFFFF"}
           boxShadow={"0px 0px 10.0408px rgba(0, 0, 0, 0.1)"}
           position={"absolute"}
           minWidth={"160px"}
@@ -69,16 +70,16 @@ const ListMenu: React.FC<Props> = ({ options }) => {
             initial="hidden"
             animate="visible"
           >
-            {options.map(({ label, onClick }) => (
-              <Container
-                p={"12px"}
+            {options.map(({ label, onClick }, index) => (
+              <StyledOption
+                isLast={options.length - 1 === index}
                 onClick={() => {
                   setMenuIsOpen(false);
                   onClick();
                 }}
               >
                 <Text value={label} fontWeight={400} fontSize={"14px"} />
-              </Container>
+              </StyledOption>
             ))}
           </motion.div>
         </Container>

@@ -46,7 +46,8 @@
   "Schools": {
     "add": "Create school",
     "name": "School",
-    "new-title": "New School",
+    "new-title": "New school",
+    "update-title": "Update school",
     "change-photo": "Change photo",
     "address": "Address",
     "region": "Region"
@@ -56,16 +57,22 @@
     "add": "Add competency"
   },
   "Observation": {
+    "new-title": "Create observation",
+    "update-title": "Update observation",
     "title": "Observation questionnaires",
     "seeQuestion": "See questions",
     "editQuestion": "Edit questionnaire",
     "add": "Add observation"
   },
   "Feedback": {
+    "new-title": "Create feedback",
+    "update-title": "Update feedback",
     "title": "Feedback questionnaires",
     "add": "Add feedback"
   },
   "Documentation": {
+    "new-title": "Create documentation",
+    "update-title": "Update documentation",
     "title": "Documentations",
     "add": "Add documentation"
   },
@@ -73,11 +80,15 @@
     "title": "Units school"
   },
   "Coaches": {
+    "new-title": "Create coach",
+    "update-title": "Update coach",
     "add": "Create Coach",
     "name": "Coach",
     "title": "Coaches"
   },
   "Sessions": {
+    "new-title": "Create session",
+    "update-title": "Update session",
     "add": "Create Session",
     "title": "Sessions",
     "data-not-found": "No data was found regarding the sessions of this project.",
@@ -87,9 +98,10 @@
     "coach-name": "Coach"
   },
   "Teachers": {
+    "new-title": "New Teacher",
+    "update-title": "Update teacher",
     "add": "Create Teacher",
     "name": "Teacher",
-    "new-title": "New Teacher",
     "title": "Teacher",
     "surname": "Surname",
     "subject": "Subject"

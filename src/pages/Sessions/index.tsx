@@ -176,15 +176,12 @@ const Sessions: React.FC = () => {
         </Container>
       </Container>
 
-      <Modal isOpen={!!currentSession} onClose={closeModal}>
-        <Container flexDirection="column" minWidth={400}>
-          <Text
-            mb={40}
-            fontSize={24}
-            fontWeight={600}
-            value={t("Projects.update-title")}
-          />
-
+      <Modal
+        isOpen={!!currentSession}
+        title={t("Sessions.update-title")}
+        onClose={closeModal}
+      >
+        <Container flexDirection="column" mt={40} minWidth={548}>
           <Formik
             initialValues={{
               school_id: currentSession?.school_id || 0,

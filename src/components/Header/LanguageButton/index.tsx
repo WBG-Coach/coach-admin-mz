@@ -1,5 +1,5 @@
 import "react-spring-bottom-sheet/dist/style.css";
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Icon } from "../../Icon";
 import { setLocalLanguage } from "../../../storage";
@@ -32,6 +32,7 @@ export const LanguageButton: React.FC<{}> = () => {
   const customStyles = {
     option: (provided: any, state: any) => ({
       ...provided,
+      cursor: "pointer",
 
       background: state.isFocused ? "#000000" : "transparent",
       color: state.isFocused ? "#ffffff" : "#000000",
@@ -39,9 +40,11 @@ export const LanguageButton: React.FC<{}> = () => {
     }),
     input: (base: any) => ({
       ...base,
+      cursor: "pointer",
     }),
     control: (provided: any, state: any) => ({
       ...provided,
+      cursor: "pointer",
       fontFamily: '"Inter", sans-serif',
       borderColor: "transparent",
       borderWidth: "0px",

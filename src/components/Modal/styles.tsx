@@ -14,7 +14,7 @@ export const StyleModalContainer = styled.div`
 `;
 
 export const StyledModalContent = styled.div`
-  padding: 16px;
+  padding: 24px;
   display: flex;
   min-width: 200px;
   max-width: 100vw;
@@ -24,12 +24,11 @@ export const StyledModalContent = styled.div`
   position: relative;
   flex-direction: column;
   background-color: #ffffff;
-  padding-top: 40px;
 `;
 
 export const StyledCloseButton = styled.div`
-  top: 16px;
-  right: 16px;
+  top: 18px;
+  right: 24px;
   padding: 4px;
   cursor: pointer;
   border-radius: 8px;

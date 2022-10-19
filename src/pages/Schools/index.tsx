@@ -18,7 +18,6 @@ import * as Yup from "yup";
 import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
-import ListMenu from "../../components/ListMenu";
 import { motion } from "framer-motion";
 
 const Schools: React.FC = () => {
@@ -151,17 +150,12 @@ const Schools: React.FC = () => {
         </Container>
       </Container>
 
-      <Modal isOpen={newSchool || !!selectedSchool} onClose={closeModal}>
-        <Container flexDirection="column" minWidth={400}>
-          <Text
-            mb={40}
-            fontSize={24}
-            fontWeight={600}
-            value={
-              newSchool ? t("Schools.new-title") : t("Projects.update-title")
-            }
-          />
-
+      <Modal
+        isOpen={newSchool || !!selectedSchool}
+        title={newSchool ? t("Schools.new-title") : t("Schools.update-title")}
+        onClose={closeModal}
+      >
+        <Container flexDirection="column" mt={40} minWidth={548}>
           <PicSelect
             defaultIconName="university"
             imageUrl={imageUrl || selectedSchool?.image_url || ""}

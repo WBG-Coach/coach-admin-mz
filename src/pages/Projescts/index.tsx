@@ -6,7 +6,6 @@ import { Input } from "../../components/Input";
 import { Modal } from "../../components/Modal";
 import { Icon } from "../../components/Icon";
 import { Project } from "../../store/type";
-import { PROJECT } from "../../mock";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -15,6 +14,7 @@ import {
   useUpdateProjectMutation,
 } from "../../service";
 import { motion } from "framer-motion";
+import { useTheme } from "styled-components";
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -23,6 +23,7 @@ const Projects: React.FC = () => {
   const [getProjects, { isLoading, data }] = useGetProjectsMutation();
   const [createProject, createProjectRequest] = useCreateProjectMutation();
   const [updateProject, updateProjectRequest] = useUpdateProjectMutation();
+  const theme = useTheme();
 
   useEffect(() => {
     getProjects();
@@ -151,13 +152,13 @@ const Projects: React.FC = () => {
           alignItems="center"
           onClick={() => setNewProject(true)}
         >
-          <Icon size={24} name="plus" mr="8px" color={PROJECT.primary_color} />
-          <Text value={t("Projects.add")} color={PROJECT.primary_color} />
+          <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
+          <Text value={t("Projects.add")} color={theme.colors.primary} />
         </Container>
       </Container>
 
       <Modal isOpen={newProject || !!selectedProject} onClose={closeModal}>
-        <Container flexDirection="column" minWidth={400}>
+        <Container flexDirection="column" minWidth={548}>
           <Text
             mb={40}
             fontSize={24}

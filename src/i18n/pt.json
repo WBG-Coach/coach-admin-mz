@@ -30,9 +30,10 @@
     "coaches-person-chart-title": "Orientadores que não deram nenhuma sessão de feedback"
   },
   "Projects": {
+    "new-title": "Criar projeto",
+    "update-title": "Editar projeto",
     "title": "Projetos",
     "add": "Novo projeto",
-    "new-title": "Novo projeto",
     "name": "Nome",
     "image_url": "URL da imagem",
     "primary_color": "Cor primária",
@@ -40,27 +41,36 @@
     "new-button": "Salvar"
   },
   "Schools": {
+    "new-title": "Criar escola",
+    "update-title": "Editar escola",
     "add": "Add escola",
     "name": "Escola",
-    "new-title": "Nova escola",
     "address": "Endereço",
     "region": "Região"
   },
   "Competencies": {
+    "new-title": "Criar competência",
+    "update-title": "Editar competência",
     "title": "Competências",
     "add": "Add competência"
   },
   "Observation": {
+    "new-title": "Criar observação",
+    "update-title": "Editar observação",
     "title": "Questionarios de observação",
     "seeQuestion": "Ver questões",
     "editQuestion": "Editar questionário",
     "add": "Add observação"
   },
   "Feedback": {
+    "new-title": "Criar feedback",
+    "update-title": "Editar feedback",
     "title": "Questionarios de feedback",
     "add": "add feedback"
   },
   "Documentation": {
+    "new-title": "Criar documentação",
+    "update-title": "Editar documentação",
     "title": "Documentações",
     "add": "Add documentação"
   },
@@ -68,18 +78,23 @@
     "title": "Escolas"
   },
   "Coaches": {
+    "new-title": "Criar orientador",
+    "update-title": "Editar orientador",
     "add": "Add orientador",
     "name": "Orientador",
     "title": "Orientadores"
   },
   "Sessions": {
+    "new-title": "Criar sessão",
+    "update-title": "Editar sessão",
     "add": "Add sessão",
     "title": "Sessões",
     "data-not-found": "Nenhum dado foi encontrado referente as sessões desse projeto."
   },
   "Teachers": {
+    "new-title": "Criar professor",
+    "update-title": "Editar professor",
     "add": "Add professor",
-    "new-title": "Novo professor",
     "title": "Professores",
     "surname": "Apelido",
     "subject": "Subject"
