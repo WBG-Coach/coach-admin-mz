@@ -10,8 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { Text } from "../../../../../components";
-import { Card } from "../../../../../components/Card";
+import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetReportCompetencesMutation } from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
@@ -78,14 +77,12 @@ export const MostWorkedCompetences: React.FC<{
   return isLoading ? (
     <LoadingDots />
   ) : (
-    <Card flex={1}>
-      <Text
-        mb="32px"
-        fontSize="18px"
-        lineHeight="24px"
-        value="Most worked competences with teachers"
-      />
+    <CustomCard
+      width="100%"
+      title="Most worked competences with teachers"
+      description="See the skills most worked by all teachers"
+    >
       <Bar options={options} data={{ labels, datasets }} />
-    </Card>
+    </CustomCard>
   );
 };

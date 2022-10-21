@@ -30,7 +30,8 @@
     "teacher-person-chart-title": "Teachers who didn't receive any feedback session",
     "coaches-person-chart-title": "Coaches who did not give any feedback sessions",
     "session-name": "Session {{value}}",
-    "schools-without-sessions-chart-title": "Schools that have all teachers without competence assessment"
+    "schools-without-sessions-chart-title": "Schools without evolution",
+    "schools-without-sessions-chart-description": "Schools that have the majority of teachers without any competence."
   },
   "Projects": {
     "title": "Projects",
