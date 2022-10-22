@@ -17,6 +17,8 @@ import { Formik } from "formik";
 import { Modal } from "../../components/Modal";
 import * as Yup from "yup";
 import { Input } from "../../components/Input";
+import ListMenu from "../../components/ListMenu";
+import { useNavigate } from "react-router-dom";
 
 const QuestionnairesFeedback: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -26,6 +28,7 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
   const [selectedQuestionnaire, setSelectedQuestionnaire] =
     useState<Questionnaire>();
   const user = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const [updateFeedbackQuestionnaire, requestUpdateFeedbackquestionnaire] =
@@ -82,7 +85,6 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
 
         <Container
           flex={1}
-          overflow="hidden"
           borderRadius="8px"
           borderBottom="none"
           flexDirection="column"
@@ -99,22 +101,36 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
                 animate={{ height: "fit-content" }}
               >
                 <Container
-                  onClick={() => setSelectedQuestionnaire(questionnaire)}
                   padding="20px 16px"
                   borderBottom="1px solid #f4f5f5"
-                  /*  background={
-                    selectedQuestionnaire?.id === questionnaire.id
-                      ? theme.colors.primary + "10"
-                      : "#fff"
-                  } */
+                  alignItems={"center"}
                 >
-                  <Icon color="#7D827F" name="comments" size={24} />
-                  <Text
-                    ml={"16px"}
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={questionnaire.title}
+                  <Container
+                    onClick={() => setSelectedQuestionnaire(questionnaire)}
+                    flex={1}
+                    alignItems={"center"}
+                  >
+                    <Icon color="#7D827F" name="comments" size={24} />
+                    <Text
+                      ml={"16px"}
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={questionnaire.title}
+                    />
+                  </Container>
+                  <ListMenu
+                    options={[
+                      {
+                        label: t("Observation.seeQuestion"),
+                        onClick: () =>
+                          navigate(`/questions/${questionnaire.id}`),
+                      },
+                      {
+                        label: t("Observation.editQuestion"),
+                        onClick: () => setSelectedQuestionnaire(questionnaire),
+                      },
+                    ]}
                   />
                 </Container>
               </motion.div>

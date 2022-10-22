@@ -98,5 +98,11 @@
     "title": "Professores",
     "surname": "Apelido",
     "subject": "Subject"
+  },
+  "Questions": {
+    "not-found": "Nenhuma questão foi cadastrada ainda para este questionário.",
+    "error": "Ocorreu um erro ao buscar os dados desse questionário.",
+    "add": "Criar questão",
+    "back": "Voltar para a listagem"
   }
 }

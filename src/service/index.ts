@@ -377,7 +377,7 @@ export const api = createApi({
       }),
     }),
     getQuestions: builder.mutation<
-      { questions: QuestionnaireQuestion[] },
+      { questions: QuestionnaireQuestion[]; questionnaire: Questionnaire },
       { questionnaire_id: number }
     >({
       query: (body) => ({

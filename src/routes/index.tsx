@@ -13,6 +13,7 @@ import Schools from "../pages/Schools";
 import Sessions from "../pages/Sessions";
 import Settings from "../pages/Settings";
 import Teachers from "../pages/Teachers";
+import Questions from "../pages/Questions";
 
 const RoutesConfig: React.FC = () => {
   return (
@@ -48,6 +49,7 @@ const RoutesConfig: React.FC = () => {
           <Route path="teachers" element={<Teachers />} />
           <Route path="sessions" element={<Sessions />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="questions/:id" element={<Questions />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

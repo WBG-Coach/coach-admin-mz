@@ -19,6 +19,7 @@ import { Modal } from "../../components/Modal";
 import { Formik } from "formik";
 import { Input } from "../../components/Input";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -84,6 +85,8 @@ const QuestionnairesObservation: React.FC<{}> = () => {
     closeModal();
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Container width="100%" flexDirection="column">
@@ -114,11 +117,6 @@ const QuestionnairesObservation: React.FC<{}> = () => {
                 <Container
                   padding="20px 16px"
                   borderBottom="1px solid #f4f5f5"
-                  /*  background={
-                  selectedQuestionnaire?.id === questionnaire.id
-                    ? theme.colors.primary + "10"
-                    : "#fff"
-                } */
                   alignItems={"center"}
                 >
                   <Container
@@ -139,7 +137,8 @@ const QuestionnairesObservation: React.FC<{}> = () => {
                     options={[
                       {
                         label: t("Observation.seeQuestion"),
-                        onClick: () => console.log("add school"),
+                        onClick: () =>
+                          navigate(`/questions/${questionnaire.id}`),
                       },
                       {
                         label: t("Observation.editQuestion"),
@@ -159,6 +158,7 @@ const QuestionnairesObservation: React.FC<{}> = () => {
           onClick={() => {
             setNewQuestionnaire(true);
           }}
+          width={"fit-content"}
         >
           <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
           <Text value={t("Observation.add")} color={theme.colors.primary} />

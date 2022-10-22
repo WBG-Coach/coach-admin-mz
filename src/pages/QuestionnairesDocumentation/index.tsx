@@ -17,6 +17,8 @@ import * as Yup from "yup";
 import { Input } from "../../components/Input";
 import { Formik } from "formik";
 import { Modal } from "../../components/Modal";
+import ListMenu from "../../components/ListMenu";
+import { useNavigate } from "react-router-dom";
 
 const QuestionnairesDocumentation: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -26,6 +28,7 @@ const QuestionnairesDocumentation: React.FC<{}> = () => {
     useState<Questionnaire>();
   const [newQuestionnaire, setNewQuestionnaire] = useState(false);
   const user = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
   const theme = useTheme();
 
   const questionnaireSchema = Yup.object().shape({
@@ -86,7 +89,6 @@ const QuestionnairesDocumentation: React.FC<{}> = () => {
 
         <Container
           flex={1}
-          overflow="hidden"
           borderRadius="8px"
           borderBottom="none"
           flexDirection="column"
@@ -103,22 +105,35 @@ const QuestionnairesDocumentation: React.FC<{}> = () => {
                 animate={{ height: "fit-content" }}
               >
                 <Container
-                  onClick={() => setSelectedQuestionnaire(questionnaire)}
                   padding="20px 16px"
                   borderBottom="1px solid #f4f5f5"
-                  /* background={
-                  selectedQuestionnaire?.id === questionnaire.id
-                    ? theme.colors.primary + "10"
-                    : "#fff"
-                } */
+                  alignItems={"center"}
                 >
-                  <Icon color="#7D827F" name="clipboard-notes" size={24} />
-                  <Text
-                    ml={"16px"}
-                    fontSize="16px"
-                    color="#49504C"
-                    lineHeight="24px"
-                    value={questionnaire.title}
+                  <Container
+                    onClick={() => setSelectedQuestionnaire(questionnaire)}
+                    flex={1}
+                  >
+                    <Icon color="#7D827F" name="clipboard-notes" size={24} />
+                    <Text
+                      ml={"16px"}
+                      fontSize="16px"
+                      color="#49504C"
+                      lineHeight="24px"
+                      value={questionnaire.title}
+                    />
+                  </Container>
+                  <ListMenu
+                    options={[
+                      {
+                        label: t("Observation.seeQuestion"),
+                        onClick: () =>
+                          navigate(`/questions/${questionnaire.id}`),
+                      },
+                      {
+                        label: t("Observation.editQuestion"),
+                        onClick: () => setSelectedQuestionnaire(questionnaire),
+                      },
+                    ]}
                   />
                 </Container>
               </motion.div>
