@@ -109,5 +109,21 @@
     "error": "Ocorreu um erro ao buscar os dados desse questionário.",
     "add": "Criar questão",
     "back": "Voltar para a listagem"
+  },
+  "Navbar": {
+    "projects": "Projetos",
+    "dashboard": "Relatórios",
+    "competencies": "Competências",
+    "questionnaire": "QUESTIONÁRIOS",
+    "observation": "Observações",
+    "feedback": "Feedbacks",
+    "documentation": "Documentações",
+    "school": "ESCOLAS",
+    "units": "Escolas",
+    "coaches": "Orientadores",
+    "teachers": "Professores",
+    "sessions": "Sessões",
+    "settings": "Configurações",
+    "logout": "Sair"
   }
 }

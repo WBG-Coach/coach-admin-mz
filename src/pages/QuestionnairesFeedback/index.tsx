@@ -19,6 +19,7 @@ import * as Yup from "yup";
 import { Input } from "../../components/Input";
 import ListMenu from "../../components/ListMenu";
 import { useNavigate } from "react-router-dom";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const QuestionnairesFeedback: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -76,6 +77,7 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+      <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}
@@ -124,7 +126,7 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
                       {
                         label: t("Observation.seeQuestion"),
                         onClick: () =>
-                          navigate(`/questions/${questionnaire.id}`),
+                          navigate(`/feedback-questionnaire/questions/${questionnaire.id}`),
                       },
                       {
                         label: t("Observation.editQuestion"),

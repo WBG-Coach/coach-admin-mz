@@ -21,6 +21,7 @@ import { Input } from "../../components/Input";
 import PicSelect from "../../components/PicSelect";
 import Select from "../../components/Select";
 import { motion } from "framer-motion";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Teachers: React.FC = () => {
   const { t } = useTranslation();
@@ -87,6 +88,7 @@ const Teachers: React.FC = () => {
 
   return (
     <Container width="100%" flexDirection="column">
+      <BreadCrumb />
       <Text
         mb={40}
         fontSize={32}

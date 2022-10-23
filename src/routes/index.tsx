@@ -49,7 +49,18 @@ const RoutesConfig: React.FC = () => {
           <Route path="teachers" element={<Teachers />} />
           <Route path="sessions" element={<Sessions />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="questions/:id" element={<Questions />} />
+          <Route
+            path="documentation-questionnaire/questions/:id"
+            element={<Questions />}
+          />
+          <Route
+            path="observation-questionnaire/questions/:id"
+            element={<Questions />}
+          />
+          <Route
+            path="feedback-questionnaire/questions/:id"
+            element={<Questions />}
+          />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

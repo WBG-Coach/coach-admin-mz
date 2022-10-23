@@ -16,6 +16,7 @@ import { selectCurrentUser } from "../../store/auth";
 import { ApplicationWithRelation, School, User } from "../../store/type";
 import Select from "../../components/Select";
 import { motion } from "framer-motion";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Sessions: React.FC = () => {
   const [getSessions, { isLoading, data }] = useGetSessionsMutation();
@@ -58,6 +59,7 @@ const Sessions: React.FC = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}

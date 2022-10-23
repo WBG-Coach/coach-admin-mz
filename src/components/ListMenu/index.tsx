@@ -72,6 +72,7 @@ const ListMenu: React.FC<Props> = ({ options }) => {
           >
             {options.map(({ label, onClick }, index) => (
               <StyledOption
+                key={label}
                 isLast={options.length - 1 === index}
                 onClick={() => {
                   setMenuIsOpen(false);

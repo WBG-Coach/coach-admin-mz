@@ -19,6 +19,7 @@ import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
 import { motion } from "framer-motion";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
@@ -77,6 +78,7 @@ const Schools: React.FC = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text mb={40} fontSize={32} fontWeight={600} value={t("Units.title")} />
 
         <Container

@@ -117,5 +117,21 @@
     "error": "An error occurred while fetching data from this questionnaire.",
     "add": "Create question",
     "back": "Back to list"
+  },
+  "Navbar": {
+    "projects": "Projects",
+    "dashboard": "Dashboard",
+    "competencies": "Competencies",
+    "questionnaire": "QUESTIONNAIRE",
+    "observation": "Observation",
+    "feedback": "Feedback",
+    "documentation": "Documentation",
+    "school": "SCHOOLS",
+    "units": "Units",
+    "coaches": "Coaches",
+    "teachers": "Teachers",
+    "sessions": "Sessions",
+    "settings": "Settings",
+    "logout": "Logout"
   }
 }

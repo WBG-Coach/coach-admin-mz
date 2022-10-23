@@ -9,6 +9,7 @@ import { useGetCompetenciesMutation } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
 import { Competence } from "../../store/type";
 import { motion } from "framer-motion";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Competencies: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const Competencies: React.FC<{}> = () => {
 
   return (
     <Container width="100%" flexDirection="column">
+      <BreadCrumb />
       <Text
         mb={40}
         fontSize={32}

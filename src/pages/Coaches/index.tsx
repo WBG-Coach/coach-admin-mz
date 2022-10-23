@@ -13,6 +13,7 @@ import { User } from "../../store/type";
 import { useUpdateUserMutation } from "../../service";
 import { uploadFileToS3 } from "../../util";
 import { motion } from "framer-motion";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Coaches: React.FC = () => {
   const { t } = useTranslation();
@@ -58,6 +59,7 @@ const Coaches: React.FC = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}

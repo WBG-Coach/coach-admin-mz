@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/auth";
 import { TeacherReports } from "./Reports/TeacherReports";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const TAB_TITLES = [
   "Dashboard.tabs-dashboard",
@@ -62,6 +63,7 @@ const Home: React.FC<{}> = () => {
 
   return (
     <Container width="100%" flexDirection="column">
+      <BreadCrumb />
       <Container mb="40px" justifyContent="space-between">
         <Text
           value={t("Dashboard.title")}

@@ -23,6 +23,7 @@ import {
   useGetQuestionsMutation,
   useUpdateQuestionMutation,
 } from "../../service/questions";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const questionTypes = ["TEXT", "OPTION", "FEEDBACK", "LIST"];
 
@@ -64,7 +65,6 @@ const Questions: React.FC = () => {
   }) => {
     if (newQuestion && id) {
       const question_id = await createQuestion(values);
-      console.log(question_id);
       if ("data" in question_id) {
         await createQuestionnaireQuestion({
           question_id: parseInt(question_id.data, 10),
@@ -93,6 +93,9 @@ const Questions: React.FC = () => {
           <>
             {requestQuestions.data ? (
               <>
+                <BreadCrumb
+                  customParam={requestQuestions.data.questionnaire.title}
+                />
                 <Text
                   mb={40}
                   fontSize={32}

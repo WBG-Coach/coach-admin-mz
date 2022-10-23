@@ -15,6 +15,7 @@ import {
 } from "../../service";
 import { motion } from "framer-motion";
 import { useTheme } from "styled-components";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -61,6 +62,7 @@ const Projects: React.FC = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}

@@ -16,10 +16,13 @@ import { Modal } from "../Modal";
 import { SelectProject } from "../SelectProject";
 import { SelectProjectButton } from "../SelectProjectButton";
 import Header from "../Header";
+import { MenuItems } from "../../common";
+import { useTranslation } from "react-i18next";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   return (
     <StyledLayoutContainer>
@@ -27,53 +30,42 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Image src={logo} height={32} />
         <SelectProjectButton />
         <Container flexDirection="column" width="100%" height="100%">
-          <MenuItem icon="home-alt" route="/" label="Dashboard" />
-          <MenuItem icon="box" label="Projects" route="/projects" />
-          <MenuItem
-            icon="puzzle-piece"
-            route="/competencies"
-            label="Competencies"
-          />
-          <Text
-            py="8px"
-            px="16px"
-            value="QUESTIONNAIRE"
-            fontSize="12px"
-            color="#7D827F"
-          />
-          <MenuItem
-            icon="clipboard-notes"
-            route="/observation-questionnaire"
-            label="Observation"
-          />
-          <MenuItem
-            icon="comments"
-            route="/feedbacks-questionnaire"
-            label="Feedback"
-          />
-          <MenuItem
-            icon="clipboard-notes"
-            route="/documentations-questionnaire"
-            label="Documentation"
-          />
-          <Text
-            py="8px"
-            px="16px"
-            value="SCHOOL"
-            fontSize="12px"
-            color="#7D827F"
-          />
-          <MenuItem icon="university" route="/schools" label="Units" />
-          <MenuItem icon="user" route="/coaches" label="Coaches" />
-          <MenuItem icon="user-circle" route="/teachers" label="Teachers" />
-          <MenuItem icon="notes" route="/sessions" label="Sessions" />
-          <MenuItem icon="setting" route="/settings" label="Settings" />
-          <Container mt="auto" />
-          <MenuItem
-            icon="signout"
-            label="Logout"
-            onClick={() => dispatch(logout())}
-          />
+          {MenuItems.map((item) =>
+            item.subItems ? (
+              <>
+                <Text
+                  py="8px"
+                  px="16px"
+                  value={t(`Navbar.${item.label}`)}
+                  fontSize="12px"
+                  color="#7D827F"
+                />
+                {item.subItems.map((subItem) => (
+                  <MenuItem
+                    icon={subItem.icon}
+                    label={t(`Navbar.${subItem.label}`)}
+                    route={subItem.route}
+                  />
+                ))}
+              </>
+            ) : item.lasts ? (
+              <Container mt="auto">
+                {item.lasts.map((lastItem) => (
+                  <MenuItem
+                    icon={lastItem.icon}
+                    label={t(`Navbar.${lastItem.label}`)}
+                    onClick={() => dispatch(logout())}
+                  />
+                ))}
+              </Container>
+            ) : (
+              <MenuItem
+                icon={item.icon}
+                label={t(`Navbar.${item.label}`)}
+                route={item.route}
+              />
+            )
+          )}
         </Container>
       </StyledMenuContainer>
       <StyledPageContent>

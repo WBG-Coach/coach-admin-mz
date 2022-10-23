@@ -19,6 +19,7 @@ import { Formik } from "formik";
 import { Modal } from "../../components/Modal";
 import ListMenu from "../../components/ListMenu";
 import { useNavigate } from "react-router-dom";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const QuestionnairesDocumentation: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -80,6 +81,7 @@ const QuestionnairesDocumentation: React.FC<{}> = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}
@@ -127,7 +129,9 @@ const QuestionnairesDocumentation: React.FC<{}> = () => {
                       {
                         label: t("Observation.seeQuestion"),
                         onClick: () =>
-                          navigate(`/questions/${questionnaire.id}`),
+                          navigate(
+                            `/documentation-questionnaire/questions/${questionnaire.id}`
+                          ),
                       },
                       {
                         label: t("Observation.editQuestion"),

@@ -20,6 +20,7 @@ import { Input } from "../../components/Input";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useGetQuestionsMutation } from "../../service/questions";
+import BreadCrumb from "../../components/Breadcrumb";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -90,6 +91,7 @@ const QuestionnairesObservation: React.FC<{}> = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}
@@ -138,7 +140,9 @@ const QuestionnairesObservation: React.FC<{}> = () => {
                       {
                         label: t("Observation.seeQuestion"),
                         onClick: () =>
-                          navigate(`/questions/${questionnaire.id}`),
+                          navigate(
+                            `/observation-questionnaire/questions/${questionnaire.id}`
+                          ),
                       },
                       {
                         label: t("Observation.editQuestion"),
