@@ -6,11 +6,8 @@ import { Button, Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
 import {
-  useCreateQuestionMutation,
   useCreateQuestionnaireQuestionMutation,
   useGetCompetenciesMutation,
-  useGetQuestionsMutation,
-  useUpdateQuestionMutation,
 } from "../../service";
 import { Competence, Question } from "../../store/type";
 import { motion } from "framer-motion";
@@ -21,6 +18,11 @@ import * as Yup from "yup";
 import Select from "../../components/Select";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/auth";
+import {
+  useCreateQuestionMutation,
+  useGetQuestionsMutation,
+  useUpdateQuestionMutation,
+} from "../../service/questions";
 
 const questionTypes = ["TEXT", "OPTION", "FEEDBACK", "LIST"];
 
@@ -62,6 +64,7 @@ const Questions: React.FC = () => {
   }) => {
     if (newQuestion && id) {
       const question_id = await createQuestion(values);
+      console.log(question_id);
       if ("data" in question_id) {
         await createQuestionnaireQuestion({
           question_id: parseInt(question_id.data, 10),

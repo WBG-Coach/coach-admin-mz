@@ -377,16 +377,6 @@ export const api = createApi({
         body,
       }),
     }),
-    getQuestions: builder.mutation<
-      { questions: QuestionnaireQuestion[]; questionnaire: Questionnaire },
-      { questionnaire_id: number }
-    >({
-      query: (body) => ({
-        method: "POST",
-        url: "/api/questionnaire-questions/search",
-        body,
-      }),
-    }),
     createQuestionnaireQuestion: builder.mutation<
       void,
       { question_id: number; questionnaire_id: number; order?: number }
@@ -395,23 +385,6 @@ export const api = createApi({
         method: "POST",
         url: "/api/questionnaire-questions",
         body,
-      }),
-    }),
-    createQuestion: builder.mutation<
-      string,
-      { competency_id: number; text: string; type: string }
-    >({
-      query: (questionnaire) => ({
-        method: "POST",
-        url: "/api/questions",
-        body: { ...questionnaire },
-      }),
-    }),
-    updateQuestion: builder.mutation<void, Partial<Question>>({
-      query: (question) => ({
-        method: "PUT",
-        url: "/api/questions",
-        body: { question },
       }),
     }),
   }),
@@ -443,7 +416,6 @@ export const {
   useUpdateUserMutation,
   useGetSessionsMutation,
   useUpdateQuestionnaireApplicationMutation,
-  useGetQuestionsMutation,
   useCreateObservationQuestionnaireMutation,
   useUpdateObservationQuestionnaireMutation,
   useCreateDocumentationQuestionnaireMutation,
@@ -451,6 +423,4 @@ export const {
   useCreateFeedbackQuestionnaireMutation,
   useUpdateFeedbackQuestionnaireMutation,
   useCreateQuestionnaireQuestionMutation,
-  useUpdateQuestionMutation,
-  useCreateQuestionMutation
 } = api;

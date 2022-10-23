@@ -108,6 +108,11 @@
     "subject": "Subject"
   },
   "Questions": {
+    "type": "Type",
+    "text": "Text",
+    "competency": "Competency",
+    "new-title": "Create question",
+    "update-title": "Update question",
     "not-found": "No questions have yet been registered for this questionnaire.",
     "error": "An error occurred while fetching data from this questionnaire.",
     "add": "Create question",

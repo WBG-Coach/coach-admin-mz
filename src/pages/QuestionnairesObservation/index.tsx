@@ -8,7 +8,6 @@ import { LoadingDots } from "../../components/LoadingDots";
 import {
   useCreateObservationQuestionnaireMutation,
   useGetQuestionnairesMutation,
-  useGetQuestionsMutation,
   useUpdateObservationQuestionnaireMutation,
 } from "../../service";
 import { selectCurrentUser } from "../../store/auth";
@@ -20,6 +19,7 @@ import { Formik } from "formik";
 import { Input } from "../../components/Input";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useGetQuestionsMutation } from "../../service/questions";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
   const { t } = useTranslation();

@@ -100,6 +100,11 @@
     "subject": "Subject"
   },
   "Questions": {
+    "type": "Tipo",
+    "text": "Texto",
+    "competency": "Competência",
+    "new-title": "Criar questão",
+    "update-title": "Editar questão",
     "not-found": "Nenhuma questão foi cadastrada ainda para este questionário.",
     "error": "Ocorreu um erro ao buscar os dados desse questionário.",
     "add": "Criar questão",
