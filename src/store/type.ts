@@ -8,7 +8,7 @@ export type User = {
   created_at?: Date;
   updated_at?: Date;
   image_url?: string;
-  school_id?: string;
+  school_id?: number;
   subject?: string;
   answers?: Answer[];
   api_token?: string;

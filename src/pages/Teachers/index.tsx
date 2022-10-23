@@ -63,7 +63,7 @@ const Teachers: React.FC = () => {
     } else {
       await createTeacher({
         project_id: user.currentProject?.id || 0,
-        school_id: 32,
+        school_id: values.school_id || 0,
         name: values.name || "",
         last_name: values.last_name || "",
         subject: values.subject || "",
@@ -182,7 +182,7 @@ const Teachers: React.FC = () => {
               name: selectedTeacher?.name || "",
               last_name: selectedTeacher?.last_name || "",
               subject: selectedTeacher?.subject || "",
-              school_id: selectedTeacher?.school_id || "",
+              school_id: selectedTeacher?.school_id || 0,
             }}
             validationSchema={teacherSchema}
             onSubmit={onSubmitTeacher}

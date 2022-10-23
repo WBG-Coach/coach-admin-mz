@@ -18,6 +18,7 @@ import {
   SessionReport,
   TeacherCompetencesReport,
   User,
+  Question,
 } from "../store/type";
 
 type Prepare = {
@@ -386,6 +387,33 @@ export const api = createApi({
         body,
       }),
     }),
+    createQuestionnaireQuestion: builder.mutation<
+      void,
+      { question_id: number; questionnaire_id: number; order?: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/questionnaire-questions",
+        body,
+      }),
+    }),
+    createQuestion: builder.mutation<
+      string,
+      { competency_id: number; text: string; type: string }
+    >({
+      query: (questionnaire) => ({
+        method: "POST",
+        url: "/api/questions",
+        body: { ...questionnaire },
+      }),
+    }),
+    updateQuestion: builder.mutation<void, Partial<Question>>({
+      query: (question) => ({
+        method: "PUT",
+        url: "/api/questions",
+        body: { question },
+      }),
+    }),
   }),
 });
 
@@ -422,4 +450,7 @@ export const {
   useUpdateDocumentationQuestionnaireMutation,
   useCreateFeedbackQuestionnaireMutation,
   useUpdateFeedbackQuestionnaireMutation,
+  useCreateQuestionnaireQuestionMutation,
+  useUpdateQuestionMutation,
+  useCreateQuestionMutation
 } = api;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text } from "../Text";
 import {
   StyledOption,
@@ -20,6 +20,8 @@ const Select: <T>(props: SelectProps<T>) => React.ReactElement = ({
   label,
   ...otherProps
 }) => {
+  const [InFocus, setInFocus] = useState(false);
+
   return (
     <StyledSelectContainer {...otherProps}>
       {label && (
@@ -32,7 +34,7 @@ const Select: <T>(props: SelectProps<T>) => React.ReactElement = ({
         />
       )}
 
-      <StyledSelectGroup hasError={!!errorMessage}>
+      <StyledSelectGroup hasError={!!errorMessage} inFocus={InFocus}>
         <StyledSelect
           id={id}
           value={value}
@@ -41,6 +43,8 @@ const Select: <T>(props: SelectProps<T>) => React.ReactElement = ({
           onChange={(event) =>
             onChange(options[parseInt(event.target.value, 10)])
           }
+          onFocus={() => setInFocus(true)}
+          onBlur={() => setInFocus(false)}
         >
           <StyledOption hidden id="empty">
             {placeholder || "Selecione"}
