@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Container, Image, Text } from "../../../../components";
-import { Card } from "../../../../components/Card";
-import { Icon } from "../../../../components/Icon";
+import { Container } from "../../../../components";
+import { CustomCard } from "../../../../components/CustomCard";
+import { IconChart } from "../../../../components/IconChart";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerSchoolMutation } from "../../../../service";
 import { selectCurrentUser } from "../../../../store/auth";
-import { School } from "../../../../store/type";
-import { PersonChart } from "../TeacherReports/PersonChart";
 
 export const SchoolReports: React.FC<{
   start_date: Date;
@@ -28,164 +26,37 @@ export const SchoolReports: React.FC<{
     });
   }, [getReport, end_date, start_date, user]);
 
-  const renderSchoolInfos = (school: School, qtd: number) => (
-    <Container flex={1} minWidth={120} alignItems="center">
-      <Container
-        mr="8px"
-        width="24px"
-        height="24px"
-        overflow="hidden"
-        alignItems="center"
-        borderRadius="20px"
-        background="#F4F5F5"
-        justifyContent="center"
+  return !data ? (
+    <LoadingDots />
+  ) : (
+    <Container flexDirection="column" width="100%">
+      <CustomCard
+        mb="16px"
+        width="100%"
+        title="Schools that improved the most"
+        description="Schools with more positive competences among their teachers in 2022."
       >
-        {school?.image_url ? (
-          <Image src={school?.image_url} width="24px" height="24px" />
-        ) : (
-          <Icon size={16} name="university" color="#49504C" />
-        )}
+        <></>
+      </CustomCard>
+      <Container>
+        <CustomCard
+          width="100%"
+          title="Schools"
+          description="List of all schools"
+        >
+          <SessionTable data={data} />
+        </CustomCard>
+        <CustomCard
+          ml="16px"
+          width={"700px"}
+          title={t("Dashboard.schools-without-sessions-chart-title")}
+          description={t(
+            "Dashboard.schools-without-sessions-chart-description"
+          )}
+        >
+          <IconChart iconName="home-alt" value={0.7} />
+        </CustomCard>
       </Container>
-      <Container flexDirection="column">
-        <Text mb="2px" fontSize={14} fontWeight={500} value={school?.name} />
-        <Text
-          color="#7D827F"
-          fontSize={14}
-          fontWeight={500}
-          value={(school?.country || "-") + ", " + (school?.city || "-")}
-        />
-      </Container>
-      <Text ml="auto" fontSize="20px" fontWeight={600} value={qtd.toString()} />
-    </Container>
-  );
-
-  const moreSessions = data && data[0];
-  const lessSessions = data && data[data.length - 1];
-  const morePositiveCompetence = data?.reduce((morePositive, item) => {
-    return (morePositive?.yes_qty || 0) < (item?.yes_qty || 0)
-      ? item
-      : morePositive;
-  }, data[0]);
-
-  const moreNegativeCompetence = data?.reduce((morePositive, item) => {
-    return (morePositive?.no_qty || 0) < (item?.no_qty || 0)
-      ? item
-      : morePositive;
-  }, data[0]);
-
-  return (
-    <Container gridGap="16px">
-      {!data ? (
-        <LoadingDots />
-      ) : (
-        <>
-          <Container flex={1} flexDirection="column">
-            <Card flex={1}>
-              <SessionTable data={data} />
-            </Card>
-            <Card mt="32px" width={400}>
-              <Container mb="32px">
-                <Text
-                  fontSize="18px"
-                  lineHeight="24px"
-                  value={t("Dashboard.schools-without-sessions-chart-title")}
-                />
-              </Container>
-
-              <PersonChart end_date={end_date} start_date={start_date} />
-            </Card>
-          </Container>
-
-          <Container width="50%" maxWidth="360px" flexDirection="column">
-            <Text
-              value={t("Dashboard.tabs-schools")}
-              fontWeight={500}
-              fontSize="18px"
-            />
-
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
-
-            <Text value="Escola com mais sessões" fontSize="14px" />
-
-            <Container my="8px">
-              {moreSessions?.school &&
-                renderSchoolInfos(
-                  moreSessions.school,
-                  moreSessions?.sessions_qty || 0
-                )}
-            </Container>
-
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
-
-            <Text value="Escola com menos sessões" fontSize="14px" />
-
-            <Container my="8px">
-              {lessSessions?.school &&
-                renderSchoolInfos(
-                  lessSessions.school,
-                  lessSessions?.sessions_qty || 0
-                )}
-            </Container>
-
-            <Text
-              mt="48px"
-              fontSize="18px"
-              fontWeight={500}
-              value="Competências"
-            />
-
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
-
-            <Text
-              value="Escolas com mais competências positivas"
-              fontSize="14px"
-            />
-
-            <Container my="8px">
-              {morePositiveCompetence?.school &&
-                renderSchoolInfos(
-                  morePositiveCompetence.school,
-                  morePositiveCompetence?.sessions_qty || 0
-                )}
-            </Container>
-
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
-
-            <Text
-              value="Escolas com mais competências negativas"
-              fontSize="14px"
-            />
-
-            <Container my="8px">
-              {moreNegativeCompetence?.school &&
-                renderSchoolInfos(
-                  moreNegativeCompetence.school,
-                  moreNegativeCompetence?.sessions_qty || 0
-                )}
-            </Container>
-          </Container>
-        </>
-      )}
     </Container>
   );
 };

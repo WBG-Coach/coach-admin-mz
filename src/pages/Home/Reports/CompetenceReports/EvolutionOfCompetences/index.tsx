@@ -11,8 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { Text } from "../../../../../components";
-import { Card } from "../../../../../components/Card";
+import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service";
 import { selectCurrentUser } from "../../../../../store/auth";
@@ -85,14 +84,12 @@ export const EvolutionOfCompetences = () => {
   return isLoading ? (
     <LoadingDots />
   ) : (
-    <Card>
-      <Text
-        mb="32px"
-        fontSize="18px"
-        lineHeight="24px"
-        value="Evolution of competences in 2022"
-      />
+    <CustomCard
+      width="100%"
+      title="Number of feedbacks per competency over time"
+      description="View the most selected competencies for feedback during 2022"
+    >
       <Line options={options} data={{ labels, datasets }} />
-    </Card>
+    </CustomCard>
   );
 };

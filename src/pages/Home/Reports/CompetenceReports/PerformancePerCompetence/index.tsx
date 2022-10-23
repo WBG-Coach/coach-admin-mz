@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../../components";
-import { Card } from "../../../../../components/Card";
+import { CustomCard } from "../../../../../components/CustomCard";
 import { Dropdown } from "../../../../../components/Dropdown";
 import {
   useGetTeacherCompetencesMutation,
@@ -118,30 +118,11 @@ export const PerformancePerCompetence: React.FC = () => {
   );
 
   return (
-    <Card flex={1}>
-      <Container
-        p="24px"
-        m="-24px"
-        mb="32px"
-        borderBottom="1px solid #E3E6E9"
-        flexDirection="column"
-      >
-        <Text
-          mb="8px"
-          fontSize="20px"
-          fontWeight="600"
-          lineHeight="28px"
-          color="#16191D"
-          value="Performance by competence"
-        />
-        <Text
-          fontSize="14px"
-          fontWeight="400"
-          color="#576375"
-          lineHeight="20px"
-          value="How each teacher evolved in each competency during the orientation sessions."
-        />
-      </Container>
+    <CustomCard
+      width="100%"
+      title="Performance by competence"
+      description="How each teacher evolved in each competency during the orientation sessions."
+    >
       <Dropdown
         id="select-teacher"
         isOpen={isOpen}
@@ -182,42 +163,46 @@ export const PerformancePerCompetence: React.FC = () => {
               </td>
             ))}
           </tr>
-          {data?.data.map((item) => (
-            <tr>
-              {item.map((row, index) => (
-                <td
-                  style={{
-                    textAlign: "center",
-                    position: "relative",
-                  }}
-                >
-                  {row?.subtitle ? (
-                    <Text
-                      textAlign="center"
-                      fontSize="12px"
-                      lineHeight="16px"
-                      color="#576375"
-                      value={row.subtitle}
-                    />
-                  ) : (
-                    getBoll(row.type)
-                  )}
-                  {index !== 0 && (
-                    <Container
-                      zIndex="-1"
-                      width="100%"
-                      height="1px"
-                      background="#F0F2F4"
-                      position="absolute"
-                      top="50%"
-                    />
-                  )}
-                </td>
-              ))}
-            </tr>
-          ))}
+          {data?.data[0] && data?.data[0].length > 1 ? (
+            data?.data.map((item) => (
+              <tr>
+                {item.map((row, index) => (
+                  <td
+                    style={{
+                      textAlign: "center",
+                      position: "relative",
+                    }}
+                  >
+                    {row?.subtitle ? (
+                      <Text
+                        textAlign="center"
+                        fontSize="12px"
+                        lineHeight="16px"
+                        color="#576375"
+                        value={row.subtitle}
+                      />
+                    ) : (
+                      getBoll(row.type)
+                    )}
+                    {index !== 0 && (
+                      <Container
+                        zIndex="-1"
+                        width="100%"
+                        height="1px"
+                        background="#F0F2F4"
+                        position="absolute"
+                        top="50%"
+                      />
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <Text>{selectedTeacher?.name} haven't sessions</Text>
+          )}
         </table>
       </Container>
-    </Card>
+    </CustomCard>
   );
 };

@@ -3,12 +3,13 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
+import { CustomCard } from "../../../../components/CustomCard";
+import { IconChart } from "../../../../components/IconChart";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerCoachMutation } from "../../../../service";
 import { selectCurrentUser } from "../../../../store/auth";
 import { User } from "../../../../store/type";
-import { PersonChart } from "../TeacherReports/PersonChart";
 
 export const CoachReports: React.FC<{
   start_date: Date;
@@ -111,20 +112,13 @@ export const CoachReports: React.FC<{
         </Container>
       )}
 
-      <Container>
-        <Card>
-          <Container mb="32px">
-            <Text
-              mb="32px"
-              fontSize="18px"
-              lineHeight="24px"
-              value={t("Dashboard.coaches-person-chart-title")}
-            />
-          </Container>
-
-          <PersonChart end_date={end_date} start_date={start_date} />
-        </Card>
-      </Container>
+      <CustomCard
+        width={450}
+        title="Advisors who did not give any feedback sessions"
+        description=""
+      >
+        <IconChart iconName="person" value={0.3} />
+      </CustomCard>
     </Container>
   );
 };
