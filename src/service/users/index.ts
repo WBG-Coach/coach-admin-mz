@@ -47,6 +47,22 @@ export const api = createApi({
         },
       }),
     }),
+    createCoach: builder.mutation<
+      User,
+      {
+        project_id: number;
+        name?: string;
+        email: string;
+        last_name?: string;
+        image_url?: string;
+      }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/createCoach",
+        body: body,
+      }),
+    }),
     createTeacher: builder.mutation<
       User,
       {
@@ -93,4 +109,5 @@ export const {
   useGetTeachersMutation,
   useCreateTeacherMutation,
   useUpdateUserMutation,
+  useCreateCoachMutation,
 } = api;

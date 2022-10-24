@@ -48,7 +48,8 @@ export const api = createApi({
       query: (questionnaire) => ({
         method: "POST",
         url: "/api/questions",
-        body: { ...questionnaire },
+        body: questionnaire,
+        responseHandler: "text",
       }),
     }),
     updateQuestion: builder.mutation<void, Partial<Question>>({

@@ -85,6 +85,9 @@
     "update-title": "Update coach",
     "add": "Create Coach",
     "name": "Coach",
+    "email": "Email",
+    "last-name": "Last name",
+    "password": "Password",
     "title": "Coaches"
   },
   "Sessions": {
