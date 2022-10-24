@@ -5,7 +5,7 @@ import { useTheme } from "styled-components";
 import { Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import { useGetCompetenciesMutation } from "../../service";
+import { useGetCompetenciesMutation } from "../../service/competences";
 import { selectCurrentUser } from "../../store/auth";
 import { Competence } from "../../store/type";
 import { motion } from "framer-motion";

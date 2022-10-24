@@ -9,7 +9,7 @@ import {
   useCreateObservationQuestionnaireMutation,
   useGetQuestionnairesMutation,
   useUpdateObservationQuestionnaireMutation,
-} from "../../service";
+} from "../../service/questionnaires";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
 import { motion } from "framer-motion";
@@ -19,8 +19,8 @@ import { Formik } from "formik";
 import { Input } from "../../components/Input";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useGetQuestionsMutation } from "../../service/questions";
 import BreadCrumb from "../../components/Breadcrumb";
+import { useGetQuestionsMutation } from "../../service/questions";
 
 const QuestionnairesObservation: React.FC<{}> = () => {
   const { t } = useTranslation();

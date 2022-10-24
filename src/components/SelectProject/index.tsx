@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useGetProjectsMutation } from "../../service";
+import { useGetProjectsMutation } from "../../service/projects";
 import { selectCurrentUser, selectProject } from "../../store/auth";
 import { Project } from "../../store/type";
 import { Container } from "../Container";

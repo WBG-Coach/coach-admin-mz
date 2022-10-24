@@ -7,10 +7,9 @@ import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
 import {
   useCreateTeacherMutation,
-  useGetSchoolsMutation,
   useGetTeachersMutation,
   useUpdateUserMutation,
-} from "../../service";
+} from "../../service/users";
 import { selectCurrentUser } from "../../store/auth";
 import { Modal } from "../../components/Modal";
 import { uploadFileToS3 } from "../../util";
@@ -22,6 +21,7 @@ import PicSelect from "../../components/PicSelect";
 import Select from "../../components/Select";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";
+import { useGetSchoolsMutation } from "../../service/schools";
 
 const Teachers: React.FC = () => {
   const { t } = useTranslation();

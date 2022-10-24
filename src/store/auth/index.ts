@@ -1,5 +1,5 @@
 import { RootState } from "..";
-import { api } from "../../service";
+import { api } from "../../service/auth";
 import { createSlice } from "@reduxjs/toolkit";
 import { clearLocalStorage, setLocalUser } from "../../storage";
 import { Project, User } from "../type";

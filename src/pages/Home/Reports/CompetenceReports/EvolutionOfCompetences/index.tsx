@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
-import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service";
+import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 
 ChartJS.register(

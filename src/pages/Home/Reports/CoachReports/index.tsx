@@ -7,7 +7,7 @@ import { CustomCard } from "../../../../components/CustomCard";
 import { IconChart } from "../../../../components/IconChart";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
-import { useGetReportSessionPerCoachMutation } from "../../../../service";
+import { useGetReportSessionPerCoachMutation } from "../../../../service/reports";
 import { selectCurrentUser } from "../../../../store/auth";
 import { User } from "../../../../store/type";
 

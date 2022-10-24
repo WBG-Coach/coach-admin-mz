@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Text } from "../../../../../components";
 import Select from "../../../../../components/Select";
-import { useGetReportCompetenciesBySchoolMutation } from "../../../../../service";
+import { useGetReportCompetenciesBySchoolMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 import { SessionReport } from "../../../../../store/type";
 

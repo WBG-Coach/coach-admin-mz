@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { IconChart } from "../../../../../components/IconChart";
 import { LoadingDots } from "../../../../../components/LoadingDots";
-import { useGetSessionsQuantityMutation } from "../../../../../service";
+import { useGetSessionsQuantityMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 
 export const TeacherChart: React.FC<{

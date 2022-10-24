@@ -7,7 +7,7 @@ import { SchoolReports } from "./Reports/SchoolReports";
 import { CoachReports } from "./Reports/CoachReports";
 import { DateRange } from "../../components/DateRange";
 import { startOfMonth } from "date-fns";
-import { useGetReportDashboardMutation } from "../../service";
+import { useGetReportDashboardMutation } from "../../service/reports";
 import { LoadingDots } from "../../components/LoadingDots";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";

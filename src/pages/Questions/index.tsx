@@ -5,10 +5,7 @@ import { useTheme } from "styled-components";
 import { Button, Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import {
-  useCreateQuestionnaireQuestionMutation,
-  useGetCompetenciesMutation,
-} from "../../service";
+import { useGetCompetenciesMutation } from "../../service/competences";
 import { Competence, Question } from "../../store/type";
 import { motion } from "framer-motion";
 import { Formik } from "formik";
@@ -24,6 +21,7 @@ import {
   useUpdateQuestionMutation,
 } from "../../service/questions";
 import BreadCrumb from "../../components/Breadcrumb";
+import { useCreateSessionsMutation } from "../../service/session";
 
 const questionTypes = ["TEXT", "OPTION", "FEEDBACK", "LIST"];
 
@@ -41,7 +39,7 @@ const Questions: React.FC = () => {
   const [updateQuestion, requestUpdateQuestion] = useUpdateQuestionMutation();
   const [createQuestion, requestCreateQuestion] = useCreateQuestionMutation();
   const [createQuestionnaireQuestion, requestCreateQuestionnaireQuestion] =
-    useCreateQuestionnaireQuestionMutation();
+    useCreateSessionsMutation();
 
   useEffect(() => {
     if (id) {

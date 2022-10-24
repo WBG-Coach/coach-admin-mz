@@ -9,7 +9,7 @@ import {
   useCreateDocumentationQuestionnaireMutation,
   useGetQuestionnairesMutation,
   useUpdateDocumentationQuestionnaireMutation,
-} from "../../service";
+} from "../../service/questionnaires";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
 import { motion } from "framer-motion";

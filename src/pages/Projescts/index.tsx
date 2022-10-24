@@ -12,7 +12,7 @@ import {
   useCreateProjectMutation,
   useGetProjectsMutation,
   useUpdateProjectMutation,
-} from "../../service";
+} from "../../service/projects";
 import { motion } from "framer-motion";
 import { useTheme } from "styled-components";
 import BreadCrumb from "../../components/Breadcrumb";

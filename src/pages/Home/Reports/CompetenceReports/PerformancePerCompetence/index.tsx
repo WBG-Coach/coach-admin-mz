@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../../components";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { Dropdown } from "../../../../../components/Dropdown";
-import {
-  useGetTeacherCompetencesMutation,
-  useGetTeachersMutation,
-} from "../../../../../service";
+import { useGetTeachersMutation } from "../../../../../service/users";
+import { useGetTeacherCompetencesMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 import { User } from "../../../../../store/type";
 

@@ -7,25 +7,27 @@ import { LoadingDots } from "../../components/LoadingDots";
 import { Modal } from "../../components/Modal";
 import {
   useGetCoachesMutation,
-  useGetSchoolsMutation,
-  useGetSessionsMutation,
   useGetTeachersMutation,
-  useUpdateQuestionnaireApplicationMutation,
-} from "../../service";
+} from "../../service/users";
 import { selectCurrentUser } from "../../store/auth";
 import { ApplicationWithRelation, School, User } from "../../store/type";
 import Select from "../../components/Select";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";
+import { useGetSchoolsMutation } from "../../service/schools";
+import {
+  useGetSessionsMutation,
+  useUpdateSessionMutation,
+} from "../../service/session";
 
 const Sessions: React.FC = () => {
   const [getSessions, { isLoading, data }] = useGetSessionsMutation();
   const [updateQuestionnaire, requestUpdateQuestionnaire] =
-    useUpdateQuestionnaireApplicationMutation();
+    useUpdateSessionMutation();
 
   const [getSchools, requestGetSchools] = useGetSchoolsMutation();
   const [getTeachers, requestGetTeachers] = useGetTeachersMutation();
-  const [getCoaches, requestGetCoachs] = useGetCoachesMutation();
+  const [getCoaches, requestGetCoaches] = useGetCoachesMutation();
 
   const user = useSelector(selectCurrentUser);
   const [currentSession, setCurrentSession] = useState<
@@ -220,14 +222,14 @@ const Sessions: React.FC = () => {
                   />
                 )}
 
-                {requestGetCoachs.data && (
+                {requestGetCoaches.data && (
                   <Select
                     mb={"16px"}
-                    value={requestGetCoachs?.data.findIndex(
+                    value={requestGetCoaches?.data.findIndex(
                       (coach) => coach.id === values.coach_id
                     )}
                     label={t("Coaches.name")}
-                    options={requestGetCoachs?.data as User[]}
+                    options={requestGetCoaches?.data as User[]}
                     onChange={(e) => setFieldValue("coach_id", e.id)}
                     renderOption={(opt) => opt?.name}
                   />

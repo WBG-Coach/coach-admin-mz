@@ -6,7 +6,7 @@ import { CustomCard } from "../../../../components/CustomCard";
 import { IconChart } from "../../../../components/IconChart";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
-import { useGetReportSessionPerSchoolMutation } from "../../../../service";
+import { useGetReportSessionPerSchoolMutation } from "../../../../service/reports";
 import { selectCurrentUser } from "../../../../store/auth";
 
 export const SchoolReports: React.FC<{

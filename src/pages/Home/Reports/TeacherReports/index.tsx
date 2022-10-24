@@ -5,7 +5,7 @@ import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
-import { useGetReportSessionPerTeacherMutation } from "../../../../service";
+import { useGetReportSessionPerTeacherMutation } from "../../../../service/reports";
 import { selectCurrentUser } from "../../../../store/auth";
 import { User } from "../../../../store/type";
 import { TeacherChart } from "./TeacherChart";

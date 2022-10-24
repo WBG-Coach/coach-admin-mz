@@ -10,7 +10,7 @@ import {
   useCreateSchoolsMutation,
   useGetSchoolsMutation,
   useUpdateSchoolsMutation,
-} from "../../service";
+} from "../../service/schools";
 import { selectCurrentUser } from "../../store/auth";
 import { School } from "../../store/type";
 import { Formik } from "formik";

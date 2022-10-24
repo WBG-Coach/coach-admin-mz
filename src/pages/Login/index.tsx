@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Button, Container, Image, Text } from "../../components";
 import { LanguageButton } from "../../components/Header/LanguageButton";
 import { selectCurrentUser, selectLoginErrorMessage } from "../../store/auth";
-import { useLoginMutation } from "../../service";
+import { useLoginMutation } from "../../service/auth";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { useTranslation } from "react-i18next";

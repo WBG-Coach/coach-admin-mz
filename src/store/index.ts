@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth";
-import { api } from "../service";
+import { api } from "../service/auth";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 export const store = configureStore({

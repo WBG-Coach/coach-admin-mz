@@ -7,10 +7,12 @@ import { Input } from "../../components/Input";
 import { LoadingDots } from "../../components/LoadingDots";
 import { Modal } from "../../components/Modal";
 import PicSelect from "../../components/PicSelect";
-import { useGetCoachesMutation } from "../../service";
+import {
+  useGetCoachesMutation,
+  useUpdateUserMutation,
+} from "../../service/users";
 import { selectCurrentUser } from "../../store/auth";
 import { User } from "../../store/type";
-import { useUpdateUserMutation } from "../../service";
 import { uploadFileToS3 } from "../../util";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";

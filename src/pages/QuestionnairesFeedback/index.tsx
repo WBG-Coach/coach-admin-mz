@@ -9,7 +9,7 @@ import {
   useCreateFeedbackQuestionnaireMutation,
   useGetQuestionnairesMutation,
   useUpdateFeedbackQuestionnaireMutation,
-} from "../../service";
+} from "../../service/questionnaires";
 import { selectCurrentUser } from "../../store/auth";
 import { Questionnaire } from "../../store/type";
 import { motion } from "framer-motion";
@@ -77,7 +77,7 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
   return (
     <>
       <Container width="100%" flexDirection="column">
-      <BreadCrumb />
+        <BreadCrumb />
         <Text
           mb={40}
           fontSize={32}
@@ -126,7 +126,9 @@ const QuestionnairesFeedback: React.FC<{}> = () => {
                       {
                         label: t("Observation.seeQuestion"),
                         onClick: () =>
-                          navigate(`/feedback-questionnaire/questions/${questionnaire.id}`),
+                          navigate(
+                            `/feedback-questionnaire/questions/${questionnaire.id}`
+                          ),
                       },
                       {
                         label: t("Observation.editQuestion"),
