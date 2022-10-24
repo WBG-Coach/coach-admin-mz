@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Container } from "../../../../../components";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { IconChart } from "../../../../../components/IconChart";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetSessionsQuantityMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 
-export const TeacherChart: React.FC<{
+export const TeachersWithoutFeedbackChart: React.FC<{
   end_date: Date;
   start_date: Date;
 }> = ({ end_date, start_date }) => {
@@ -23,18 +24,21 @@ export const TeacherChart: React.FC<{
 
   return (
     <CustomCard
+      width="100%"
       title="Teachers without feedbacks"
       description="Teachers who did not receive any feedback session."
     >
       {data ? (
-        <IconChart
-          value={
-            data.sessions_qty > 0
-              ? data.pending_feedback_sessions_qty / data.sessions_qty
-              : 0
-          }
-          iconName="person"
-        />
+        <Container minHeight="168px">
+          <IconChart
+            value={
+              data.sessions_qty > 0
+                ? data.pending_feedback_sessions_qty / data.sessions_qty
+                : 0
+            }
+            iconName="person"
+          />
+        </Container>
       ) : (
         <LoadingDots />
       )}

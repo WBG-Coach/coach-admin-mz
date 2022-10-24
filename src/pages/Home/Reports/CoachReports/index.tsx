@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
@@ -17,7 +16,6 @@ export const CoachReports: React.FC<{
 }> = ({ end_date, start_date }) => {
   const [getReport, { data }] = useGetReportSessionPerCoachMutation();
   const user = useSelector(selectCurrentUser);
-  const { t } = useTranslation();
 
   useEffect(() => {
     getReport({
@@ -30,8 +28,8 @@ export const CoachReports: React.FC<{
   const moreSessions = data && data[0];
   const lessSessions = data && data[data.length - 1];
 
-  const renderSchoolInfos = (coach: User, qtd: number) => (
-    <Container flex={1} minWidth={120} alignItems="center">
+  const renderCoachInfos = (coach: User, qtd: number) => (
+    <Container flex={1} mt="16px" minWidth={120} alignItems="center">
       <Container
         mr="8px"
         width="24px"
@@ -65,60 +63,69 @@ export const CoachReports: React.FC<{
         <LoadingDots />
       ) : (
         <Container>
-          <Card mr="20px" flex={1}>
+          <CustomCard
+            mr="20px"
+            width="100%"
+            title="All coaches"
+            description={
+              "List with all coaches from " + user.currentProject?.name
+            }
+          >
             <SessionTable data={data} />
-          </Card>
+          </CustomCard>
           <Container width="50%" maxWidth="360px" flexDirection="column">
-            <Text
-              value={t("Dashboard.tabs-coaches")}
-              fontWeight={500}
-              fontSize="18px"
-            />
+            <Card>
+              <Text
+                fontSize="18px"
+                fontWeight={500}
+                lineHeight="24px"
+                color="#16191D"
+                value="Orientador com mais sessões"
+              />
 
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
-
-            <Text value="Orientador com mais sessões" fontSize="14px" />
-
-            <Container my="8px">
               {moreSessions?.coach &&
-                renderSchoolInfos(
+                renderCoachInfos(
                   moreSessions.coach,
                   moreSessions?.sessions_qty || 0
                 )}
-            </Container>
+            </Card>
 
-            <Container
-              my="16px"
-              height="1px"
-              background="#ECEEED"
-              width="100%"
-            />
+            <Card mt="16px">
+              <Text
+                fontSize="18px"
+                fontWeight={500}
+                lineHeight="24px"
+                color="#16191D"
+                value="Orientador com menos sessões"
+              />
 
-            <Text value="Orientador com menos sessões" fontSize="14px" />
-
-            <Container my="8px">
               {lessSessions?.coach &&
-                renderSchoolInfos(
+                renderCoachInfos(
                   lessSessions.coach,
                   lessSessions?.sessions_qty || 0
                 )}
-            </Container>
+            </Card>
           </Container>
         </Container>
       )}
 
-      <CustomCard
-        width={450}
-        title="Advisors who did not give any feedback sessions"
-        description=""
-      >
-        <IconChart iconName="person" value={0.3} />
-      </CustomCard>
+      <Container>
+        <CustomCard
+          width="100%"
+          mr="16px"
+          title="Orientation sessions by region."
+          description="See the regions where counselors are doing the most orientation sessions."
+        >
+          <></>
+        </CustomCard>
+        <CustomCard
+          width="700px"
+          title="Coaches without feedbacks"
+          description="Advisors who did not give any feedback to teachers."
+        >
+          <IconChart iconName="person" value={0.3} />
+        </CustomCard>
+      </Container>
     </Container>
   );
 };
