@@ -10,6 +10,7 @@ import {
 } from "chart.js";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
@@ -59,6 +60,7 @@ type DateItem = {
 };
 
 export const EvolutionOfCompetences = () => {
+  const { t } = useTranslation();
   const [requestReport, { data, isLoading }] =
     useGetReportCompetenceEvolutionsMutation();
   const [datasets, setDatasets] = useState<DateItem[]>([]);
@@ -86,8 +88,10 @@ export const EvolutionOfCompetences = () => {
   ) : (
     <CustomCard
       width="100%"
-      title="Number of feedbacks per competency over time"
-      description="View the most selected competencies for feedback during 2022"
+      title={t("Dashboard.CompetenceReports.feedbacks-per-competency")}
+      description={t(
+        "Dashboard.CompetenceReports.feedbacks-per-competency-description"
+      )}
     >
       <Line height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>

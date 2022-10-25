@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container } from "../../../../../components";
 import { CustomCard } from "../../../../../components/CustomCard";
@@ -13,6 +14,7 @@ export const TeachersWithoutFeedbackChart: React.FC<{
 }> = ({ end_date, start_date }) => {
   const [getSessionsQuantity, { data }] = useGetSessionsQuantityMutation();
   const user = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getSessionsQuantity({
@@ -25,8 +27,10 @@ export const TeachersWithoutFeedbackChart: React.FC<{
   return (
     <CustomCard
       width="100%"
-      title="Teachers without feedbacks"
-      description="Teachers who did not receive any feedback session."
+      title={t("Dashboard.TeacherReports.teachers-without-feedback")}
+      description={t(
+        "Dashboard.TeacherReports.teachers-without-feedback-description"
+      )}
     >
       {data ? (
         <Container minHeight="168px">

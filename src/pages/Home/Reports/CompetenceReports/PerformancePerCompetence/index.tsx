@@ -134,9 +134,12 @@ export const PerformancePerCompetence: React.FC = () => {
 
       <Container mt="32px">
         <Container>
-          {renderLegend("Marked as yes", "#33CC5A")}
-          {renderLegend("Marked as no", "#D92626")}
-          {renderLegend("With feedback", "#0080FF")}
+          {renderLegend(t("Dashboard.CompetenceReports.marked-yes"), "#33CC5A")}
+          {renderLegend(t("Dashboard.CompetenceReports.marked-no"), "#D92626")}
+          {renderLegend(
+            t("Dashboard.CompetenceReports.with-feedback"),
+            "#0080FF"
+          )}
         </Container>
       </Container>
 

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Container, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
 import { CustomCard } from "../../../../components/CustomCard";
@@ -7,6 +8,7 @@ import { DashboardReportsProps } from "./types";
 import { UserProgress } from "./UserProgress";
 
 export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
+  const { t } = useTranslation();
   return props.isLoading ? (
     <LoadingDots />
   ) : (
@@ -14,8 +16,8 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
       <Container width="100%" gridGap="16px">
         <CustomCard
           width="100%"
-          title="Competencies by feedback"
-          description="See the most worked skills in feedback with the teacher."
+          title={t("Dashboard.DashboardReports.competency-by-feedback")}
+          description={t("Dashboard.DashboardReports.competency-by-feedback")}
         >
           <Text mb="32px" fontSize="18px" lineHeight="24px" value="" />
           <CompetenceProgress
@@ -30,7 +32,7 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
               mb="32px"
               fontSize="18px"
               lineHeight="24px"
-              value="Teacher with the most sessions"
+              value={t("Dashboard.DashboardReports.teacher-most-sessions")}
             />
 
             <UserProgress
@@ -48,7 +50,7 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
               mb="16px"
               fontSize="18px"
               lineHeight="24px"
-              value="Coach with the most sessions"
+              value={t("Dashboard.DashboardReports.coach-most-sessions")}
             />
             <UserProgress
               imageUrl={props.data?.coach_most_sessions?.user?.image_url}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { SessionReport } from "../../store/type";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
@@ -11,6 +12,7 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [paginatedItems, setPaginatedItems] = useState<SessionReport>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (data.length > itemsPerPage)
@@ -38,13 +40,25 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           borderRight="1px solid #ECEEED"
         >
           {data[0]?.teacher && (
-            <Text fontSize={12} value="Teacher" fontWeight={500} />
+            <Text
+              fontSize={12}
+              value={t("Dashboard.SessionTable.teacher")}
+              fontWeight={500}
+            />
           )}
           {data[0]?.coach && (
-            <Text fontSize={12} value="Coach" fontWeight={500} />
+            <Text
+              fontSize={12}
+              value={t("Dashboard.SessionTable.coach")}
+              fontWeight={500}
+            />
           )}
           {data[0]?.school && (
-            <Text fontSize={12} value="School" fontWeight={500} />
+            <Text
+              fontSize={12}
+              value={t("Dashboard.SessionTable.school")}
+              fontWeight={500}
+            />
           )}
         </Container>
         <Container
@@ -53,7 +67,11 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           borderRight="1px solid #ECEEED"
           justifyContent="center"
         >
-          <Text fontSize={12} value="Sessions" fontWeight={500} />
+          <Text
+            fontSize={12}
+            value={t("Dashboard.SessionTable.sessions")}
+            fontWeight={500}
+          />
         </Container>
         <Container
           width={120}
@@ -61,7 +79,11 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           justifyContent="center"
           borderRight="1px solid #ECEEED"
         >
-          <Text fontSize={12} value="Feedbacks" fontWeight={500} />
+          <Text
+            fontSize={12}
+            value={t("Dashboard.SessionTable.feedbacks")}
+            fontWeight={500}
+          />
         </Container>
         <Container
           width={120}
@@ -69,10 +91,18 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           borderRight="1px solid #ECEEED"
           justifyContent="center"
         >
-          <Text fontSize={12} value="Positive comp." fontWeight={500} />
+          <Text
+            fontSize={12}
+            value={t("Dashboard.SessionTable.positive-comp")}
+            fontWeight={500}
+          />
         </Container>
         <Container width={120} p="8px" justifyContent="center">
-          <Text fontSize={12} value="Negative comp." fontWeight={500} />
+          <Text
+            fontSize={12}
+            value={t("Dashboard.SessionTable.negative-comp")}
+            fontWeight={500}
+          />
         </Container>
       </Container>
       {paginatedItems.map((item) => (

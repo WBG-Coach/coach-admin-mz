@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container } from "../../../../components";
 import { CustomCard } from "../../../../components/CustomCard";
@@ -17,6 +18,7 @@ export const TeacherReports: React.FC<{
   const [getReport, { data }] = useGetReportSessionPerTeacherMutation();
 
   const user = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getReport({
@@ -42,9 +44,10 @@ export const TeacherReports: React.FC<{
           </Container>
           <CustomCard
             width="100%"
-            title="All teachers"
+            title={t("Dashboard.TeacherReports.all-teachers")}
             description={
-              "List of all teachers from " + user.currentProject?.name
+              t("Dashboard.TeacherReports.all-teachers-description") +
+              user.currentProject?.name
             }
           >
             <SessionTable data={data} />

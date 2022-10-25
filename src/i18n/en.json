@@ -25,13 +25,16 @@
     "tabs-coaches": "COACHES",
     "tabs-teachers": "TEACHERS",
     "tabs-sessions": "SESSIONS",
-    "competencies-by-school": "Competencies by school",
-    "session-evolution": "Evolution of sessions in 2022",
-    "teacher-person-chart-title": "Teachers who didn't receive any feedback session",
-    "coaches-person-chart-title": "Coaches who did not give any feedback sessions",
-    "session-name": "Session {{value}}",
-    "schools-without-sessions-chart-title": "Schools without evolution",
-    "schools-without-sessions-chart-description": "Schools that have the majority of teachers without any competence.",
+
+    "SessionTable": {
+      "teacher": "Teacher's",
+      "coach": "Coaches",
+      "school": "Schools",
+      "sessions": "Sessions",
+      "feedbacks": "Feedbacks",
+      "positive-comp": "Comp. positiva",
+      "negative-comp": "Comp. negativa"
+    },
 
     "CoachReports": {
       "all-coaches": "All Coaches",
@@ -41,20 +44,57 @@
       "session-by-region": "Orientation sessions by region.",
       "session-by-region-description": "See the regions where counselors are doing the most orientation sessions.",
       "without-feedback": "Coaches without feedbacks",
-      "without-feedback-description": "Advisors who did not give any feedback to teachers."
+      "without-feedback-description": "Coaches who did not give any feedback to teachers."
     },
 
     "CompetenceReports": {
       "peformance-by-competence": "Performance by competence",
       "peformance-by-competence-description": "How each teacher evolved in each competency during the orientation sessions.",
-      "havent-sessions": "haven't sessions"
+      "havent-sessions": "haven't sessions",
+      "marked-yes": "Marked as yes",
+      "marked-no": "Marked as no",
+      "with-feedback": "With feedback",
+      "feedback-sessions": "Feedbacks sessions",
+      "most-worked": "Most worked competences with teachers",
+      "most-worked-description": "See the skills most worked by all teachers",
+      "feedbacks-per-competency": "Number of feedbacks per competency over time",
+      "feedbacks-per-competency-description": "View the most selected competencies for feedback during 2022"
     },
 
-    "DashboardReports": {},
+    "DashboardReports": {
+      "competency-by-feedback": "Competencies by feedback",
+      "competency-by-feedback-description": "See the most worked skills in feedback with the teacher.",
+      "teacher-most-sessions": "Teacher with the most sessions",
+      "coach-most-sessions": "Coach with the most sessions",
+      "competence-name": "COMPETENCE",
+      "sessions-name": "SESSIONS"
+    },
 
-    "SchoolReports": {},
+    "SchoolReports": {
+      "list-schools": "Schools",
+      "list-schools-description": "List of all schools",
+      "schools-without-sessions": "Schools without evolution",
+      "schools-without-sessions-description": "Schools that have the majority of teachers without any competence.",
+      "schools-by-region": "Schools by region",
+      "schools-by-region-description": "See data for all schools in the country and filter by region.",
+      "schools-improved-most": "Schools that improved the most",
+      "schools-improved-most-description": "Schools with more positive competences among their teachers in 2022.",
+      "competencies-by-school": "Competencies by school",
+      "feedback": "Feedback",
+      "yes": "Yes",
+      "no": "No"
+    },
 
-    "TeacherReports": {}
+    "TeacherReports": {
+      "all-teachers": "All teachers",
+      "all-teachers-description": "List of all teachers from ",
+      "teachers-without-feedback": "Teachers without feedbacks",
+      "teachers-without-feedback-description": "Teachers who did not receive any feedback session.",
+      "teacher-evolution": "Teachers' evolution",
+      "teacher-evolution-description": "Teachers with all competences marked as yes in the last session.",
+      "productive-feedback": "Productive feedback",
+      "productive-feedback-description": "Feedback that resulted in the teacher's evolution in the next session."
+    }
   },
   "Projects": {
     "title": "Projects",

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useTheme } from "styled-components";
 import { Container, Text } from "../../../../../components";
 import { CompetenceProgressProps } from "./types";
@@ -6,6 +7,7 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
   data,
   total,
 }) => {
+  const { t } = useTranslation();
   const theme: any = useTheme();
 
   return (
@@ -17,7 +19,7 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
       >
         <Container flex={1}>
           <Text
-            value="COMPETENCE"
+            value={t("Dashboard.DashboardReports.competence-name")}
             color="#49504C"
             fontSize="14px"
             lineHeight="20px"
@@ -26,7 +28,7 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
         <Container width={100}>
           <Text
             ml="auto"
-            value="SESSIONS"
+            value={t("Dashboard.DashboardReports.sessions-name")}
             color="#49504C"
             fontSize="14px"
             lineHeight="20px"

@@ -64,17 +64,17 @@ export const CompetenciesBySchool: React.FC<{
     labels,
     datasets: [
       {
-        label: "Yes",
+        label: t("Dashboard.SchoolReports.yes"),
         data: data?.map((item) => item.yes),
         backgroundColor: "#33CC5A",
       },
       {
-        label: "No",
+        label: t("Dashboard.SchoolReports.no"),
         data: data?.map((item) => item.no),
         backgroundColor: "#D92626",
       },
       {
-        label: "Feedback",
+        label: t("Dashboard.SchoolReports.feedback"),
         data: data?.map((item) => item.feedbacks_quantity),
         backgroundColor: "#0080FF",
       },
@@ -87,7 +87,7 @@ export const CompetenciesBySchool: React.FC<{
         mb="32px"
         fontSize="18px"
         lineHeight="24px"
-        value={t("Dashboard.competencies-by-school")}
+        value={t("Dashboard.SchoolReports.competencies-by-school")}
       />
       <Select
         value={sessionReport.findIndex((item) => item.school?.id === schoolId)}

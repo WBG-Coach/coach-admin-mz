@@ -24,10 +24,76 @@
     "tabs-coaches": "ORIENTADORES",
     "tabs-teachers": "PROFESSORES",
     "tabs-sessions": "SESSÕES",
-    "competencies-by-school": "Competências por escola",
-    "session-evolution": "Evolição das sessões em 2022",
-    "teacher-person-chart-title": "Professores que não receberam nenhuma sessão de feedback",
-    "coaches-person-chart-title": "Orientadores que não deram nenhuma sessão de feedback"
+
+    "SessionTable": {
+      "teacher": "Professores",
+      "coach": "Orientadores",
+      "school": "Escolas",
+      "sessions": "Sessões",
+      "feedbacks": "Feedbacks",
+      "positive-comp": "Positiva comp.",
+      "negative-comp": "Negativa comp."
+    },
+
+    "CoachReports": {
+      "all-coaches": "Todos os orientadores",
+      "coaches-from": "Lista com todos os orientadores de ",
+      "biggest-sessions": "Orientador com mais sessões",
+      "fewer-sessions": "Orientador com menos sessões",
+      "session-by-region": "Sessões de orientação por região.",
+      "session-by-region-description": "Veja as regiões onde os orientadores estão fazendo mais sessões de orientação.",
+      "without-feedback": "Orientadores sem feedbacks",
+      "without-feedback-description": "Orientadores que não deram nenhum feedback aos professores."
+    },
+
+    "CompetenceReports": {
+      "peformance-by-competence": "Peformance por competência",
+      "peformance-by-competence-description": "Como cada professor evoluiu em cada competência durante as sessões de orientação.",
+      "havent-sessions": "Não possui sessões",
+      "marked-yes": "Marcadas como sim",
+      "marked-no": "Marcadas como não",
+      "with-feedback": "Com feedback",
+      "feedback-sessions": "Sessões de feedback",
+      "most-worked": "Competências mais trabalhadas com professores",
+      "most-worked-description": "Veja as habilidades mais trabalhadas por todos os professores",
+      "feedbacks-per-competency": "Número de feedbacks por competência ao longo do tempo",
+      "feedbacks-per-competency-description": "Veja as competências mais selecionadas para feedback durante 2022"
+    },
+
+    "DashboardReports": {
+      "competency-by-feedback": "Competências por feedback",
+      "competency-by-feedback-description": "Veja as habilidades mais trabalhadas no feedback com o professor.",
+      "teacher-most-sessions": "Professor com mais sessões",
+      "coach-most-sessions": "Orientador com mais sessões",
+      "competence-name": "COMPETÊNCIA",
+      "sessions-name": "SESSÕES"
+    },
+
+    "SchoolReports": {
+      "list-schools": "Escolas",
+      "list-schools-description": "Lista de todas as escolas",
+      "schools-without-sessions": "Escolas que não evoluiram",
+      "schools-without-sessions-description": "Escolas que têm a maioria dos professores sem qualquer competência.",
+      "schools-by-region": "Escolas por região",
+      "schools-by-region-description": "Veja os dados de todas as escolas do país e filtre por região.",
+      "schools-improved-most": "Escolas que mais melhoraram",
+      "schools-improved-most-description": "Escolas com competências mais positivas entre seus professores em 2022.",
+      "competencies-by-school": "Competências por escola",
+      "feedback": "Comentários",
+      "yes": "Sim",
+      "no": "Não"
+    },
+
+    "TeacherReports": {
+      "all-teachers": "Todos os professores",
+      "all-teachers-description": "Lista de todos os professores de ",
+      "teachers-without-feedback": "Professores sem feedbacks",
+      "teachers-without-feedback-description": "Professores que não receberam nenhuma sessão de feedback.",
+      "teacher-evolution": "Evolução dos professores",
+      "teacher-evolution-description": "Professores com todas as competências marcadas como sim na última sessão.",
+      "productive-feedback": "Feedback produtivo",
+      "productive-feedback-description": "Feedback que resultou na evolução do professor na sessão seguinte."
+    }
   },
   "Projects": {
     "new-title": "Criar projeto",

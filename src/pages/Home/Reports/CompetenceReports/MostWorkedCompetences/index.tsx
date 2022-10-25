@@ -9,6 +9,7 @@ import {
 } from "chart.js";
 import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
@@ -35,25 +36,34 @@ type DatesetItem = {
   backgroundColor: string;
 };
 
-const TYPES: { label: string; backgroundColor: string; attr: string }[] = [
-  { label: "Marked as yes", attr: "yes", backgroundColor: "#33CC5A" },
-  { label: "Marked as no", attr: "no", backgroundColor: "#D92626" },
-  {
-    label: "Feedback sessions",
-    attr: "feedback_qty",
-    backgroundColor: "#0080FF",
-  },
-];
-
 export const MostWorkedCompetences: React.FC<{
   start_date: Date;
   end_date: Date;
 }> = ({ end_date, start_date }) => {
+  const { t } = useTranslation();
   const [requestReport, { isLoading, data }] =
     useGetReportCompetencesMutation();
   const [datasets, setDatasets] = useState<DatesetItem[]>([]);
   const [labels, setLabels] = useState<string[]>([]);
   const user = useSelector(selectCurrentUser);
+
+  const TYPES: { label: string; backgroundColor: string; attr: string }[] = [
+    {
+      label: t("Dashboard.CompetenceReports.marked-yes"),
+      attr: "yes",
+      backgroundColor: "#33CC5A",
+    },
+    {
+      label: t("Dashboard.CompetenceReports.marked-no"),
+      attr: "no",
+      backgroundColor: "#D92626",
+    },
+    {
+      label: t("Dashboard.CompetenceReports.feedback-sessions"),
+      attr: "feedback_qty",
+      backgroundColor: "#0080FF",
+    },
+  ];
 
   useEffect(() => {
     requestReport({
@@ -79,8 +89,8 @@ export const MostWorkedCompetences: React.FC<{
   ) : (
     <CustomCard
       width="100%"
-      title="Most worked competences with teachers"
-      description="See the skills most worked by all teachers"
+      title={t("Dashboard.CompetenceReports.most-worked")}
+      description={t("Dashboard.CompetenceReports.most-worked-description")}
     >
       <Bar height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>

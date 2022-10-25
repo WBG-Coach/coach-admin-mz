@@ -39,17 +39,17 @@ export const SchoolReports: React.FC<{
       <Container>
         <CustomCard
           width="100%"
-          title="Schools"
-          description="List of all schools"
+          title={t("Dashboard.SchoolReports.list-schools")}
+          description={t("Dashboard.SchoolReports.list-schools-description")}
         >
           <SessionTable data={data} />
         </CustomCard>
         <CustomCard
           ml="16px"
           width={"700px"}
-          title={t("Dashboard.schools-without-sessions-chart-title")}
+          title={t("Dashboard.SchoolReports.schools-without-sessions")}
           description={t(
-            "Dashboard.schools-without-sessions-chart-description"
+            "Dashboard.SchoolReports.schools-without-sessions-description"
           )}
         >
           <IconChart iconName="home-solid" value={0.7} />
