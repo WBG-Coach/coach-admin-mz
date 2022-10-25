@@ -82,7 +82,7 @@ export const MostWorkedCompetences: React.FC<{
       title="Most worked competences with teachers"
       description="See the skills most worked by all teachers"
     >
-      <Bar options={options} data={{ labels, datasets }} />
+      <Bar height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>
   );
 };

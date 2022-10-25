@@ -8,6 +8,7 @@ import {
   CompetenceEvolutionsReport,
   CompetencesReport,
   DashboardReport,
+  SchoolEvolutionsReport,
   SessionByYearReport,
   SessionReport,
   TeacherCompetencesReport,
@@ -71,6 +72,16 @@ export const api = createApi({
       query: (body) => ({
         method: "POST",
         url: "/api/reports/competence-evolutions",
+        body,
+      }),
+    }),
+    getReportSchoolEvolutions: builder.mutation<
+      SchoolEvolutionsReport,
+      { year: number; project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/competences-by-school-from-year",
         body,
       }),
     }),
@@ -171,6 +182,7 @@ export const {
   useGetReportSessionPerTeacherMutation,
   useGetReportCompetenciesBySchoolMutation,
   useGetReportCompetenceEvolutionsMutation,
+  useGetReportSchoolEvolutionsMutation,
   useGetReportCompetencesMutation,
   useGetReportSessionByYearMutation,
   useGetTeacherCompetencesMutation,

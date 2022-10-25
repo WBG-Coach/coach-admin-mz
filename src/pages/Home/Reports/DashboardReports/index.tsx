@@ -1,5 +1,6 @@
 import { Container, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
+import { CustomCard } from "../../../../components/CustomCard";
 import { LoadingDots } from "../../../../components/LoadingDots";
 import { CompetenceProgress } from "./CompetenceProgress";
 import { DashboardReportsProps } from "./types";
@@ -11,18 +12,17 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
   ) : (
     <Container flexDirection="column" gridGap="16px">
       <Container width="100%" gridGap="16px">
-        <Card flex={1}>
-          <Text
-            mb="32px"
-            fontSize="18px"
-            lineHeight="24px"
-            value="Total feedback by competency"
-          />
+        <CustomCard
+          width="100%"
+          title="Competencies by feedback"
+          description="See the most worked skills in feedback with the teacher."
+        >
+          <Text mb="32px" fontSize="18px" lineHeight="24px" value="" />
           <CompetenceProgress
             data={props.data?.competencies || []}
             total={props.data?.questionnaire_applications_qty || 0}
           />
-        </Card>
+        </CustomCard>
 
         <Container flexDirection="column" maxWidth="360px" width="50%">
           <Card mb="16px">

@@ -200,6 +200,11 @@ export type CompetencesReport = {
   total: number;
 }[];
 
+export type SchoolEvolutionsReport = {
+  school: string;
+  data: number[];
+}[];
+
 export type CompetenceEvolutionsReport = {
   name: string;
   data: {

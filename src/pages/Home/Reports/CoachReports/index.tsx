@@ -121,7 +121,7 @@ export const CoachReports: React.FC<{
             "Dashboard.CoachReports.session-by-region-description"
           )}
         >
-          <></>
+          <Text value="Coming soon" />
         </CustomCard>
         <CustomCard
           width="700px"
