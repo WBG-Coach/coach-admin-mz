@@ -118,8 +118,10 @@ export const PerformancePerCompetence: React.FC = () => {
   return (
     <CustomCard
       width="100%"
-      title="Performance by competence"
-      description="How each teacher evolved in each competency during the orientation sessions."
+      title={t("Dashboard.CompetenceReports.peformance-by-competence")}
+      description={t(
+        "Dashboard.CompetenceReports.peformance-by-competence-description"
+      )}
     >
       <Dropdown
         id="select-teacher"
@@ -197,7 +199,10 @@ export const PerformancePerCompetence: React.FC = () => {
               </tr>
             ))
           ) : (
-            <Text>{selectedTeacher?.name} haven't sessions</Text>
+            <Text>
+              {selectedTeacher?.name}{" "}
+              {t("Dashboard.CompetenceReports.havent-sessions")}
+            </Text>
           )}
         </table>
       </Container>

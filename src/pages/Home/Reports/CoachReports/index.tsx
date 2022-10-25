@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Container, Image, Text } from "../../../../components";
 import { Card } from "../../../../components/Card";
@@ -16,6 +17,7 @@ export const CoachReports: React.FC<{
 }> = ({ end_date, start_date }) => {
   const [getReport, { data }] = useGetReportSessionPerCoachMutation();
   const user = useSelector(selectCurrentUser);
+  const { t } = useTranslation();
 
   useEffect(() => {
     getReport({
@@ -66,9 +68,10 @@ export const CoachReports: React.FC<{
           <CustomCard
             mr="20px"
             width="100%"
-            title="All coaches"
+            title={t("Dashboard.CoachReports.all-coaches")}
             description={
-              "List with all coaches from " + user.currentProject?.name
+              t("Dashboard.CoachReports.coaches-from") +
+              user.currentProject?.name
             }
           >
             <SessionTable data={data} />
@@ -80,7 +83,7 @@ export const CoachReports: React.FC<{
                 fontWeight={500}
                 lineHeight="24px"
                 color="#16191D"
-                value="Orientador com mais sessões"
+                value={t("Dashboard.CoachReports.biggest-sessions")}
               />
 
               {moreSessions?.coach &&
@@ -96,7 +99,7 @@ export const CoachReports: React.FC<{
                 fontWeight={500}
                 lineHeight="24px"
                 color="#16191D"
-                value="Orientador com menos sessões"
+                value={t("Dashboard.CoachReports.fewer-sessions")}
               />
 
               {lessSessions?.coach &&
@@ -113,15 +116,17 @@ export const CoachReports: React.FC<{
         <CustomCard
           width="100%"
           mr="16px"
-          title="Orientation sessions by region."
-          description="See the regions where counselors are doing the most orientation sessions."
+          title={t("Dashboard.CoachReports.session-by-region")}
+          description={t(
+            "Dashboard.CoachReports.session-by-region-description"
+          )}
         >
           <></>
         </CustomCard>
         <CustomCard
           width="700px"
-          title="Coaches without feedbacks"
-          description="Advisors who did not give any feedback to teachers."
+          title={t("Dashboard.CoachReports.without-feedback")}
+          description={t("Dashboard.CoachReports.without-feedback-description")}
         >
           <IconChart iconName="person" value={0.3} />
         </CustomCard>
