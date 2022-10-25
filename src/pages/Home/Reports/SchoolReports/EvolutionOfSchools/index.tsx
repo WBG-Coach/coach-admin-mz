@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
-import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service/reports";
+import { useGetReportSchoolEvolutionsMutation } from "../../../../../service/reports";
 import { selectCurrentUser } from "../../../../../store/auth";
 
 ChartJS.register(
@@ -49,8 +49,6 @@ const labels = [
   "Dec",
 ];
 
-const COLORS = ["#165BAA", "#A155B9", "#FFA5CB", "#16BFD6", "#1DDD8D"];
-
 type DateItem = {
   label: string;
   borderColor: string;
@@ -58,9 +56,9 @@ type DateItem = {
   data: number[];
 };
 
-export const EvolutionOfCompetences = () => {
+export const EvolutionOfSchools = () => {
   const [requestReport, { data, isLoading }] =
-    useGetReportCompetenceEvolutionsMutation();
+    useGetReportSchoolEvolutionsMutation();
   const [datasets, setDatasets] = useState<DateItem[]>([]);
   const user = useSelector(selectCurrentUser);
 
@@ -71,12 +69,15 @@ export const EvolutionOfCompetences = () => {
   useEffect(() => {
     if (data) {
       setDatasets(
-        data.map((item, index) => ({
-          label: item.name,
-          borderColor: COLORS[index],
-          backgroundColor: COLORS[index],
-          data: item.data.map((itemData) => itemData.percentYes * 100),
-        }))
+        data.map((item, index) => {
+          const color = Math.floor(Math.random() * 16777215).toString(16);
+          return {
+            label: item.school,
+            borderColor: `#${color}`,
+            backgroundColor: `#${color}`,
+            data: item.data.map((itemData) => itemData),
+          };
+        })
       );
     }
   }, [data]);
@@ -85,9 +86,10 @@ export const EvolutionOfCompetences = () => {
     <LoadingDots />
   ) : (
     <CustomCard
+      mb="16px"
       width="100%"
-      title="Number of feedbacks per competency over time"
-      description="View the most selected competencies for feedback during 2022"
+      title="Schools that improved the most"
+      description="Schools with more positive competences among their teachers in 2022."
     >
       <Line height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>

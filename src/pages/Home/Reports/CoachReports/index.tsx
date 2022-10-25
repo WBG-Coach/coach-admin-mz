@@ -116,7 +116,7 @@ export const CoachReports: React.FC<{
           title="Orientation sessions by region."
           description="See the regions where counselors are doing the most orientation sessions."
         >
-          <></>
+          <Text value="Coming soon" />
         </CustomCard>
         <CustomCard
           width="700px"

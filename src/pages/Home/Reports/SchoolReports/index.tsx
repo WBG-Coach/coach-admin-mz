@@ -8,6 +8,8 @@ import { LoadingDots } from "../../../../components/LoadingDots";
 import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerSchoolMutation } from "../../../../service/reports";
 import { selectCurrentUser } from "../../../../store/auth";
+import { EvolutionOfSchools } from "./EvolutionOfSchools";
+import { SchoolsByRegion } from "./SchoolsByRegion";
 
 export const SchoolReports: React.FC<{
   start_date: Date;
@@ -30,14 +32,10 @@ export const SchoolReports: React.FC<{
     <LoadingDots />
   ) : (
     <Container flexDirection="column" width="100%">
-      <CustomCard
-        mb="16px"
-        width="100%"
-        title="Schools that improved the most"
-        description="Schools with more positive competences among their teachers in 2022."
-      >
-        <></>
-      </CustomCard>
+      <EvolutionOfSchools />
+
+      <SchoolsByRegion />
+
       <Container>
         <CustomCard
           width="100%"
@@ -54,7 +52,7 @@ export const SchoolReports: React.FC<{
             "Dashboard.schools-without-sessions-chart-description"
           )}
         >
-          <IconChart iconName="home-alt" value={0.7} />
+          <IconChart iconName="home-solid" value={0.7} />
         </CustomCard>
       </Container>
     </Container>
