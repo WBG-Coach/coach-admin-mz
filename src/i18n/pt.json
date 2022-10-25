@@ -117,7 +117,10 @@
   "Competencies": {
     "new-title": "Criar competência",
     "update-title": "Editar competência",
-    "title": "Competências",
+    "title": "Título da competência",
+    "sub-title": "Sub título",
+    "description": "Descrição",
+    "name": "Competências",
     "add": "Add competência"
   },
   "Observation": {

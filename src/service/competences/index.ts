@@ -33,7 +33,30 @@ export const api = createApi({
         url: "/api/competencies/search",
       }),
     }),
+
+    updateCompetency: builder.mutation<Competence[], Partial<Competence>>({
+      query: (body) => ({
+        method: "PUT",
+        url: "/api/competencies",
+        body,
+      }),
+    }),
+
+    createCompetency: builder.mutation<
+      Competence[],
+      Partial<Competence> & { project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/competencies",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetCompetenciesMutation } = api;
+export const {
+  useGetCompetenciesMutation,
+  useCreateCompetencyMutation,
+  useUpdateCompetencyMutation,
+} = api;

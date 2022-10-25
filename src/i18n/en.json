@@ -117,7 +117,12 @@
     "region": "Region"
   },
   "Competencies": {
-    "title": "Competencies",
+    "new-title": "Create competency",
+    "update-title": "Update competency",
+    "title": "Competence title",
+    "sub-title": "Subtitle",
+    "description": "Description",
+    "name": "Competencies",
     "add": "Add competency"
   },
   "Observation": {
