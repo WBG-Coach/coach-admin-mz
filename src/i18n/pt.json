@@ -78,6 +78,9 @@
     "title": "Escolas"
   },
   "Coaches": {
+    "email": "Email",
+    "last-name": "Sobrenome",
+    "password": "Senha",
     "new-title": "Criar orientador",
     "update-title": "Editar orientador",
     "add": "Add orientador",

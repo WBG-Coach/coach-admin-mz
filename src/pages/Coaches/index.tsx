@@ -8,6 +8,7 @@ import { LoadingDots } from "../../components/LoadingDots";
 import { Modal } from "../../components/Modal";
 import PicSelect from "../../components/PicSelect";
 import {
+  useCreateCoachMutation,
   useGetCoachesMutation,
   useUpdateUserMutation,
 } from "../../service/users";
@@ -16,32 +17,52 @@ import { User } from "../../store/type";
 import { uploadFileToS3 } from "../../util";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";
+import { Icon } from "../../components/Icon";
+import { useTheme } from "styled-components";
+import * as Yup from "yup";
 
 const Coaches: React.FC = () => {
   const { t } = useTranslation();
+
   const [getCoaches, { isLoading, data }] = useGetCoachesMutation();
   const [updateUser, requestUpdateUser] = useUpdateUserMutation();
+  const [createCoach, requestCreateCoach] = useCreateCoachMutation();
   const [selectedCoach, setSelectedCoach] = useState<User>();
+  const [newCoach, setNewCoach] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   const user = useSelector(selectCurrentUser);
+  const theme = useTheme();
+
+  const coachSchema = Yup.object().shape({
+    email: Yup.string().required(t("Validations.required")),
+  });
 
   useEffect(() => {
     getCoaches({ project_id: user.currentProject?.id || 0 });
   }, [getCoaches, user]);
 
-  const onSubmitCoach = async (values: Partial<User>) => {
+  const onSubmitCoach = async (values: User & { email: string }) => {
     if (selectedCoach) {
       await updateUser({
         id: selectedCoach.id,
         image_url: imageUrl || selectedCoach.image_url,
         name: values.name,
+        last_name: values.last_name,
       });
       setImageUrl(undefined);
+      closeModal();
+    } else {
+      await createCoach({
+        ...values,
+        project_id: user.currentProject?.id || 0,
+        image_url: imageUrl,
+      });
       closeModal();
     }
   };
 
   const closeModal = () => {
+    setNewCoach(false);
     setSelectedCoach(undefined);
     getCoaches({ project_id: user.currentProject?.id || 0 });
   };
@@ -125,12 +146,22 @@ const Coaches: React.FC = () => {
             ))
           )}
         </Container>
+
+        <Container
+          p="12px 16px"
+          alignItems="center"
+          width={"fit-content"}
+          onClick={() => setNewCoach(true)}
+        >
+          <Icon size={24} name="plus" mr="8px" color={theme.colors.primary} />
+          <Text value={t("Coaches.add")} color={theme.colors.primary} />
+        </Container>
       </Container>
 
       <Modal
-        isOpen={!!selectedCoach}
         onClose={closeModal}
-        title={t("Coaches.update-title")}
+        isOpen={!!selectedCoach || !!newCoach}
+        title={newCoach ? t("Coaches.new-title") : t("Coaches.update-title")}
       >
         <Container flexDirection="column" minWidth={548} mt={40}>
           <PicSelect
@@ -142,7 +173,11 @@ const Coaches: React.FC = () => {
           <Formik
             initialValues={{
               name: selectedCoach?.name,
+              last_name: selectedCoach?.last_name,
+              email: selectedCoach?.email || "",
+              password: selectedCoach?.password,
             }}
+            validationSchema={coachSchema}
             onSubmit={onSubmitCoach}
           >
             {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
@@ -156,11 +191,43 @@ const Coaches: React.FC = () => {
                   onChangeText={(text) => setFieldValue("name", text)}
                 />
 
+                <Input
+                  mb="16px"
+                  label={t("Coaches.last-name")}
+                  value={values.last_name}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.last_name) || ""}
+                  onChangeText={(text) => setFieldValue("last_name", text)}
+                />
+
+                <Input
+                  mb="16px"
+                  label={t("Coaches.email")}
+                  value={values.email}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.email) || ""}
+                  onChangeText={(text) => setFieldValue("email", text)}
+                />
+
+                {newCoach && (
+                  <Input
+                    mb="16px"
+                    label={t("Coaches.password")}
+                    value={values.password}
+                    handlePressEnter={handleSubmit}
+                    errorMessage={(!!submitCount && errors.password) || ""}
+                    onChangeText={(text) => setFieldValue("password", text)}
+                  />
+                )}
+
                 <Container width={"100%"} justifyContent={"flex-end"}>
                   <Button
                     mt="40px"
                     width={"fit-content"}
-                    isDisabled={requestUpdateUser.isLoading}
+                    isDisabled={
+                      requestUpdateUser.isLoading ||
+                      requestCreateCoach.isLoading
+                    }
                     value={t("Global.cancel")}
                     onClick={closeModal}
                     mr={"16px"}
@@ -169,9 +236,13 @@ const Coaches: React.FC = () => {
                   <Button
                     mt="40px"
                     width={"fit-content"}
-                    isDisabled={requestUpdateUser.isLoading}
+                    isDisabled={
+                      requestUpdateUser.isLoading ||
+                      requestCreateCoach.isLoading
+                    }
                     value={
-                      requestUpdateUser.isLoading
+                      requestUpdateUser.isLoading ||
+                      requestCreateCoach.isLoading
                         ? "Loading..."
                         : t("Projects.new-button")
                     }
