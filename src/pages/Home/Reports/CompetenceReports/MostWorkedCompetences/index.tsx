@@ -7,7 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -47,23 +47,27 @@ export const MostWorkedCompetences: React.FC<{
   const [labels, setLabels] = useState<string[]>([]);
   const user = useSelector(selectCurrentUser);
 
-  const TYPES: { label: string; backgroundColor: string; attr: string }[] = [
-    {
-      label: t("Dashboard.CompetenceReports.marked-yes"),
-      attr: "yes",
-      backgroundColor: "#33CC5A",
-    },
-    {
-      label: t("Dashboard.CompetenceReports.marked-no"),
-      attr: "no",
-      backgroundColor: "#D92626",
-    },
-    {
-      label: t("Dashboard.CompetenceReports.feedback-sessions"),
-      attr: "feedback_qty",
-      backgroundColor: "#0080FF",
-    },
-  ];
+  const TYPES: { label: string; backgroundColor: string; attr: string }[] =
+    useMemo(
+      () => [
+        {
+          label: t("Dashboard.CompetenceReports.marked-yes"),
+          attr: "yes",
+          backgroundColor: "#33CC5A",
+        },
+        {
+          label: t("Dashboard.CompetenceReports.marked-no"),
+          attr: "no",
+          backgroundColor: "#D92626",
+        },
+        {
+          label: t("Dashboard.CompetenceReports.feedback-sessions"),
+          attr: "feedback_qty",
+          backgroundColor: "#0080FF",
+        },
+      ],
+      [t]
+    );
 
   useEffect(() => {
     requestReport({
@@ -82,7 +86,7 @@ export const MostWorkedCompetences: React.FC<{
     );
 
     setLabels(data?.map((item) => item.name) || []);
-  }, [data]);
+  }, [TYPES, data]);
 
   return isLoading ? (
     <LoadingDots />
