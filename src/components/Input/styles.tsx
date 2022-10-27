@@ -18,6 +18,7 @@ export const StyledInput = styled.input`
   outline: none;
   font-family: "Inter", sans-serif;
   padding: 16px;
+  font-size: 16px;
   margin: 0;
   border: none;
   border-radius: 8px;
