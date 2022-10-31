@@ -1,6 +1,12 @@
 {
   "Global": {
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "Toast": {
+      "user-updated": "Usuário atualizado com sucesso!",
+      "user-updated-error": "Aconteceu um erro ao atualizar o usuário.",
+      "change-password": "Senha atualizada com sucesso!",
+      "change-password-error": "Ocorreu um erro ao atualizar a senha."
+    }
   },
   "Paginator": {
     "items-per-page": "Itens por pagina:",

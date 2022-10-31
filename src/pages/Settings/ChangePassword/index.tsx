@@ -7,6 +7,7 @@ import { Input } from "../../../components/Input";
 import { motion } from "framer-motion";
 import { useUpdatePasswordMutation } from "../../../service/users";
 import { LoadingDots } from "../../../components/LoadingDots";
+import { toast } from "react-toastify";
 
 const ChangePassword: React.FC = () => {
   const [updatePassword, requestUpdatePassword] = useUpdatePasswordMutation();
@@ -23,10 +24,15 @@ const ChangePassword: React.FC = () => {
     newPassword: string;
     rePassword: string;
   }) => {
-    updatePassword({
-      new_password: values.newPassword,
-      old_password: values.currentPassword,
-    });
+    try {
+      updatePassword({
+        new_password: values.newPassword,
+        old_password: values.currentPassword,
+      });
+      toast.success(t("Global.Toast.change-password"));
+    } catch (err) {
+      toast.error(t("Global.Toast.change-password-error"));
+    }
   };
 
   return (
