@@ -10,6 +10,7 @@ import { SessionTable } from "../../../../components/SessionTable";
 import { useGetReportSessionPerCoachMutation } from "../../../../service/reports";
 import { selectCurrentUser } from "../../../../store/auth";
 import { User } from "../../../../store/type";
+import { AnswersByCity } from "./AnswersByCity";
 
 export const CoachReports: React.FC<{
   start_date: Date;
@@ -76,6 +77,7 @@ export const CoachReports: React.FC<{
           >
             <SessionTable data={data} />
           </CustomCard>
+
           <Container width="50%" maxWidth="360px" flexDirection="column">
             <Card>
               <Text
@@ -121,8 +123,9 @@ export const CoachReports: React.FC<{
             "Dashboard.CoachReports.session-by-region-description"
           )}
         >
-          <Text value="Coming soon" />
+          <AnswersByCity />
         </CustomCard>
+
         <CustomCard
           width="700px"
           title={t("Dashboard.CoachReports.without-feedback")}

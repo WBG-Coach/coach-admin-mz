@@ -4,6 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { format } from "date-fns";
 import { RootState } from "../../store";
 import {
+  AnswersByCityReport,
   CompetenceBySchoolReport,
   CompetenceEvolutionsReport,
   CompetencesReport,
@@ -193,6 +194,13 @@ export const api = createApi({
         body,
       }),
     }),
+    getAnswersByCity: builder.mutation<AnswersByCityReport, void>({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/answers-by-city",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -210,4 +218,5 @@ export const {
   useGetTeacherCompetencesMutation,
   useGetProductiveFeedbackMutation,
   useGetTeacherEvolutionMutation,
+  useGetAnswersByCityMutation,
 } = api;

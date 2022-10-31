@@ -35,6 +35,8 @@
       "negative-comp": "Comp. negativa"
     },
     "CoachReports": {
+      "region": "Region",
+      "sessions": "Sessions",
       "all-coaches": "All Coaches",
       "coaches-from": "List with all coaches from ",
       "biggest-sessions": "Coach with the most sessions",

@@ -258,3 +258,5 @@ export type ProductiveFeedbackReport = {
   sessions_qty: number;
   improvement_qty: number;
 };
+
+export type AnswersByCityReport = { city: string; quantity: number }[];
