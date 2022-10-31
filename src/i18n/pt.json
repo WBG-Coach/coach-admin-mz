@@ -13,7 +13,8 @@
     "page-details": "Página {{current}} de {{total}}"
   },
   "Validations": {
-    "required": "Obrigatório"
+    "required": "Obrigatório",
+    "same-password": "As senhas precisam ser iguais."
   },
   "Login": {
     "email": "Email",
