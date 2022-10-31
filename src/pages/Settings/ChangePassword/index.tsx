@@ -16,7 +16,10 @@ const ChangePassword: React.FC = () => {
   const passwordSchema = Yup.object().shape({
     currentPassword: Yup.string().required(t("Validations.required")),
     newPassword: Yup.string().min(8).required(t("Validations.required")),
-    rePassword: Yup.string().min(8).required(t("Validations.required")),
+    rePassword: Yup.string()
+      .min(8)
+      .required(t("Validations.required"))
+      .oneOf([Yup.ref("newPassword")], t("Validations.same-password")),
   });
 
   const onSubmitUpdate = (values: {
