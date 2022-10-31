@@ -14,6 +14,8 @@ import { useUpdateUserMutation } from "../../../service/users";
 import { LoadingDots } from "../../../components/LoadingDots";
 import { setLocalUser } from "../../../storage";
 
+import { toast } from "react-toastify";
+
 const EditUser: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -49,7 +51,10 @@ const EditUser: React.FC = () => {
       await updateUser({ ...newUser, email: undefined });
       setLocalUser(newUser);
       dispatch(loadLocalUser(newUser));
-    } catch (err) {}
+      toast.success(t("Global.Toast.user-updated"));
+    } catch (err) {
+      toast.warn(t("Global.Toast.user-updated-error"));
+    }
   };
 
   return (
