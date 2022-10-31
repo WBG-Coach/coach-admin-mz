@@ -105,8 +105,9 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
           />
         </Container>
       </Container>
-      {paginatedItems.map((item) => (
+      {paginatedItems.map((item, index) => (
         <Container
+          key={index}
           flexDirection="row"
           width="100%"
           borderTop="1px solid #ECEEED"

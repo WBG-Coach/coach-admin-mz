@@ -5,8 +5,11 @@ import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import { Input } from "../../../components/Input";
 import { motion } from "framer-motion";
+import { useUpdatePasswordMutation } from "../../../service/users";
+import { LoadingDots } from "../../../components/LoadingDots";
 
 const ChangePassword: React.FC = () => {
+  const [updatePassword, requestUpdatePassword] = useUpdatePasswordMutation();
   const { t } = useTranslation();
 
   const passwordSchema = Yup.object().shape({
@@ -20,7 +23,10 @@ const ChangePassword: React.FC = () => {
     newPassword: string;
     rePassword: string;
   }) => {
-    console.log("-->", values);
+    updatePassword({
+      new_password: values.newPassword,
+      old_password: values.currentPassword,
+    });
   };
 
   return (
@@ -38,59 +44,66 @@ const ChangePassword: React.FC = () => {
         >
           {t("Settings.ChangePassword.description")}
         </Text>
+        {requestUpdatePassword.isLoading ? (
+          <LoadingDots />
+        ) : (
+          <Formik
+            initialValues={{
+              currentPassword: "",
+              newPassword: "",
+              rePassword: "",
+            }}
+            validationSchema={passwordSchema}
+            onSubmit={onSubmitUpdate}
+          >
+            {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
+              <>
+                <Input
+                  mb="24px"
+                  type="password"
+                  label={t("Settings.ChangePassword.current-password")}
+                  value={values.currentPassword}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.currentPassword) || ""}
+                  onChangeText={(text) =>
+                    setFieldValue("currentPassword", text)
+                  }
+                />
+                <Input
+                  type="password"
+                  label={t("Settings.ChangePassword.new-password")}
+                  value={values.newPassword}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.newPassword) || ""}
+                  onChangeText={(text) => setFieldValue("newPassword", text)}
+                />
+                <Text
+                  fontWeight={400}
+                  mt={"8px"}
+                  mb={"24px"}
+                  fontSize={"14px"}
+                  color={"#576375"}
+                >
+                  {t("Settings.ChangePassword.minimum")}
+                </Text>
+                <Input
+                  mb="40px"
+                  label={t("Settings.ChangePassword.re-password")}
+                  value={values.rePassword}
+                  type={"password"}
+                  handlePressEnter={handleSubmit}
+                  errorMessage={(!!submitCount && errors.rePassword) || ""}
+                  onChangeText={(text) => setFieldValue("rePassword", text)}
+                />
 
-        <Formik
-          initialValues={{
-            currentPassword: "",
-            newPassword: "",
-            rePassword: "",
-          }}
-          validationSchema={passwordSchema}
-          onSubmit={onSubmitUpdate}
-        >
-          {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
-            <>
-              <Input
-                mb="24px"
-                label={t("Settings.ChangePassword.current-password")}
-                value={values.currentPassword}
-                handlePressEnter={handleSubmit}
-                errorMessage={(!!submitCount && errors.currentPassword) || ""}
-                onChangeText={(text) => setFieldValue("currentPassword", text)}
-              />
-              <Input
-                label={t("Settings.ChangePassword.new-password")}
-                value={values.newPassword}
-                handlePressEnter={handleSubmit}
-                errorMessage={(!!submitCount && errors.newPassword) || ""}
-                onChangeText={(text) => setFieldValue("newPassword", text)}
-              />
-              <Text
-                fontWeight={400}
-                mt={"8px"}
-                mb={"24px"}
-                fontSize={"14px"}
-                color={"#576375"}
-              >
-                {t("Settings.ChangePassword.minimum")}
-              </Text>
-              <Input
-                mb="40px"
-                label={t("Settings.ChangePassword.re-password")}
-                value={values.rePassword}
-                type={"password"}
-                handlePressEnter={handleSubmit}
-                errorMessage={(!!submitCount && errors.rePassword) || ""}
-                onChangeText={(text) => setFieldValue("rePassword", text)}
-              />
-
-              <Button
-                value={t("Settings.ChangePassword.button")}
-                onClick={handleSubmit}
-              />
-            </>
-          )}
-        </Formik>
+                <Button
+                  value={t("Settings.ChangePassword.button")}
+                  onClick={handleSubmit}
+                />
+              </>
+            )}
+          </Formik>
+        )}
       </Container>
     </motion.div>
   );

@@ -1,3 +1,4 @@
+import { Wrapper } from "@googlemaps/react-wrapper";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -34,7 +35,9 @@ export const SchoolReports: React.FC<{
     <Container flexDirection="column" width="100%">
       <EvolutionOfSchools />
 
-      <SchoolsByRegion />
+      <Wrapper apiKey={"AIzaSyBJR-Qm19jraWkc52MXazoQfMp5uBnZkUg"}>
+        <SchoolsByRegion />
+      </Wrapper>
 
       <Container>
         <CustomCard

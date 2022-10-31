@@ -8,10 +8,12 @@ import {
   CompetenceEvolutionsReport,
   CompetencesReport,
   DashboardReport,
+  ProductiveFeedbackReport,
   SchoolEvolutionsReport,
   SessionByYearReport,
   SessionReport,
   TeacherCompetencesReport,
+  TeacherEvolutionReport,
 } from "../../store/type";
 
 type Prepare = {
@@ -171,6 +173,26 @@ export const api = createApi({
         body,
       }),
     }),
+    getTeacherEvolution: builder.mutation<
+      TeacherEvolutionReport,
+      { project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/teachers-with-perfect-last-session",
+        body,
+      }),
+    }),
+    getProductiveFeedback: builder.mutation<
+      ProductiveFeedbackReport,
+      { project_id: number }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/improvement-by-teacher",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -186,4 +208,6 @@ export const {
   useGetReportCompetencesMutation,
   useGetReportSessionByYearMutation,
   useGetTeacherCompetencesMutation,
+  useGetProductiveFeedbackMutation,
+  useGetTeacherEvolutionMutation,
 } = api;

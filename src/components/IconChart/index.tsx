@@ -17,8 +17,9 @@ export const IconChart: React.FC<{ value: number; iconName: string }> = ({
           value={(value * 100).toFixed(0) + "%"}
         />
         <Container flexDirection="row" flexWrap="wrap" width={56 * 5}>
-          {IconRules.map((rule) => (
+          {IconRules.map((rule, index) => (
             <Icon
+              key={index}
               size={56}
               name={iconName}
               color={value > rule ? "#3373CC" : "#ECEEED"}

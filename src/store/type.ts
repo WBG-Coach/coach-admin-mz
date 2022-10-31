@@ -248,3 +248,13 @@ export type TeacherCompetencesReport = {
     type?: "Y" | "N" | "Y_F" | "N_F";
   }[][];
 };
+
+export type TeacherEvolutionReport = {
+  teachers_qty: number;
+  perfect_last_sessions_qty: number;
+};
+
+export type ProductiveFeedbackReport = {
+  sessions_qty: number;
+  improvement_qty: number;
+};
