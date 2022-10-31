@@ -34,6 +34,8 @@
       "negative-comp": "Negativa comp."
     },
     "CoachReports": {
+      "region": "Cidade",
+      "sessions": "Sessões",
       "all-coaches": "Todos os orientadores",
       "coaches-from": "Lista com todos os orientadores de ",
       "biggest-sessions": "Orientador com mais sessões",
