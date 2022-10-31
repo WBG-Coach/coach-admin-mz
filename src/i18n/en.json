@@ -25,7 +25,6 @@
     "tabs-coaches": "COACHES",
     "tabs-teachers": "TEACHERS",
     "tabs-sessions": "SESSIONS",
-
     "SessionTable": {
       "teacher": "Teacher's",
       "coach": "Coaches",
@@ -35,7 +34,6 @@
       "positive-comp": "Comp. positiva",
       "negative-comp": "Comp. negativa"
     },
-
     "CoachReports": {
       "all-coaches": "All Coaches",
       "coaches-from": "List with all coaches from ",
@@ -46,7 +44,6 @@
       "without-feedback": "Coaches without feedbacks",
       "without-feedback-description": "Coaches who did not give any feedback to teachers."
     },
-
     "CompetenceReports": {
       "peformance-by-competence": "Performance by competence",
       "peformance-by-competence-description": "How each teacher evolved in each competency during the orientation sessions.",
@@ -60,7 +57,6 @@
       "feedbacks-per-competency": "Number of feedbacks per competency over time",
       "feedbacks-per-competency-description": "View the most selected competencies for feedback during 2022"
     },
-
     "DashboardReports": {
       "competency-by-feedback": "Competencies by feedback",
       "competency-by-feedback-description": "See the most worked skills in feedback with the teacher.",
@@ -69,7 +65,6 @@
       "competence-name": "COMPETENCE",
       "sessions-name": "SESSIONS"
     },
-
     "SchoolReports": {
       "list-schools": "Schools",
       "list-schools-description": "List of all schools",
@@ -84,7 +79,6 @@
       "yes": "Yes",
       "no": "No"
     },
-
     "TeacherReports": {
       "all-teachers": "All teachers",
       "all-teachers-description": "List of all teachers from ",
@@ -204,5 +198,24 @@
     "sessions": "Sessions",
     "settings": "Settings",
     "logout": "Logout"
+  },
+  "Settings": {
+    "ChangePassword": {
+      "title": "General",
+      "description": "Update your photo and information",
+      "current-password": "Current password",
+      "minimum": "Minimum of 8 characters",
+      "new-password": "New password",
+      "re-password": "Confirm password",
+      "button": "Change password"
+    },
+    "EditUser": {
+      "title": "Change password",
+      "description": "Update your access password.",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "Email",
+      "button": "Save edition"
+    }
   }
 }

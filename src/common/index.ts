@@ -57,6 +57,11 @@ export const MenuItems = [
         label: "sessions",
         route: "/sessions",
       },
+      {
+        icon: "setting",
+        label: "settings",
+        route: "/settings",
+      },  
     ],
   },
   {

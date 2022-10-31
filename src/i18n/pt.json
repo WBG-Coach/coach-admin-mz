@@ -24,7 +24,6 @@
     "tabs-coaches": "ORIENTADORES",
     "tabs-teachers": "PROFESSORES",
     "tabs-sessions": "SESSÕES",
-
     "SessionTable": {
       "teacher": "Professores",
       "coach": "Orientadores",
@@ -34,7 +33,6 @@
       "positive-comp": "Positiva comp.",
       "negative-comp": "Negativa comp."
     },
-
     "CoachReports": {
       "all-coaches": "Todos os orientadores",
       "coaches-from": "Lista com todos os orientadores de ",
@@ -45,7 +43,6 @@
       "without-feedback": "Orientadores sem feedbacks",
       "without-feedback-description": "Orientadores que não deram nenhum feedback aos professores."
     },
-
     "CompetenceReports": {
       "peformance-by-competence": "Peformance por competência",
       "peformance-by-competence-description": "Como cada professor evoluiu em cada competência durante as sessões de orientação.",
@@ -59,7 +56,6 @@
       "feedbacks-per-competency": "Número de feedbacks por competência ao longo do tempo",
       "feedbacks-per-competency-description": "Veja as competências mais selecionadas para feedback durante 2022"
     },
-
     "DashboardReports": {
       "competency-by-feedback": "Competências por feedback",
       "competency-by-feedback-description": "Veja as habilidades mais trabalhadas no feedback com o professor.",
@@ -68,7 +64,6 @@
       "competence-name": "COMPETÊNCIA",
       "sessions-name": "SESSÕES"
     },
-
     "SchoolReports": {
       "list-schools": "Escolas",
       "list-schools-description": "Lista de todas as escolas",
@@ -83,7 +78,6 @@
       "yes": "Sim",
       "no": "Não"
     },
-
     "TeacherReports": {
       "all-teachers": "Todos os professores",
       "all-teachers-description": "Lista de todos os professores de ",
@@ -197,5 +191,24 @@
     "sessions": "Sessões",
     "settings": "Configurações",
     "logout": "Sair"
+  },
+  "Settings": {
+    "ChangePassword": {
+      "title": "Geral",
+      "description": "Atualize sua foto e suas informações",
+      "current-password": "Senha atual",
+      "minimum": "Mínimo de 8 caracteres",
+      "new-password": "Nova senha",
+      "re-password": "Confirmar senha",
+      "button": "Alterar senha"
+    },
+    "EditUser": {
+      "title": "Alterar sua senha",
+      "description": "Atualize sua senha de acesso.",
+      "name": "Nome",
+      "surname": "Apelido",
+      "email": "Email",
+      "button": "Salvar alterações"
+    }
   }
 }
