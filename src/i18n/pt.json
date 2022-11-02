@@ -78,7 +78,12 @@
       "competencies-by-school": "Competências por escola",
       "feedback": "Comentários",
       "yes": "Sim",
-      "no": "Não"
+      "no": "Não",
+      "teachers": "Professores",
+      "coaches": "Orientadores",
+      "feedbacks": "Feedbacks",
+      "sessions": "Sessões de orientação",
+      "positive-competencies": "Competências positivas"
     },
     "TeacherReports": {
       "all-teachers": "Todos os professores",

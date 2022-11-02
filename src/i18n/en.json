@@ -79,7 +79,12 @@
       "competencies-by-school": "Competencies by school",
       "feedback": "Feedback",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "teachers": "Teachers",
+      "coaches": "Coaches",
+      "feedbacks": "Feedbacks",
+      "sessions": "Orientation sessions",
+      "positive-competencies": "Positive competencies"
     },
     "TeacherReports": {
       "all-teachers": "All teachers",
