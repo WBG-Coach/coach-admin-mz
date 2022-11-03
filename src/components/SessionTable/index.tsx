@@ -328,7 +328,10 @@ export const SessionTable: React.FC<ColorTableProps> = ({ data }) => {
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         onChangePage={(newPage) => setCurrentPage(newPage)}
-        onChangeItemsPerPage={(newValue) => setItemsPerPage(newValue)}
+        onChangeItemsPerPage={(newValue) => {
+          setCurrentPage(0);
+          setItemsPerPage(newValue);
+        }}
         totalItems={data?.length}
       />
     </Container>

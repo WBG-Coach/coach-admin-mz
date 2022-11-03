@@ -19,12 +19,15 @@ import {
   useGetSessionsMutation,
   useUpdateSessionMutation,
 } from "../../service/session";
+import { Paginator } from "../../components/Paginator";
 
 const Sessions: React.FC = () => {
   const [getSessions, { isLoading, data }] = useGetSessionsMutation();
   const [updateQuestionnaire, requestUpdateQuestionnaire] =
     useUpdateSessionMutation();
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
   const [getSchools, requestGetSchools] = useGetSchoolsMutation();
   const [getTeachers, requestGetTeachers] = useGetTeachersMutation();
   const [getCoaches, requestGetCoaches] = useGetCoachesMutation();
@@ -116,54 +119,71 @@ const Sessions: React.FC = () => {
           {isLoading || !data ? (
             <LoadingDots />
           ) : data.length >= 1 ? (
-            data.map((session) => (
-              <motion.div
-                key={session.id}
-                style={{ width: "100%" }}
-                initial={{ height: 0 }}
-                animate={{ height: "fit-content" }}
-              >
-                <Container
-                  padding="20px 16px"
-                  alignItems="center"
-                  borderBottom="1px solid #f4f5f5"
-                  onClick={() => setCurrentSession(session)}
-                >
-                  <Container flex={1}>
-                    <Text
-                      fontSize="16px"
-                      color="#000000"
-                      lineHeight="24px"
-                      value={"Session " + session.order}
-                    />
-                  </Container>
-                  <Container flex={1}>
-                    <Text
-                      fontSize="16px"
-                      color="#49504C"
-                      lineHeight="24px"
-                      value={session.school.name}
-                    />
-                  </Container>
-                  <Container flex={1}>
-                    <Text
-                      fontSize="16px"
-                      color="#49504C"
-                      lineHeight="24px"
-                      value={session.teacher.name}
-                    />
-                  </Container>
-                  <Container flex={1}>
-                    <Text
-                      fontSize="16px"
-                      color="#49504C"
-                      lineHeight="24px"
-                      value={session.coach.name}
-                    />
-                  </Container>
-                </Container>
-              </motion.div>
-            ))
+            <>
+              {data.map(
+                (session, index) =>
+                  index >= currentPage * itemsPerPage &&
+                  index < (currentPage + 1) * itemsPerPage && (
+                    <motion.div
+                      key={session.id}
+                      style={{ width: "100%" }}
+                      initial={{ height: 0 }}
+                      animate={{ height: "fit-content" }}
+                    >
+                      <Container
+                        padding="20px 16px"
+                        alignItems="center"
+                        borderBottom="1px solid #f4f5f5"
+                        onClick={() => setCurrentSession(session)}
+                      >
+                        <Container flex={1}>
+                          <Text
+                            fontSize="16px"
+                            color="#000000"
+                            lineHeight="24px"
+                            value={"Session " + session.order}
+                          />
+                        </Container>
+                        <Container flex={1}>
+                          <Text
+                            fontSize="16px"
+                            color="#49504C"
+                            lineHeight="24px"
+                            value={session.school.name}
+                          />
+                        </Container>
+                        <Container flex={1}>
+                          <Text
+                            fontSize="16px"
+                            color="#49504C"
+                            lineHeight="24px"
+                            value={session.teacher.name}
+                          />
+                        </Container>
+                        <Container flex={1}>
+                          <Text
+                            fontSize="16px"
+                            color="#49504C"
+                            lineHeight="24px"
+                            value={session.coach.name}
+                          />
+                        </Container>
+                      </Container>
+                    </motion.div>
+                  )
+              )}
+
+              <Paginator
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                onChangePage={(newPage) => setCurrentPage(newPage)}
+                onChangeItemsPerPage={(newValue) => {
+                  setCurrentPage(0);
+                  setItemsPerPage(newValue);
+                }}
+                totalItems={data?.length || 0}
+              />
+            </>
           ) : (
             <Container
               minHeight={"200px"}

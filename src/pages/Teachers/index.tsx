@@ -22,6 +22,7 @@ import Select from "../../components/Select";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";
 import { useGetSchoolsMutation } from "../../service/schools";
+import { Paginator } from "../../components/Paginator";
 
 const Teachers: React.FC = () => {
   const { t } = useTranslation();
@@ -35,6 +36,8 @@ const Teachers: React.FC = () => {
     name: Yup.string().required(t("Validations.required")),
   });
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const [newTeacher, setNewTeacher] = useState(false);
   const [selectedTeacher, setSelectedTeacher] = useState<User>();
   const [createTeacher, requestCreateTeacher] = useCreateTeacherMutation();
@@ -107,51 +110,70 @@ const Teachers: React.FC = () => {
         {isLoading || !data ? (
           <LoadingDots />
         ) : (
-          data.map((teacher) => (
-            <motion.div
-              key={teacher.id}
-              style={{ width: "100%" }}
-              initial={{ height: 0 }}
-              animate={{ height: "fit-content" }}
-            >
-              <Container
-                padding="20px 16px"
-                alignItems="center"
-                borderBottom="1px solid #f4f5f5"
-                onClick={() => {
-                  setSelectedTeacher(teacher);
-                }}
-              >
-                <Container
-                  mr="16px"
-                  width="40px"
-                  height="40px"
-                  overflow="hidden"
-                  alignItems="center"
-                  borderRadius="20px"
-                  background="#F4F5F5"
-                  justifyContent="center"
+          data.map(
+            (teacher, index) =>
+              index >= currentPage * itemsPerPage &&
+              index < (currentPage + 1) * itemsPerPage && (
+                <motion.div
+                  key={teacher.id}
+                  style={{ width: "100%" }}
+                  initial={{ height: 0 }}
+                  animate={{ height: "fit-content" }}
                 >
-                  {teacher.image_url ? (
-                    <Image src={teacher.image_url} width="40px" height="40px" />
-                  ) : (
+                  <Container
+                    padding="20px 16px"
+                    alignItems="center"
+                    borderBottom="1px solid #f4f5f5"
+                    onClick={() => {
+                      setSelectedTeacher(teacher);
+                    }}
+                  >
+                    <Container
+                      mr="16px"
+                      width="40px"
+                      height="40px"
+                      overflow="hidden"
+                      alignItems="center"
+                      borderRadius="20px"
+                      background="#F4F5F5"
+                      justifyContent="center"
+                    >
+                      {teacher.image_url ? (
+                        <Image
+                          src={teacher.image_url}
+                          width="40px"
+                          height="40px"
+                        />
+                      ) : (
+                        <Text
+                          fontSize="24px"
+                          color="#49504C"
+                          value={teacher?.name?.substring(0, 1)}
+                        />
+                      )}
+                    </Container>
                     <Text
-                      fontSize="24px"
+                      fontSize="16px"
                       color="#49504C"
-                      value={teacher?.name?.substring(0, 1)}
+                      lineHeight="24px"
+                      value={teacher.name}
                     />
-                  )}
-                </Container>
-                <Text
-                  fontSize="16px"
-                  color="#49504C"
-                  lineHeight="24px"
-                  value={teacher.name}
-                />
-              </Container>
-            </motion.div>
-          ))
+                  </Container>
+                </motion.div>
+              )
+          )
         )}
+
+        <Paginator
+          currentPage={currentPage}
+          itemsPerPage={itemsPerPage}
+          onChangePage={(newPage) => setCurrentPage(newPage)}
+          onChangeItemsPerPage={(newValue) => {
+            setCurrentPage(0);
+            setItemsPerPage(newValue);
+          }}
+          totalItems={data?.length || 0}
+        />
       </Container>
 
       <Container

@@ -20,10 +20,13 @@ import { uploadFileToS3 } from "../../util";
 import PicSelect from "../../components/PicSelect";
 import { motion } from "framer-motion";
 import BreadCrumb from "../../components/Breadcrumb";
+import { Paginator } from "../../components/Paginator";
 
 const Schools: React.FC = () => {
   const theme = useTheme();
   const { t } = useTranslation();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
   const user = useSelector(selectCurrentUser);
   const [newSchool, setNewSchool] = useState(false);
   const [selectedSchool, setSelectedSchool] = useState<School>();
@@ -91,54 +94,69 @@ const Schools: React.FC = () => {
           {isLoading || !data ? (
             <LoadingDots />
           ) : (
-            data.map((school) => (
-              <motion.div
-                key={school.id}
-                style={{ width: "100%" }}
-                initial={{ height: 0 }}
-                animate={{ height: "fit-content" }}
-              >
-                <Container
-                  padding="20px 16px"
-                  alignItems="center"
-                  borderBottom="1px solid #f4f5f5"
-                >
-                  <Container
-                    alignItems={"center"}
-                    onClick={() => setSelectedSchool(school)}
-                    flex={1}
+            data.map(
+              (school, index) =>
+                index >= currentPage * itemsPerPage &&
+                index < (currentPage + 1) * itemsPerPage && (
+                  <motion.div
+                    key={school.id}
+                    style={{ width: "100%" }}
+                    initial={{ height: 0 }}
+                    animate={{ height: "fit-content" }}
                   >
                     <Container
-                      mr="16px"
-                      width="40px"
-                      height="40px"
-                      overflow="hidden"
+                      padding="20px 16px"
                       alignItems="center"
-                      borderRadius="20px"
-                      background="#F4F5F5"
-                      justifyContent="center"
+                      borderBottom="1px solid #f4f5f5"
                     >
-                      {school.image_url ? (
-                        <Image
-                          src={school.image_url}
+                      <Container
+                        alignItems={"center"}
+                        onClick={() => setSelectedSchool(school)}
+                        flex={1}
+                      >
+                        <Container
+                          mr="16px"
                           width="40px"
                           height="40px"
+                          overflow="hidden"
+                          alignItems="center"
+                          borderRadius="20px"
+                          background="#F4F5F5"
+                          justifyContent="center"
+                        >
+                          {school.image_url ? (
+                            <Image
+                              src={school.image_url}
+                              width="40px"
+                              height="40px"
+                            />
+                          ) : (
+                            <Icon size={24} name="university" color="#49504C" />
+                          )}
+                        </Container>
+                        <Text
+                          fontSize="16px"
+                          color="#49504C"
+                          lineHeight="24px"
+                          value={school.name}
                         />
-                      ) : (
-                        <Icon size={24} name="university" color="#49504C" />
-                      )}
+                      </Container>
                     </Container>
-                    <Text
-                      fontSize="16px"
-                      color="#49504C"
-                      lineHeight="24px"
-                      value={school.name}
-                    />
-                  </Container>
-                </Container>
-              </motion.div>
-            ))
+                  </motion.div>
+                )
+            )
           )}
+
+          <Paginator
+            currentPage={currentPage}
+            itemsPerPage={itemsPerPage}
+            onChangePage={(newPage) => setCurrentPage(newPage)}
+            onChangeItemsPerPage={(newValue) => {
+              setCurrentPage(0);
+              setItemsPerPage(newValue);
+            }}
+            totalItems={data?.length || 0}
+          />
         </Container>
 
         <Container
