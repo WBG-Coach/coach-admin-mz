@@ -1,13 +1,20 @@
 {
   "Global": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "Toast": {
+      "user-updated": "User successfully updated!",
+      "user-updated-error": "There was an error updating the user.",
+      "change-password": "Password updated successfully!",
+      "change-password-error": "An error occurred while updating the password."
+    }
   },
   "Paginator": {
     "items-per-page": "Items per page:",
     "page-details": "Page {{current}} of {{total}}"
   },
   "Validations": {
-    "required": "Required"
+    "required": "Required",
+    "same-password": "The passwords must be equals."
   },
   "Login": {
     "email": "Email",
