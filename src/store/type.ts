@@ -260,3 +260,9 @@ export type ProductiveFeedbackReport = {
 };
 
 export type AnswersByCityReport = { city: string; quantity: number }[];
+
+export type SchoolsBySession = {
+  schools_quantity: number;
+  schools_without_sessions: number;
+  schools_with_50: number;
+};

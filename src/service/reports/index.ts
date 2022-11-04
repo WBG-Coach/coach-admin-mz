@@ -11,6 +11,7 @@ import {
   DashboardReport,
   ProductiveFeedbackReport,
   SchoolEvolutionsReport,
+  SchoolsBySession,
   SessionByYearReport,
   SessionReport,
   TeacherCompetencesReport,
@@ -201,6 +202,13 @@ export const api = createApi({
         body,
       }),
     }),
+    getSchoolsBySession: builder.mutation<SchoolsBySession, void>({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/reports/schools-by-session",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -219,4 +227,5 @@ export const {
   useGetProductiveFeedbackMutation,
   useGetTeacherEvolutionMutation,
   useGetAnswersByCityMutation,
+  useGetSchoolsBySessionMutation,
 } = api;

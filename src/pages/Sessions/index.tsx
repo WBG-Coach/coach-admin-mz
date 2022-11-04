@@ -238,7 +238,7 @@ const Sessions: React.FC = () => {
                     label={t("Teachers.name")}
                     options={requestGetTeachers?.data as User[]}
                     onChange={(e) => setFieldValue("teacher_id", e.id)}
-                    renderOption={(opt) => opt?.name}
+                    renderOption={(opt) => opt?.name + " " + opt.last_name}
                   />
                 )}
 
@@ -251,7 +251,7 @@ const Sessions: React.FC = () => {
                     label={t("Coaches.name")}
                     options={requestGetCoaches?.data as User[]}
                     onChange={(e) => setFieldValue("coach_id", e.id)}
-                    renderOption={(opt) => opt?.name}
+                    renderOption={(opt) => opt?.name + " " + opt.last_name}
                   />
                 )}
 
