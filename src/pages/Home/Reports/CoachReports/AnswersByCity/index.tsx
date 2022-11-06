@@ -39,7 +39,10 @@ export const AnswersByCity: React.FC = () => {
           justifyContent="space-between"
           borderBottom="4px solid #F0F2F4"
         >
-          <Text value={item.city || "-"} color="#16191D" />
+          <Text
+            value={item.city || t("Dashboard.CoachReports.undefined")}
+            color="#16191D"
+          />
           <Text value={item.quantity + ""} color="#16191D" />
           <Container
             position="absolute"

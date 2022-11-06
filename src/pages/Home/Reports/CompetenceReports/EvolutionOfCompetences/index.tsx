@@ -89,9 +89,6 @@ export const EvolutionOfCompetences = () => {
     <CustomCard
       width="100%"
       title={t("Dashboard.CompetenceReports.feedbacks-per-competency")}
-      description={t(
-        "Dashboard.CompetenceReports.feedbacks-per-competency-description"
-      )}
     >
       <Line height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>

@@ -35,11 +35,11 @@ export const MenuItems = [
     ],
   },
   {
-    label: "school",
+    label: "data",
     subItems: [
       {
         icon: "university",
-        label: "units",
+        label: "schools",
         route: "/schools",
       },
       {
@@ -61,7 +61,7 @@ export const MenuItems = [
         icon: "setting",
         label: "settings",
         route: "/settings",
-      },  
+      },
     ],
   },
   {

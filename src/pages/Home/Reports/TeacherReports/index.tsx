@@ -26,14 +26,12 @@ export const TeacherReports: React.FC<{
   return !data ? (
     <LoadingDots />
   ) : (
-    <Container flexDirection="column">
-      <Container mb="16px" gridGap="16px">
-        <TeachersWithoutFeedbackChart
-          end_date={end_date}
-          start_date={start_date}
-        />
-        <ProductiveFeedbackChart />
-      </Container>
+    <Container mb="16px" gridGap="16px">
+      <TeachersWithoutFeedbackChart
+        end_date={end_date}
+        start_date={start_date}
+      />
+      <ProductiveFeedbackChart />
     </Container>
   );
 };
