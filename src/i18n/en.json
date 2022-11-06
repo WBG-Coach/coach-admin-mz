@@ -1,6 +1,7 @@
 {
   "Global": {
     "cancel": "Cancel",
+    "change-photo": "Change photo",
     "Toast": {
       "user-updated": "User successfully updated!",
       "user-updated-error": "There was an error updating the user.",
@@ -100,7 +101,6 @@
     "name": "School",
     "new-title": "New school",
     "update-title": "Update school",
-    "change-photo": "Change photo",
     "address": "Address",
     "region": "Region"
   },
@@ -213,6 +213,8 @@
       "button": "Save edition"
     },
     "Users": {
+      "new-title": "New admin",
+      "update-title": "Update admin",
       "title": "Users",
       "add": "Create user",
       "delete": "Delete",

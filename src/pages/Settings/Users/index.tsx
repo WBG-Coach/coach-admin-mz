@@ -26,11 +26,11 @@ import { toast } from "react-toastify";
 const Users: React.FC = () => {
   const [getAdmins, requestGetAdmins] = useGetAdminsMutation();
   const [createAdmin, requestCreateAdmin] = useCreateAdminMutation();
-  const [deleteUser] = useDeleteUserMutation();
   const [updateUser, requestUpdateUser] = useUpdateUserMutation();
   const [selectedUser, setSelectedUser] = useState<User>();
   const [imageUrl, setImageUrl] = useState<string>();
   const [newUser, setNewUser] = useState(false);
+  const [deleteUser] = useDeleteUserMutation();
   const user = useSelector(selectCurrentUser);
   const { t } = useTranslation();
   const theme = useTheme();
@@ -88,7 +88,7 @@ const Users: React.FC = () => {
     try {
       await deleteUser(user);
     } catch (err) {
-      toast.error(t("Global.Toast.delete-user-error"));
+      console.log(err);
     }
   };
 
@@ -123,12 +123,30 @@ const Users: React.FC = () => {
                       flex={1}
                       alignItems={"center"}
                     >
-                      <Image
-                        src={user.image_url || ""}
-                        borderRadius={"50%"}
-                        width={"40px"}
-                        height={"40px"}
-                      />
+                      <Container
+                        mr="16px"
+                        width="40px"
+                        height="40px"
+                        overflow="hidden"
+                        alignItems="center"
+                        borderRadius="20px"
+                        background="#F4F5F5"
+                        justifyContent="center"
+                      >
+                        {user.image_url ? (
+                          <Image
+                            src={user.image_url}
+                            width="40px"
+                            height="40px"
+                          />
+                        ) : (
+                          <Text
+                            fontSize="24px"
+                            color="#49504C"
+                            value={user?.name?.substring(0, 1)}
+                          />
+                        )}
+                      </Container>
                       <Text
                         ml={"16px"}
                         fontSize="16px"

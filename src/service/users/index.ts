@@ -84,7 +84,7 @@ export const api = createApi({
     >({
       query: (body) => ({
         method: "POST",
-        url: "/api/createCoach",
+        url: "/api/users",
         body: { ...body, profile_id: 1 },
       }),
     }),

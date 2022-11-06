@@ -31,7 +31,12 @@ const Settings: React.FC<{}> = () => {
   return (
     <Container flexDirection={"column"} width={"100%"}>
       <BreadCrumb />
-      <Text mb={40} fontSize={32} fontWeight={600} value={"Configurações"} />
+      <Text
+        mb={40}
+        fontSize={32}
+        fontWeight={600}
+        value={t("Settings.title")}
+      />
       <Container width={"100%"}>
         <Container
           flexDirection={"column"}

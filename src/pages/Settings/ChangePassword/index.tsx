@@ -22,13 +22,13 @@ const ChangePassword: React.FC = () => {
       .oneOf([Yup.ref("newPassword")], t("Validations.same-password")),
   });
 
-  const onSubmitUpdate = (values: {
+  const onSubmitUpdate = async (values: {
     currentPassword: string;
     newPassword: string;
     rePassword: string;
   }) => {
     try {
-      updatePassword({
+      await updatePassword({
         new_password: values.newPassword,
         old_password: values.currentPassword,
       });
