@@ -4,6 +4,6 @@ import { LayoutProps, SpaceProps } from "styled-system";
 export type CustomCardProps = {
   children: ReactNode;
   title: string;
-  description: string;
+  description?: string;
 } & SpaceProps &
   LayoutProps;

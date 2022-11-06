@@ -27,10 +27,8 @@ export const TeachersWithoutFeedbackChart: React.FC<{
   return (
     <CustomCard
       width="100%"
-      title={t("Dashboard.TeacherReports.teachers-without-feedback")}
-      description={t(
-        "Dashboard.TeacherReports.teachers-without-feedback-description"
-      )}
+      title={t("Dashboard.TeacherReports.teachers-feedback")}
+      description={t("Dashboard.TeacherReports.teachers-feedback-description")}
     >
       {data ? (
         <Container minHeight="168px">
