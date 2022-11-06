@@ -5,6 +5,7 @@ import BreadCrumb from "../../components/Breadcrumb";
 import { Icon } from "../../components/Icon";
 import ChangePassword from "./ChangePassword";
 import EditUser from "./EditUser";
+import Users from "./Users";
 
 const Settings: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -20,13 +21,18 @@ const Settings: React.FC<{}> = () => {
       icon: "user-circle",
       component: <ChangePassword />,
     },
+    {
+      label: t("Settings.Users.title"),
+      icon: "user",
+      component: <Users />,
+    },
   ];
 
   return (
-    <Container flexDirection={"column"}>
+    <Container flexDirection={"column"} width={"100%"}>
       <BreadCrumb />
       <Text mb={40} fontSize={32} fontWeight={600} value={"Configurações"} />
-      <Container>
+      <Container width={"100%"}>
         <Container
           flexDirection={"column"}
           minWidth={"266px"}
@@ -62,7 +68,9 @@ const Settings: React.FC<{}> = () => {
             );
           })}
         </Container>
-        <Container px={"32px"}>{options[currentOption].component}</Container>
+        <Container width={"100%"} px={"32px"}>
+          {options[currentOption].component}
+        </Container>
       </Container>
     </Container>
   );

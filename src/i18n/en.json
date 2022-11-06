@@ -230,6 +230,12 @@
       "surname": "Surname",
       "email": "Email",
       "button": "Save edition"
+    },
+    "Users": {
+      "title": "Users",
+      "add": "Create user",
+      "delete": "Delete",
+      "edit": "Edit"
     }
   }
 }
