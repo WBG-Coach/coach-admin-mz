@@ -21,7 +21,6 @@ import PicSelect from "../../../components/PicSelect";
 import { uploadFileToS3 } from "../../../util";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/auth";
-import { toast } from "react-toastify";
 
 const Users: React.FC = () => {
   const [getAdmins, requestGetAdmins] = useGetAdminsMutation();
