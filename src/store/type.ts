@@ -39,6 +39,8 @@ export type School = {
   created_at?: Date;
   updated_at?: Date;
   users?: { user: User }[];
+  latitude?: number;
+  longitude?: number;
 };
 
 export type Questionnaire = {
@@ -265,4 +267,12 @@ export type SchoolsBySession = {
   schools_quantity: number;
   schools_without_sessions: number;
   schools_with_50: number;
+};
+
+export type SchoolByRegion = School & {
+  coaches_qty: number;
+  feedbacks_qty: number;
+  sessions_qty: number;
+  teachers_qty: number;
+  positive_percent: number;
 };
