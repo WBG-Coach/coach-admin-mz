@@ -49,7 +49,7 @@ const Users: React.FC = () => {
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
-        const fileUrl = await uploadFileToS3(file, "coaches");
+        const fileUrl = await uploadFileToS3(file, "admins");
         setImageUrl(fileUrl.url);
       }
     } catch (err) {
