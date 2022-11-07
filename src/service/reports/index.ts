@@ -210,7 +210,10 @@ export const api = createApi({
         body,
       }),
     }),
-    getSchoolsByRegion: builder.mutation<SchoolByRegion[], void>({
+    getSchoolsByRegion: builder.mutation<
+      SchoolByRegion[],
+      { project_id: number }
+    >({
       query: (body) => ({
         method: "POST",
         url: "/api/reports/schools",

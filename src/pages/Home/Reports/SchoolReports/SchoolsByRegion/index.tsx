@@ -9,6 +9,8 @@ import { useGetSchoolsByRegionMutation } from "../../../../../service/reports";
 import { SchoolByRegion } from "../../../../../store/type";
 import { Icon } from "../../../../../components/Icon";
 import { LoadingDots } from "../../../../../components/LoadingDots";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../../../store/auth";
 
 const containerStyle = {
   width: "100%",
@@ -27,6 +29,7 @@ const markerStyle = {
 
 export const SchoolsByRegion = () => {
   const { t } = useTranslation();
+  const user = useSelector(selectCurrentUser);
   const [selectedSchool, setSelectedSchool] = useState<SchoolByRegion>();
   const [getSchoolsByRegion, { isLoading, data }] =
     useGetSchoolsByRegionMutation();
@@ -38,8 +41,10 @@ export const SchoolsByRegion = () => {
   });
 
   useEffect(() => {
-    getSchoolsByRegion();
-  }, [getSchoolsByRegion]);
+    getSchoolsByRegion({
+      project_id: user.currentProject?.id || 0,
+    });
+  }, [getSchoolsByRegion, user]);
 
   const renderInfoItem = (value: string, label: string) => (
     <Container flex={1} flexDirection="column">
