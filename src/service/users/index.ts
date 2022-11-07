@@ -47,6 +47,15 @@ export const api = createApi({
         },
       }),
     }),
+    getAdmins: builder.mutation<User[], { project_id?: number }>({
+      query: () => ({
+        method: "POST",
+        url: "/api/users/search",
+        body: {
+          profile_id: 1,
+        },
+      }),
+    }),
     createCoach: builder.mutation<
       User,
       {
@@ -63,6 +72,23 @@ export const api = createApi({
         body: body,
       }),
     }),
+    createAdmin: builder.mutation<
+      User,
+      {
+        project_id: number;
+        name?: string;
+        email: string;
+        last_name?: string;
+        image_url?: string;
+      }
+    >({
+      query: (body) => ({
+        method: "POST",
+        url: "/api/users",
+        body: { ...body, profile_id: 1 },
+      }),
+    }),
+
     createTeacher: builder.mutation<
       User,
       {
@@ -101,6 +127,13 @@ export const api = createApi({
         body,
       }),
     }),
+    deleteUser: builder.mutation<User, Partial<User>>({
+      query: (body) => ({
+        method: "DELETE",
+        url: "/api/users",
+        body,
+      }),
+    }),
     updatePassword: builder.mutation<
       void,
       { old_password: string; new_password: string }
@@ -121,4 +154,7 @@ export const {
   useUpdateUserMutation,
   useCreateCoachMutation,
   useUpdatePasswordMutation,
+  useGetAdminsMutation,
+  useCreateAdminMutation,
+  useDeleteUserMutation,
 } = api;

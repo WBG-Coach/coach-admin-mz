@@ -1,6 +1,7 @@
 {
   "Global": {
     "cancel": "Cancelar",
+    "change-photo": "Alterar imagem",
     "Toast": {
       "user-updated": "Usuário atualizado com sucesso!",
       "user-updated-error": "Aconteceu um erro ao atualizar o usuário.",
@@ -204,6 +205,14 @@
       "surname": "Apelido",
       "email": "Email",
       "button": "Salvar alterações"
+    },
+    "Users": {
+      "new-title": "Criar administrador",
+      "update-title": "Editar administrador",
+      "title": "Usuários",
+      "add": "Criar usuário",
+      "delete": "Deletar",
+      "edit": "Editar"
     }
   }
 }

@@ -53,7 +53,7 @@ const PicSelect: React.FC<Props> = ({
           <Text
             fontSize="14px"
             color="primary"
-            value={t("Schools.change-photo")}
+            value={t("Global.change-photo")}
           />
         </label>
       </Container>
