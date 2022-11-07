@@ -21,7 +21,6 @@ import PicSelect from "../../../components/PicSelect";
 import { uploadFileToS3 } from "../../../util";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../store/auth";
-import { toast } from "react-toastify";
 
 const Users: React.FC = () => {
   const [getAdmins, requestGetAdmins] = useGetAdminsMutation();
@@ -50,7 +49,7 @@ const Users: React.FC = () => {
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
-        const fileUrl = await uploadFileToS3(file, "coaches");
+        const fileUrl = await uploadFileToS3(file, "admins");
         setImageUrl(fileUrl.url);
       }
     } catch (err) {
