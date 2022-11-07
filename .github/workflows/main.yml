@@ -20,8 +20,8 @@ jobs:
       PUBLIC_URL: https://admin.coachdigital.org
       REACT_APP_API_URL: https://api.coachdigital.org
       REACT_APP_AWS_BUCKET_NAME: coachdigital.org
-      REACT_APP_AWS_ACCESS_KEY: AKIA5SPJDJPIG6RXITD5
-      REACT_APP_AWS_SECRET: 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
+      REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
+      REACT_APP_AWS_SECRET: ${{ secrets.REACT_APP_AWS_SECRET }}
 
     steps:
       - uses: actions/checkout@v3
