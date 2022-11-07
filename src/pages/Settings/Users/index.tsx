@@ -86,6 +86,7 @@ const Users: React.FC = () => {
   const handleDeleteUser = async (user: User) => {
     try {
       await deleteUser(user);
+      reloadAdmins();
     } catch (err) {
       console.log(err);
     }
