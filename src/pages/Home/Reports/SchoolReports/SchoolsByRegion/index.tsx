@@ -68,7 +68,9 @@ export const SchoolsByRegion = () => {
     >
       <Container gridGap="40px">
         <Container flex={1} borderRadius="12px" overflow="hidden">
-          <LoadScript googleMapsApiKey="AIzaSyBJR-Qm19jraWkc52MXazoQfMp5uBnZkUg">
+          <LoadScript
+            googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_KEY || ""}
+          >
             <GoogleMap
               zoom={zoom}
               center={center}
