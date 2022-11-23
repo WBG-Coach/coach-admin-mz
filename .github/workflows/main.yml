@@ -22,7 +22,7 @@ jobs:
       REACT_APP_AWS_BUCKET_NAME: coachdigital.org
       REACT_APP_AWS_ACCESS_KEY: ${{ secrets.REACT_APP_AWS_ACCESS_KEY }}
       REACT_APP_AWS_SECRET: ${{ secrets.REACT_APP_AWS_SECRET }}
-
+      REACT_APP_GOOGLE_MAPS_KEY: ${{ secrets.REACT_APP_GOOGLE_MAPS_KEY }}
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
