@@ -18,7 +18,12 @@ export const DashboardReports: React.FC<DashboardReportsProps> = (props) => {
       <Text mb="32px" fontSize="18px" lineHeight="24px" value="" />
       <CompetenceProgress
         data={props.data?.competencies || []}
-        total={props.data?.questionnaire_applications_qty || 0}
+        total={
+          props.data?.competencies.reduce(
+            (acc, item) => acc + item.quantity,
+            0
+          ) || 0
+        }
       />
     </CustomCard>
   );

@@ -45,18 +45,18 @@
     "CoachReports": {
       "undefined": "Undefined",
       "all-coaches": "Coach activity summary",
-      "coaches-from": "Coach activity from %.",
+      "coaches-from": "Coach activity from ",
       "session-by-region": "Coaching session by region",
       "session-by-region-description": "Count of coaching session by region.",
       "region": "REGION",
       "sessions": "SESSIONS",
-      "without-feedback": "Coach penetration",
+      "without-feedback": "Coach reach",
       "without-feedback-description": "Coaches who have provided feedback to teachers."
     },
     "CompetenceReports": {
       "marked-yes": "Marked as yes",
       "marked-no": "Marked as no",
-      "with-feedback": "With feedback",
+      "feedback-sessions": "Feedback sessions",
       "most-worked": "Teacher competencies needing improvement",
       "most-worked-description": "Count of yes (improvements needed) / no (improvements not needed) / feedbacks to teacher per competency.",
       "feedbacks-per-competency": "Count of feedback given per competency over previous 12 months"
@@ -70,16 +70,20 @@
     "SchoolReports": {
       "schools-by-region": "Schools by region",
       "schools-by-region-description": "Select a school on the map and look its data.",
+      "teacher": "Teacher",
       "teachers": "Teachers",
+      "coach": "Coach",
       "coaches": "Coaches",
-      "feedbacks": "Feedbacks",
-      "sessions": "Orientação sessions",
+      "feedback": "Feedback session",
+      "feedbacks": "Feedback sessions",
+      "session": "Orientation session",
+      "sessions": "Orientation sessions",
       "positive-competencies": "Positive competencies",
-      "schools-without-sessions": "School penetration",
+      "schools-without-sessions": "School reach",
       "schools-without-sessions-description": "Schools that have worked on competencies."
     },
     "TeacherReports": {
-      "teachers-feedback": "Teacher penetration",
+      "teachers-feedback": "Teacher reach",
       "teachers-feedback-description": "Teachers who have received feedback.",
       "productive-feedback": "Productive feedback sessions",
       "productive-feedback-description": "Count of competencies that turned positive after a feedback session."
@@ -117,8 +121,8 @@
     "new-title": "Create observation",
     "update-title": "Update observation",
     "title": "Observation questionnaires",
-    "seeQuestion": "See questions",
-    "editQuestion": "Edit questionnaire",
+    "seeQuestion": "Edit questionnaire",
+    "editQuestion": "Rename questionnaire",
     "add": "Add observation"
   },
   "Feedback": {

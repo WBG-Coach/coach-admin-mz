@@ -8,7 +8,7 @@ import {
   Legend,
 } from "chart.js";
 import React, { useEffect, useMemo, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { CustomCard } from "../../../../../components/CustomCard";
@@ -53,16 +53,19 @@ export const MostWorkedCompetences: React.FC<{
         {
           label: t("Dashboard.CompetenceReports.marked-yes"),
           attr: "yes",
+          borderColor: "#33CC5A",
           backgroundColor: "#33CC5A",
         },
         {
           label: t("Dashboard.CompetenceReports.marked-no"),
           attr: "no",
+          borderColor: "#D92626",
           backgroundColor: "#D92626",
         },
         {
           label: t("Dashboard.CompetenceReports.feedback-sessions"),
           attr: "feedback_qty",
+          borderColor: "#0080FF",
           backgroundColor: "#0080FF",
         },
       ],
@@ -96,7 +99,7 @@ export const MostWorkedCompetences: React.FC<{
       title={t("Dashboard.CompetenceReports.most-worked")}
       description={t("Dashboard.CompetenceReports.most-worked-description")}
     >
-      <Bar height="60px" options={options} data={{ labels, datasets }} />
+      <Line height="60px" options={options} data={{ labels, datasets }} />
     </CustomCard>
   );
 };

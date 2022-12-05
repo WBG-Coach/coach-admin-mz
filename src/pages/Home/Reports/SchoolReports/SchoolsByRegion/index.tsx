@@ -165,24 +165,32 @@ export const SchoolsByRegion = () => {
               {typeof selectedSchool?.teachers_qty === "number" &&
                 renderInfoItem(
                   selectedSchool?.teachers_qty.toString(),
-                  t("Dashboard.SchoolReports.teachers")
+                  selectedSchool?.teachers_qty > 1
+                    ? t("Dashboard.SchoolReports.teachers")
+                    : t("Dashboard.SchoolReports.teacher")
                 )}
               {typeof selectedSchool?.coaches_qty === "number" &&
                 renderInfoItem(
                   selectedSchool?.coaches_qty.toString(),
-                  t("Dashboard.SchoolReports.coaches")
+                  selectedSchool?.coaches_qty > 1
+                    ? t("Dashboard.SchoolReports.coaches")
+                    : t("Dashboard.SchoolReports.coach")
                 )}
             </Container>
             <Container>
               {typeof selectedSchool?.sessions_qty === "number" &&
                 renderInfoItem(
                   selectedSchool.sessions_qty.toString(),
-                  t("Dashboard.SchoolReports.sessions")
+                  selectedSchool.sessions_qty > 1
+                    ? t("Dashboard.SchoolReports.sessions")
+                    : t("Dashboard.SchoolReports.session")
                 )}
               {typeof selectedSchool?.feedbacks_qty === "number" &&
                 renderInfoItem(
                   selectedSchool?.feedbacks_qty.toString(),
-                  t("Dashboard.SchoolReports.feedbacks")
+                  selectedSchool?.feedbacks_qty > 1
+                    ? t("Dashboard.SchoolReports.feedbacks")
+                    : t("Dashboard.SchoolReports.feedback")
                 )}
             </Container>
           </Container>
