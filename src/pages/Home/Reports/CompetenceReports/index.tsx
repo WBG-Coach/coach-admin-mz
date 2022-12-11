@@ -9,7 +9,6 @@ export const CompetenceReports: React.FC<{
   return (
     <Container flexDirection="column" gridGap="16px">
       <MostWorkedCompetences {...props} />
-
       <EvolutionOfCompetences />
     </Container>
   );

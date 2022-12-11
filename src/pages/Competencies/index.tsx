@@ -18,6 +18,7 @@ import { Modal } from "../../components/Modal";
 import { Formik } from "formik";
 import { Input } from "../../components/Input";
 import * as Yup from "yup";
+import ListMenu from "../../components/ListMenu";
 
 const Competencies: React.FC<{}> = () => {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ const Competencies: React.FC<{}> = () => {
   const [updateCompetency, requestUpdateCompetency] =
     useUpdateCompetencyMutation();
   const [selectedCompetence, setSelectedCompetence] = useState<Competence>();
+  const [isUpdating, setIsUpdating] = useState(false);
   const [newCompetence, setNewCompetence] = useState(false);
   const user = useSelector(selectCurrentUser);
   const theme = useTheme();
@@ -39,8 +41,8 @@ const Competencies: React.FC<{}> = () => {
   }, [getCompetencies, user]);
 
   const closeModal = () => {
+    setIsUpdating(false);
     setNewCompetence(false);
-    setSelectedCompetence(undefined);
     getCompetencies({
       project_id: user.currentProject?.id || 0,
     });
@@ -101,28 +103,40 @@ const Competencies: React.FC<{}> = () => {
                   animate={{ height: "fit-content" }}
                 >
                   <Container
-                    onClick={() => setSelectedCompetence(competence)}
                     padding="20px 16px"
+                    alignItems="center"
                     borderBottom="1px solid #f4f5f5"
+                    onClick={() => setSelectedCompetence(competence)}
                     background={
                       selectedCompetence?.id === competence.id
                         ? theme.colors.primary + "10"
                         : "#fff"
                     }
                   >
-                    <Container width="24px">
+                    <Container flex={1}>
+                      <Container width="24px">
+                        <Text
+                          fontSize="16px"
+                          color="#49504C"
+                          lineHeight="24px"
+                          value={competence.id.toString()}
+                        />
+                      </Container>
                       <Text
                         fontSize="16px"
                         color="#49504C"
                         lineHeight="24px"
-                        value={competence.id.toString()}
+                        value={competence.subtitle}
                       />
                     </Container>
-                    <Text
-                      fontSize="16px"
-                      color="#49504C"
-                      lineHeight="24px"
-                      value={competence.subtitle}
+
+                    <ListMenu
+                      options={[
+                        {
+                          label: t("Competencies.update"),
+                          onClick: () => setIsUpdating(true),
+                        },
+                      ]}
                     />
                   </Container>
                 </motion.div>
@@ -171,7 +185,7 @@ const Competencies: React.FC<{}> = () => {
       </Container>
 
       <Modal
-        isOpen={newCompetence || !!selectedCompetence}
+        isOpen={newCompetence || isUpdating}
         title={
           newCompetence
             ? t("Competencies.new-title")

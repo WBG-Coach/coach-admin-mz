@@ -2,7 +2,7 @@ import { BaseQueryApi } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { MaybePromise } from "@reduxjs/toolkit/dist/query/tsHelpers";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../../store";
-import { Questionnaire } from "../../store/type";
+import { Questionnaire, QuestionnaireTypes } from "../../store/type";
 
 type Prepare = {
   prepareHeaders?: (
@@ -29,12 +29,32 @@ export const api = createApi({
   endpoints: (builder) => ({
     getQuestionnaires: builder.mutation<
       Questionnaire[],
-      { type: "OBSERVATION" | "FEEDBACK" | "DOCUMENTATION"; project_id: number }
+      { project_id: number } & QuestionnaireTypes
     >({
       query: ({ type }) => ({
         method: "POST",
         url: "/api/questionnaires/search",
         body: { type },
+      }),
+    }),
+    createQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "POST",
+        url: "/api/questionnaires",
+        body: { ...questionnaire },
+      }),
+    }),
+    updateQuestionnaire: builder.mutation<
+      Questionnaire,
+      Partial<Questionnaire> & { project_id: number }
+    >({
+      query: (questionnaire) => ({
+        method: "PUT",
+        url: "/api/questionnaires",
+        body: { ...questionnaire },
       }),
     }),
     createObservationQuestionnaire: builder.mutation<
@@ -101,6 +121,8 @@ export const api = createApi({
 });
 
 export const {
+  useCreateQuestionnaireMutation,
+  useUpdateQuestionnaireMutation,
   useCreateDocumentationQuestionnaireMutation,
   useCreateFeedbackQuestionnaireMutation,
   useCreateObservationQuestionnaireMutation,

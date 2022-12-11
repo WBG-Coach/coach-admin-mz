@@ -43,13 +43,16 @@ export type School = {
   longitude?: number;
 };
 
+export type QuestionnaireTypes = {
+  type: "FEEDBACK" | "OBSERVATION" | "DOCUMENTATION";
+};
+
 export type Questionnaire = {
   id: number;
   title: string;
-  type: "FEEDBACK" | "OBSERVATION";
   created_at: Date;
   updated_at: Date;
-};
+} & QuestionnaireTypes;
 
 export type Note = {
   id: number;

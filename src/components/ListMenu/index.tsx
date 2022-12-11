@@ -60,7 +60,7 @@ const ListMenu: React.FC<Props> = ({ options }) => {
           borderRadius={"12px"}
           boxShadow={"0px 0px 10.0408px rgba(0, 0, 0, 0.1)"}
           position={"absolute"}
-          minWidth={"160px"}
+          minWidth={"180px"}
           zIndex={20}
           flexDirection={"column"}
         >

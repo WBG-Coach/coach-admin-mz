@@ -6,14 +6,13 @@ import Competencies from "../pages/Competencies";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Projects from "../pages/Projescts";
-import QuestionnairesFeedback from "../pages/QuestionnairesFeedback";
-import QuestionnairesDocumentation from "../pages/QuestionnairesDocumentation";
-import QuestionnairesObservation from "../pages/QuestionnairesObservation";
 import Schools from "../pages/Schools";
 import Sessions from "../pages/Sessions";
 import Settings from "../pages/Settings";
 import Teachers from "../pages/Teachers";
 import Questions from "../pages/Questions";
+import Questionnaires from "../pages/Questionnaires";
+import Options from "../pages/Options";
 
 const RoutesConfig: React.FC = () => {
   return (
@@ -32,34 +31,17 @@ const RoutesConfig: React.FC = () => {
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
           <Route path="competencies" element={<Competencies />} />
-          <Route
-            path="observation-questionnaire"
-            element={<QuestionnairesObservation />}
-          />
-          <Route
-            path="feedbacks-questionnaire"
-            element={<QuestionnairesFeedback />}
-          />
-          <Route
-            path="documentations-questionnaire"
-            element={<QuestionnairesDocumentation />}
-          />
           <Route path="schools" element={<Schools />} />
           <Route path="coaches" element={<Coaches />} />
           <Route path="teachers" element={<Teachers />} />
           <Route path="sessions" element={<Sessions />} />
           <Route path="settings" element={<Settings />} />
+
+          <Route path="questionnaires/:type" element={<Questionnaires />} />
+          <Route path="questionnaire/:id/questions" element={<Questions />} />
           <Route
-            path="documentation-questionnaire/questions/:id"
-            element={<Questions />}
-          />
-          <Route
-            path="observation-questionnaire/questions/:id"
-            element={<Questions />}
-          />
-          <Route
-            path="feedback-questionnaire/questions/:id"
-            element={<Questions />}
+            path="questionnaire/question/:id/options"
+            element={<Options />}
           />
         </Route>
 

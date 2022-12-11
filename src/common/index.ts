@@ -20,17 +20,17 @@ export const MenuItems = [
       {
         icon: "clipboard-notes",
         label: "observation",
-        route: "/observation-questionnaire",
+        route: "/questionnaires/OBSERVATION",
       },
       {
         icon: "comments",
         label: "feedback",
-        route: "/feedbacks-questionnaire",
+        route: "/questionnaires/FEEDBACK",
       },
       {
         icon: "clipboard-notes",
         label: "documentation",
-        route: "/documentations-questionnaire",
+        route: "/questionnaires/DOCUMENTATION",
       },
     ],
   },

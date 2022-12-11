@@ -2,32 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTheme } from "styled-components";
-import { Button, Container, Text } from "../../components";
+import { Container, Text } from "../../components";
 import { Icon } from "../../components/Icon";
 import { LoadingDots } from "../../components/LoadingDots";
-import { useGetCompetenciesMutation } from "../../service/competences";
-import { Competence, Question } from "../../store/type";
+import { Question } from "../../store/type";
 import { motion } from "framer-motion";
-import { Formik } from "formik";
-import { Modal } from "../../components/Modal";
-import { Input } from "../../components/Input";
-import * as Yup from "yup";
-import Select from "../../components/Select";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/auth";
-import {
-  useCreateQuestionMutation,
-  useGetQuestionsMutation,
-  useUpdateQuestionMutation,
-} from "../../service/questions";
+import { useGetQuestionsMutation } from "../../service/questions";
 import BreadCrumb from "../../components/Breadcrumb";
-import { useCreateSessionsMutation } from "../../service/session";
-
-const questionTypes = ["TEXT", "OPTION", "FEEDBACK", "LIST"];
+import { QuestionForm } from "./QuestionForm";
 
 const Questions: React.FC = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<Question>();
-  const [competencies, requestCompetencies] = useGetCompetenciesMutation();
   const [questions, requestQuestions] = useGetQuestionsMutation();
   const [newQuestion, setNewQuestion] = useState(false);
   const user = useSelector(selectCurrentUser);
@@ -36,17 +23,11 @@ const Questions: React.FC = () => {
   const { id } = useParams();
   const theme = useTheme();
 
-  const [updateQuestion, requestUpdateQuestion] = useUpdateQuestionMutation();
-  const [createQuestion, requestCreateQuestion] = useCreateQuestionMutation();
-  const [createQuestionnaireQuestion, requestCreateQuestionnaireQuestion] =
-    useCreateSessionsMutation();
-
   useEffect(() => {
     if (id) {
       questions({ questionnaire_id: parseInt(id, 10) });
-      competencies({ project_id: user.currentProject?.id || 0 });
     }
-  }, [id, questions, competencies, user]);
+  }, [id, questions, user]);
 
   const closeModal = () => {
     if (id) {
@@ -55,30 +36,6 @@ const Questions: React.FC = () => {
       questions({ questionnaire_id: parseInt(id, 10) });
     }
   };
-
-  const onSubmitQuestion = async (values: {
-    text: string;
-    competency_id: number;
-    type: string;
-  }) => {
-    if (newQuestion && id) {
-      const question_id = await createQuestion(values);
-      if ("data" in question_id) {
-        await createQuestionnaireQuestion({
-          question_id: parseInt(question_id.data, 10),
-          questionnaire_id: parseInt(id, 10),
-          order: requestQuestions.data?.questions.length,
-        });
-      }
-    } else {
-      await updateQuestion({ ...selectedQuestion, ...values });
-    }
-    closeModal();
-  };
-
-  const questionSchema = Yup.object().shape({
-    text: Yup.string().required(t("Validations.required")),
-  });
 
   return (
     <>
@@ -206,94 +163,16 @@ const Questions: React.FC = () => {
         )}
       </Container>
 
-      <Modal
-        isOpen={
-          (!!selectedQuestion || newQuestion) && !!requestCompetencies.data
-        }
-        onClose={closeModal}
-        title={
-          newQuestion ? t("Questions.new-title") : t("Questions.update-title")
-        }
-      >
-        <Container flexDirection="column" minWidth={548}>
-          <Formik
-            initialValues={{
-              text: selectedQuestion?.text || "",
-              competency_id: selectedQuestion?.competency_id || 0,
-              type: selectedQuestion?.type || "",
-            }}
-            onSubmit={onSubmitQuestion}
-            validationSchema={questionSchema}
-          >
-            {({ handleSubmit, setFieldValue, values, errors, submitCount }) => (
-              <Container width="100%" flexDirection="column" mt={40}>
-                <Input
-                  label={t("Questions.text")}
-                  value={values.text}
-                  handlePressEnter={handleSubmit}
-                  errorMessage={(!!submitCount && errors.text) || ""}
-                  onChangeText={(text) => setFieldValue("text", text)}
-                />
-
-                <Select
-                  mt={"16px"}
-                  value={questionTypes.findIndex(
-                    (type) => type === values.type
-                  )}
-                  label={t("Questions.type")}
-                  options={questionTypes}
-                  onChange={(e) => setFieldValue("type", e)}
-                  renderOption={(opt) => opt}
-                />
-
-                <Select
-                  mt={"16px"}
-                  value={(requestCompetencies?.data as Competence[]).findIndex(
-                    (competency) => competency.id === values.competency_id
-                  )}
-                  label={t("Questions.competency")}
-                  options={requestCompetencies.data as Competence[]}
-                  onChange={(e) => setFieldValue("competency_id", e.id)}
-                  renderOption={(opt) => opt.title}
-                />
-
-                <Container width={"100%"} justifyContent={"flex-end"}>
-                  <Button
-                    mt="40px"
-                    width={"fit-content"}
-                    isDisabled={
-                      requestCreateQuestion.isLoading ||
-                      requestUpdateQuestion.isLoading ||
-                      requestCreateQuestionnaireQuestion.isLoading
-                    }
-                    value={t("Global.cancel")}
-                    onClick={closeModal}
-                    mr={"16px"}
-                    variant={"secondary"}
-                  />
-                  <Button
-                    mt="40px"
-                    width={"fit-content"}
-                    isDisabled={
-                      requestCreateQuestion.isLoading ||
-                      requestUpdateQuestion.isLoading ||
-                      requestCreateQuestionnaireQuestion.isLoading
-                    }
-                    value={
-                      requestCreateQuestion.isLoading ||
-                      requestUpdateQuestion.isLoading ||
-                      requestCreateQuestionnaireQuestion.isLoading
-                        ? "Loading..."
-                        : t("Projects.new-button")
-                    }
-                    onClick={handleSubmit}
-                  />
-                </Container>
-              </Container>
-            )}
-          </Formik>
-        </Container>
-      </Modal>
+      {requestQuestions.data?.questionnaire.type && (
+        <QuestionForm
+          closeModal={closeModal}
+          questionnaire_id={id || ""}
+          question={selectedQuestion}
+          questionLength={questions.length}
+          isOpen={!!selectedQuestion || newQuestion}
+          type={requestQuestions.data?.questionnaire.type}
+        />
+      )}
     </>
   );
 };

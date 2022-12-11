@@ -2,6 +2,8 @@
   "Global": {
     "cancel": "Cancel",
     "change-photo": "Change photo",
+    "save": "Save",
+    "loading": "Loading...",
     "Toast": {
       "user-updated": "User successfully updated!",
       "user-updated-error": "There was an error updating the user.",
@@ -117,25 +119,26 @@
     "name": "Competencies",
     "add": "Add competency"
   },
-  "Observation": {
-    "new-title": "Create observation",
-    "update-title": "Update observation",
-    "title": "Observation questionnaires",
-    "seeQuestion": "Edit questionnaire",
-    "editQuestion": "Rename questionnaire",
-    "add": "Add observation"
-  },
-  "Feedback": {
-    "new-title": "Create feedback",
-    "update-title": "Update feedback",
-    "title": "Feedback questionnaires",
-    "add": "Add feedback"
-  },
-  "Documentation": {
-    "new-title": "Create documentation",
-    "update-title": "Update documentation",
-    "title": "Documentations",
-    "add": "Add documentation"
+  "Questionnaires": {
+    "edit": "Edit questionnaire",
+    "rename": "Rename questionnaire",
+    "OBSERVATION": {
+      "title": "Observation questionnaires",
+      "add": "Add observation questionnaire"
+    },
+    "FEEDBACK": {
+      "title": "Feedback questionnaires",
+      "add": "Add feedback questionnaire"
+    },
+    "DOCUMENTATION": {
+      "title": "Documentation questionnaires",
+      "add": "Add documentation questionnaire"
+    },
+    "form": {
+      "name": "Name",
+      "new": "New questionnaire",
+      "rename": "Rename questionnaire"
+    }
   },
   "Units": {
     "title": "Units school"
