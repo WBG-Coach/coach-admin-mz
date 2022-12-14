@@ -35,21 +35,6 @@ export const options = {
   scales: {},
 };
 
-const labels = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
 const COLORS = ["#165BAA", "#A155B9", "#FFA5CB", "#16BFD6", "#1DDD8D"];
 
 type DateItem = {
@@ -64,10 +49,11 @@ export const EvolutionOfCompetences = () => {
   const [requestReport, { data, isLoading }] =
     useGetReportCompetenceEvolutionsMutation();
   const [datasets, setDatasets] = useState<DateItem[]>([]);
+  const [labels, setLabels] = useState<string[]>([]);
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    requestReport({ year: 2022, project_id: user.currentProject?.id || 0 });
+    requestReport({ project_id: user.currentProject?.id || 0 });
   }, [requestReport, user]);
 
   useEffect(() => {
@@ -77,9 +63,10 @@ export const EvolutionOfCompetences = () => {
           label: item.name,
           borderColor: COLORS[index],
           backgroundColor: COLORS[index],
-          data: item.data.map((itemData) => itemData.percentYes * 100),
+          data: item.data.map((itemData) => itemData.qty * 100),
         }))
       );
+      setLabels(data[0].data.map((item) => item.month));
     }
   }, [data]);
 

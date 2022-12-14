@@ -129,15 +129,6 @@ const Competencies: React.FC<{}> = () => {
                         value={competence.subtitle}
                       />
                     </Container>
-
-                    <ListMenu
-                      options={[
-                        {
-                          label: t("Competencies.update"),
-                          onClick: () => setIsUpdating(true),
-                        },
-                      ]}
-                    />
                   </Container>
                 </motion.div>
               ))
@@ -145,6 +136,16 @@ const Competencies: React.FC<{}> = () => {
           </Container>
           {selectedCompetence && (
             <Container flex={1} flexDirection="column">
+              <Container ml="auto" mb="-12px">
+                <ListMenu
+                  options={[
+                    {
+                      label: t("Competencies.update"),
+                      onClick: () => setIsUpdating(true),
+                    },
+                  ]}
+                />
+              </Container>
               <Text
                 value={selectedCompetence.title}
                 fontSize="14px"

@@ -72,7 +72,7 @@ export const api = createApi({
     }),
     getReportCompetenceEvolutions: builder.mutation<
       CompetenceEvolutionsReport,
-      { year: number; project_id: number }
+      { project_id: number }
     >({
       query: (body) => ({
         method: "POST",

@@ -12,11 +12,14 @@ import { selectCurrentUser } from "../../store/auth";
 import { useGetQuestionsMutation } from "../../service/questions";
 import BreadCrumb from "../../components/Breadcrumb";
 import { QuestionForm } from "./QuestionForm";
+import { QuestionDetails } from "./QuestionDetails";
+import ListMenu from "../../components/ListMenu";
 
 const Questions: React.FC = () => {
   const [selectedQuestion, setSelectedQuestion] = useState<Question>();
   const [questions, requestQuestions] = useGetQuestionsMutation();
   const [newQuestion, setNewQuestion] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
   const user = useSelector(selectCurrentUser);
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ const Questions: React.FC = () => {
 
   const closeModal = () => {
     if (id) {
-      setSelectedQuestion(undefined);
+      setIsUpdating(false);
       setNewQuestion(false);
       questions({ questionnaire_id: parseInt(id, 10) });
     }
@@ -58,75 +61,122 @@ const Questions: React.FC = () => {
                   value={requestQuestions.data.questionnaire.title}
                 />
 
-                {requestQuestions.data.questions.length >= 1 ? (
-                  <Container
-                    flex={1}
-                    borderRadius="8px"
-                    borderBottom="none"
-                    flexDirection="column"
-                    border="1px solid #f4f5f5"
-                  >
-                    {requestQuestions.data.questions.map((question, index) => (
-                      <motion.div
-                        key={question.id}
-                        style={{ width: "100%" }}
-                        initial={{ height: 0 }}
-                        animate={{ height: "fit-content" }}
+                <Container gridGap="32px">
+                  <Container flexDirection="column" flex={1}>
+                    {requestQuestions.data.questions.length >= 1 ? (
+                      <Container
+                        flex={1}
+                        borderRadius="8px"
+                        borderBottom="none"
+                        flexDirection="column"
+                        border="1px solid #f4f5f5"
                       >
-                        <Container
-                          padding="20px 16px"
-                          borderBottom="1px solid #f4f5f5"
-                          alignItems={"center"}
-                        >
-                          <Container
-                            onClick={() =>
-                              setSelectedQuestion(question.question)
-                            }
-                            flex={1}
-                          >
-                            <Icon
-                              color="#7D827F"
-                              name="clipboard-notes"
-                              size={24}
-                            />
-                            <Text
-                              ml={"16px"}
-                              fontSize="16px"
-                              color="#49504C"
-                              lineHeight="24px"
-                              value={question.question.text}
-                            />
-                          </Container>
-                        </Container>
-                      </motion.div>
-                    ))}
-                  </Container>
-                ) : (
-                  <Container padding={"20px 16px"}>
-                    <Text
-                      value={t("Questions.not-found")}
-                      fontSize={18}
-                      fontWeight={400}
-                    />
-                  </Container>
-                )}
+                        {requestQuestions.data.questions.map(
+                          (question, index) => (
+                            <motion.div
+                              key={question.id}
+                              style={{ width: "100%" }}
+                              initial={{ height: 0 }}
+                              animate={{ height: "fit-content" }}
+                            >
+                              <Container
+                                padding="20px 16px"
+                                borderBottom="1px solid #f4f5f5"
+                                alignItems={"center"}
+                              >
+                                <Container
+                                  onClick={() =>
+                                    setSelectedQuestion(question.question)
+                                  }
+                                  flex={1}
+                                >
+                                  <Container width={"calc(100% - 190px)"}>
+                                    <Icon
+                                      color="#7D827F"
+                                      name="clipboard-notes"
+                                      size={24}
+                                    />
+                                    <Text
+                                      ml={"16px"}
+                                      fontSize="16px"
+                                      color="#49504C"
+                                      lineHeight="24px"
+                                      value={question.question.text}
+                                    />
+                                  </Container>
+                                  <Container
+                                    width="70px"
+                                    justifyContent="right"
+                                  >
+                                    <Text
+                                      fontSize="16px"
+                                      color="#7D827F"
+                                      lineHeight="24px"
+                                      value={question.question.type}
+                                    />
+                                  </Container>
+                                  <Container
+                                    width="120px"
+                                    justifyContent="right"
+                                  >
+                                    <Text
+                                      fontSize="16px"
+                                      color="#7D827F"
+                                      lineHeight="24px"
+                                      value={t("Questions.options-length", {
+                                        value: question.question.options.length,
+                                      })}
+                                    />
+                                  </Container>
+                                </Container>
+                              </Container>
+                            </motion.div>
+                          )
+                        )}
+                      </Container>
+                    ) : (
+                      <Container padding={"20px 16px"}>
+                        <Text
+                          value={t("Questions.not-found")}
+                          fontSize={18}
+                          fontWeight={400}
+                        />
+                      </Container>
+                    )}
 
-                <Container
-                  p="12px 16px"
-                  alignItems="center"
-                  onClick={() => setNewQuestion(true)}
-                  width={"fit-content"}
-                >
-                  <Icon
-                    size={24}
-                    name="plus"
-                    mr="8px"
-                    color={theme.colors.primary}
-                  />
-                  <Text
-                    value={t("Questions.add")}
-                    color={theme.colors.primary}
-                  />
+                    <Container
+                      p="12px 16px"
+                      alignItems="center"
+                      onClick={() => setNewQuestion(true)}
+                      width={"fit-content"}
+                    >
+                      <Icon
+                        size={24}
+                        name="plus"
+                        mr="8px"
+                        color={theme.colors.primary}
+                      />
+                      <Text
+                        value={t("Questions.add")}
+                        color={theme.colors.primary}
+                      />
+                    </Container>
+                  </Container>
+                  {selectedQuestion && (
+                    <Container flex={1} flexDirection="column">
+                      <Container ml="auto">
+                        <ListMenu
+                          options={[
+                            {
+                              label: t("Questions.update"),
+                              onClick: () => setIsUpdating(true),
+                            },
+                          ]}
+                        />
+                      </Container>
+                      <QuestionDetails question={selectedQuestion} />
+                    </Container>
+                  )}
                 </Container>
               </>
             ) : (
@@ -169,7 +219,7 @@ const Questions: React.FC = () => {
           questionnaire_id={id || ""}
           question={selectedQuestion}
           questionLength={questions.length}
-          isOpen={!!selectedQuestion || newQuestion}
+          isOpen={newQuestion || isUpdating}
           type={requestQuestions.data?.questionnaire.type}
         />
       )}

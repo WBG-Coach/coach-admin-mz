@@ -9,7 +9,6 @@ import {
   useCreateQuestionMutation,
   useUpdateQuestionMutation,
 } from "../../../service/questions";
-import { useCreateSessionsMutation } from "../../../service/session";
 import Select from "../../../components/Select";
 import { useGetCompetenciesMutation } from "../../../service/competences";
 import { useEffect } from "react";
@@ -29,7 +28,6 @@ export const QuestionForm: React.FC<Props> = ({
   isOpen,
   closeModal,
   questionnaire_id,
-  questionLength,
   question,
 }) => {
   const { t } = useTranslation();
@@ -37,8 +35,6 @@ export const QuestionForm: React.FC<Props> = ({
   const [getCompetencies, requestCompetencies] = useGetCompetenciesMutation();
   const [updateQuestion, requestUpdateQuestion] = useUpdateQuestionMutation();
   const [createQuestion, requestCreateQuestion] = useCreateQuestionMutation();
-  const [createQuestionnaireQuestion, requestCreateQuestionnaireQuestion] =
-    useCreateSessionsMutation();
 
   useEffect(() => {
     getCompetencies({ project_id: user.currentProject?.id || 0 });
@@ -48,18 +44,14 @@ export const QuestionForm: React.FC<Props> = ({
 
   const onSubmitQuestion = async (values: {
     text: string;
-    competency_id: number;
+    competency_id?: number;
     type: string;
   }) => {
     if (!question) {
-      const question_id = await createQuestion(values);
-      if ("data" in question_id) {
-        await createQuestionnaireQuestion({
-          question_id: parseInt(question_id.data, 10),
-          questionnaire_id: parseInt(questionnaire_id, 10),
-          order: questionLength,
-        });
-      }
+      await createQuestion({
+        ...values,
+        questionnaire_id: parseInt(questionnaire_id, 10),
+      });
     } else {
       await updateQuestion({ ...question, ...values });
     }
@@ -83,9 +75,9 @@ export const QuestionForm: React.FC<Props> = ({
       <Container flexDirection="column" minWidth={548}>
         <Formik
           initialValues={{
-            text: question?.text || "",
-            competency_id: question?.competency_id || 0,
             type: question?.type || "",
+            text: question?.text || "",
+            competency_id: question?.competency_id || undefined,
           }}
           onSubmit={onSubmitQuestion}
           validationSchema={questionSchema}
@@ -132,8 +124,7 @@ export const QuestionForm: React.FC<Props> = ({
                   width={"fit-content"}
                   isDisabled={
                     requestCreateQuestion.isLoading ||
-                    requestUpdateQuestion.isLoading ||
-                    requestCreateQuestionnaireQuestion.isLoading
+                    requestUpdateQuestion.isLoading
                   }
                   value={t("Global.cancel")}
                   onClick={closeModal}
@@ -145,13 +136,11 @@ export const QuestionForm: React.FC<Props> = ({
                   width={"fit-content"}
                   isDisabled={
                     requestCreateQuestion.isLoading ||
-                    requestUpdateQuestion.isLoading ||
-                    requestCreateQuestionnaireQuestion.isLoading
+                    requestUpdateQuestion.isLoading
                   }
                   value={
                     requestCreateQuestion.isLoading ||
-                    requestUpdateQuestion.isLoading ||
-                    requestCreateQuestionnaireQuestion.isLoading
+                    requestUpdateQuestion.isLoading
                       ? "Loading..."
                       : t("Projects.new-button")
                   }

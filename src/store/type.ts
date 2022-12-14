@@ -213,11 +213,8 @@ export type SchoolEvolutionsReport = {
 export type CompetenceEvolutionsReport = {
   name: string;
   data: {
-    percentYes: number;
-    percentNo: number;
-    yes: number;
-    no: number;
-    total: number;
+    month: string;
+    qty: number;
   }[];
 }[];
 export type CompetenceBySchoolReport = {

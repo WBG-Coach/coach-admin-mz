@@ -43,7 +43,12 @@ export const api = createApi({
     }),
     createQuestion: builder.mutation<
       string,
-      { competency_id: number; text: string; type: string }
+      {
+        competency_id?: number;
+        text: string;
+        type: string;
+        questionnaire_id: number;
+      }
     >({
       query: (questionnaire) => ({
         method: "POST",

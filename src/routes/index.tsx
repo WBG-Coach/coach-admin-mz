@@ -12,7 +12,6 @@ import Settings from "../pages/Settings";
 import Teachers from "../pages/Teachers";
 import Questions from "../pages/Questions";
 import Questionnaires from "../pages/Questionnaires";
-import Options from "../pages/Options";
 
 const RoutesConfig: React.FC = () => {
   return (
@@ -39,10 +38,6 @@ const RoutesConfig: React.FC = () => {
 
           <Route path="questionnaires/:type" element={<Questionnaires />} />
           <Route path="questionnaire/:id/questions" element={<Questions />} />
-          <Route
-            path="questionnaire/question/:id/options"
-            element={<Options />}
-          />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

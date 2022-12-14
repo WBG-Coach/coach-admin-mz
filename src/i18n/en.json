@@ -117,7 +117,8 @@
     "sub-title": "Subtitle",
     "description": "Description",
     "name": "Competencies",
-    "add": "Add competency"
+    "add": "Add competency",
+    "update": "Update competence"
   },
   "Questionnaires": {
     "edit": "Edit questionnaire",
@@ -139,6 +140,19 @@
       "new": "New questionnaire",
       "rename": "Rename questionnaire"
     }
+  },
+  "Questions": {
+    "type": "Type",
+    "text": "Text",
+    "competency": "Competency",
+    "new-title": "Create question",
+    "update-title": "Update question",
+    "not-found": "No questions have yet been registered for this questionnaire.",
+    "error": "An error occurred while fetching data from this questionnaire.",
+    "add": "Create question",
+    "back": "Back to list",
+    "options-length": "{{value}} Options",
+    "update": "Update question"
   },
   "Units": {
     "title": "Units school"
@@ -172,17 +186,6 @@
     "title": "Teacher",
     "surname": "Surname",
     "subject": "Subject"
-  },
-  "Questions": {
-    "type": "Type",
-    "text": "Text",
-    "competency": "Competency",
-    "new-title": "Create question",
-    "update-title": "Update question",
-    "not-found": "No questions have yet been registered for this questionnaire.",
-    "error": "An error occurred while fetching data from this questionnaire.",
-    "add": "Create question",
-    "back": "Back to list"
   },
   "Navbar": {
     "projects": "Projects",
