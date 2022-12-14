@@ -63,7 +63,7 @@ export const EvolutionOfCompetences = () => {
           label: item.name,
           borderColor: COLORS[index],
           backgroundColor: COLORS[index],
-          data: item.data.map((itemData) => itemData.qty * 100),
+          data: item.data.map((itemData) => itemData.qty),
         }))
       );
       setLabels(data[0].data.map((item) => item.month));
