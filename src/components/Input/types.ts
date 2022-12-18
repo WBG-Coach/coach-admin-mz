@@ -1,4 +1,4 @@
-import { SpaceProps } from "styled-system";
+import { FlexProps, SpaceProps } from "styled-system";
 
 export type InputProps = {
   value?: string;
@@ -9,4 +9,5 @@ export type InputProps = {
   placeholder?: string;
   onChangeText: (text: string) => void;
   handlePressEnter?: () => void;
-} & SpaceProps;
+} & SpaceProps &
+  FlexProps;

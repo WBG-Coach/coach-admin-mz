@@ -16,6 +16,8 @@ import {
 import { motion } from "framer-motion";
 import { useTheme } from "styled-components";
 import BreadCrumb from "../../components/Breadcrumb";
+import PicSelect from "../../components/PicSelect";
+import { uploadFileToS3 } from "../../util";
 
 const Projects: React.FC = () => {
   const { t } = useTranslation();
@@ -24,30 +26,35 @@ const Projects: React.FC = () => {
   const [getProjects, { isLoading, data }] = useGetProjectsMutation();
   const [createProject, createProjectRequest] = useCreateProjectMutation();
   const [updateProject, updateProjectRequest] = useUpdateProjectMutation();
+  const [imageUrl, setImageUrl] = useState<string>();
   const theme = useTheme();
 
   useEffect(() => {
     getProjects();
   }, [getProjects]);
 
+  useEffect(() => {
+    setImageUrl(selectedProject?.image_url);
+  }, [selectedProject]);
+
   const projectSchema = Yup.object().shape({
     name: Yup.string().required(t("Validations.required")),
     primary_color: Yup.string().required(t("Validations.required")),
     country: Yup.string().required(t("Validations.required")),
-    image_url: Yup.string().required(t("Validations.required")),
   });
 
   const onSubmitProject = (values: Partial<Project>) => {
     if (selectedProject) {
       updateProject({
-        id: selectedProject.id,
         ...values,
+        id: selectedProject.id,
+        image_url: imageUrl,
       }).then(() => {
         closeModal();
         getProjects();
       });
     } else {
-      createProject(values).then(() => {
+      createProject({ ...values, image_url: imageUrl }).then(() => {
         closeModal();
         getProjects();
       });
@@ -57,6 +64,19 @@ const Projects: React.FC = () => {
   const closeModal = () => {
     setNewProject(false);
     setSelectedProject(undefined);
+  };
+
+  const addImage = async (file?: File | null) => {
+    try {
+      if (file) {
+        const fileUrl = await uploadFileToS3(file, "schools");
+        setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -170,11 +190,16 @@ const Projects: React.FC = () => {
             }
           />
 
+          <PicSelect
+            defaultIconName="university"
+            imageUrl={imageUrl || ""}
+            onSelectImage={addImage}
+          />
+
           <Formik
             initialValues={{
               name: selectedProject?.name,
               country: selectedProject?.country,
-              image_url: selectedProject?.image_url,
               primary_color: selectedProject?.primary_color,
             }}
             validationSchema={projectSchema}
@@ -191,23 +216,36 @@ const Projects: React.FC = () => {
                   onChangeText={(text) => setFieldValue("name", text)}
                 />
 
-                <Input
-                  mb="16px"
-                  label={t("Projects.image_url")}
-                  value={values.image_url}
-                  handlePressEnter={handleSubmit}
-                  errorMessage={(!!submitCount && errors.image_url) || ""}
-                  onChangeText={(text) => setFieldValue("image_url", text)}
-                />
-
-                <Input
-                  mb="16px"
-                  value={values.primary_color}
-                  label={t("Projects.primary_color")}
-                  handlePressEnter={handleSubmit}
-                  errorMessage={(!!submitCount && errors.primary_color) || ""}
-                  onChangeText={(text) => setFieldValue("primary_color", text)}
-                />
+                <Container justifyContent="center" alignItems="flex-end">
+                  <Input
+                    flex={1}
+                    mb="16px"
+                    mr="2px"
+                    value={values.primary_color}
+                    label={t("Projects.primary_color")}
+                    handlePressEnter={handleSubmit}
+                    errorMessage={(!!submitCount && errors.primary_color) || ""}
+                    onChangeText={(text) =>
+                      setFieldValue("primary_color", text)
+                    }
+                  />
+                  <input
+                    type="color"
+                    value={values.primary_color}
+                    onChange={(e) =>
+                      setFieldValue("primary_color", e.target.value)
+                    }
+                    style={{
+                      flex: 2,
+                      height: "52px",
+                      marginBottom: "18px",
+                      cursor: "pointer",
+                      border: "1px solid #e3e5e8",
+                      borderRadius: "8px",
+                      padding: "8px",
+                    }}
+                  />
+                </Container>
 
                 <Input
                   mb="16px"

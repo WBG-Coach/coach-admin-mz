@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { space } from "styled-system";
+import { flex, space } from "styled-system";
 
 export const StyledInputContainer = styled.span<any>`
   ${space}
+  ${flex}
   position: relative;
   background-color: #f9fafb;
   border-radius: 8px;

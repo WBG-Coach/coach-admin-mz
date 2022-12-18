@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { Text } from "../../../../../components";
 import { CustomCard } from "../../../../../components/CustomCard";
 import { LoadingDots } from "../../../../../components/LoadingDots";
 import { useGetReportCompetenceEvolutionsMutation } from "../../../../../service/reports";
@@ -57,7 +58,7 @@ export const EvolutionOfCompetences = () => {
   }, [requestReport, user]);
 
   useEffect(() => {
-    if (data) {
+    if (data && data[0]) {
       setDatasets(
         data.map((item, index) => ({
           label: item.name,
@@ -77,7 +78,11 @@ export const EvolutionOfCompetences = () => {
       width="100%"
       title={t("Dashboard.CompetenceReports.feedbacks-per-competency")}
     >
-      <Line height="60px" options={options} data={{ labels, datasets }} />
+      {labels.length > 0 ? (
+        <Line height="60px" options={options} data={{ labels, datasets }} />
+      ) : (
+        <Text lineHeight="60px" value={t("Dashboard.without-sessions")} />
+      )}
     </CustomCard>
   );
 };

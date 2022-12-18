@@ -43,18 +43,23 @@ const Schools: React.FC = () => {
     getSchools({ project_id: user.currentProject?.id || 0 });
   }, [getSchools, user]);
 
+  useEffect(() => {
+    setImageUrl(selectedSchool?.image_url);
+  }, [selectedSchool]);
+
   const onSubmitSchool = async (values: Partial<School>) => {
     if (selectedSchool) {
       await updateSchool({
-        id: selectedSchool.id,
-        image_url: imageUrl || selectedSchool.image_url,
-        project_id: user.currentProject?.id || 0,
         ...values,
+        id: selectedSchool.id,
+        image_url: imageUrl,
+        project_id: user.currentProject?.id || 0,
       });
     } else {
       await createSchool({
-        project_id: user.currentProject?.id || 0,
         ...values,
+        project_id: user.currentProject?.id || 0,
+        image_url: imageUrl,
       });
     }
     setImageUrl(undefined);
@@ -72,6 +77,8 @@ const Schools: React.FC = () => {
       if (file) {
         const fileUrl = await uploadFileToS3(file, "schools");
         setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
       }
     } catch (err) {
       console.log(err);
@@ -178,7 +185,7 @@ const Schools: React.FC = () => {
         <Container flexDirection="column" mt={40} minWidth={548}>
           <PicSelect
             defaultIconName="university"
-            imageUrl={imageUrl || selectedSchool?.image_url || ""}
+            imageUrl={imageUrl || ""}
             onSelectImage={addImage}
           />
 

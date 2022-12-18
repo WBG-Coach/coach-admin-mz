@@ -86,6 +86,9 @@ export const CompetenceProgress: React.FC<CompetenceProgressProps> = ({
           </Container>
         </span>
       ))}
+      {data.length === 0 && (
+        <Text lineHeight="60px" value={t("Dashboard.without-sessions")} />
+      )}
     </Container>
   );
 };

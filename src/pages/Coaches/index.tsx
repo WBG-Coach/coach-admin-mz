@@ -43,11 +43,15 @@ const Coaches: React.FC = () => {
     getCoaches({ project_id: user.currentProject?.id || 0 });
   }, [getCoaches, user]);
 
+  useEffect(() => {
+    setImageUrl(selectedCoach?.image_url);
+  }, [selectedCoach]);
+
   const onSubmitCoach = async (values: User & { email: string }) => {
     if (selectedCoach) {
       await updateUser({
         id: selectedCoach.id,
-        image_url: imageUrl || selectedCoach.image_url,
+        image_url: imageUrl,
         name: values.name,
         last_name: values.last_name,
       });
@@ -75,6 +79,8 @@ const Coaches: React.FC = () => {
         const fileUrl = await uploadFileToS3(file, "coaches");
         console.log(fileUrl.url);
         setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
       }
     } catch (err) {
       console.log(err);
@@ -187,7 +193,7 @@ const Coaches: React.FC = () => {
         <Container flexDirection="column" minWidth={548} mt={40}>
           <PicSelect
             defaultIconName="user"
-            imageUrl={imageUrl || selectedCoach?.image_url || ""}
+            imageUrl={imageUrl || ""}
             onSelectImage={addImage}
           />
 

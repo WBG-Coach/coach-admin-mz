@@ -49,6 +49,10 @@ const Teachers: React.FC = () => {
     getSchools({ project_id: user.currentProject?.id || 0 });
   }, [getTeachers, getSchools, user]);
 
+  useEffect(() => {
+    setImageUrl(selectedTeacher?.image_url);
+  }, [selectedTeacher]);
+
   const closeModal = () => {
     setSelectedTeacher(undefined);
     setNewTeacher(false);
@@ -59,7 +63,7 @@ const Teachers: React.FC = () => {
     if (selectedTeacher) {
       await updateUser({
         id: selectedTeacher.id,
-        image_url: imageUrl || selectedTeacher.image_url,
+        image_url: imageUrl,
         name: values.name || "",
         last_name: values.last_name || "",
         subject: values.subject || "",
@@ -71,7 +75,7 @@ const Teachers: React.FC = () => {
         name: values.name || "",
         last_name: values.last_name || "",
         subject: values.subject || "",
-        image_url: imageUrl || values.image_url,
+        image_url: imageUrl,
       });
     }
     setImageUrl(undefined);
@@ -83,6 +87,8 @@ const Teachers: React.FC = () => {
       if (file) {
         const fileUrl = await uploadFileToS3(file, "teachers");
         setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
       }
     } catch (err) {
       console.log(err);
@@ -197,7 +203,7 @@ const Teachers: React.FC = () => {
         <Container flexDirection="column" mt={40} minWidth={548}>
           <PicSelect
             defaultIconName="university"
-            imageUrl={imageUrl || selectedTeacher?.image_url || ""}
+            imageUrl={imageUrl || ""}
             onSelectImage={addImage}
           />
 

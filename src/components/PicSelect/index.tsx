@@ -15,8 +15,8 @@ const PicSelect: React.FC<Props> = ({
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation();
 
-  const handleSelectImage = (file: File) => {
-    setIsLoading(true);
+  const handleSelectImage = (file?: File) => {
+    if (file) setIsLoading(true);
     onSelectImage(file);
   };
 
@@ -57,6 +57,17 @@ const PicSelect: React.FC<Props> = ({
           />
         </label>
       </Container>
+
+      {imageUrl && (
+        <Container onClick={() => handleSelectImage()}>
+          <Text
+            mt="4px"
+            fontSize="14px"
+            color="red"
+            value={t("Global.remove-photo")}
+          />
+        </Container>
+      )}
 
       <input
         id="file"

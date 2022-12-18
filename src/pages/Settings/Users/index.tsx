@@ -46,11 +46,17 @@ const Users: React.FC = () => {
     reloadAdmins();
   }, [reloadAdmins]);
 
+  useEffect(() => {
+    setImageUrl(selectedUser?.image_url);
+  }, [selectedUser]);
+
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
         const fileUrl = await uploadFileToS3(file, "admins");
         setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
       }
     } catch (err) {
       console.log(err);
@@ -61,7 +67,7 @@ const Users: React.FC = () => {
     if (selectedUser) {
       await updateUser({
         id: selectedUser.id,
-        image_url: imageUrl || selectedUser.image_url,
+        image_url: imageUrl,
         name: values.name,
         last_name: values.last_name,
       });
@@ -220,7 +226,7 @@ const Users: React.FC = () => {
               <Container width="100%" flexDirection="column" mt={40}>
                 <PicSelect
                   defaultIconName="user"
-                  imageUrl={imageUrl || selectedUser?.image_url || ""}
+                  imageUrl={imageUrl || ""}
                   onSelectImage={addImage}
                 />
                 <Input

@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container, Text } from "../../../components";
 import PicSelect from "../../../components/PicSelect";
@@ -28,11 +28,17 @@ const EditUser: React.FC = () => {
     email: Yup.string().required(t("Validations.required")),
   });
 
+  useEffect(() => {
+    setImageUrl(user.image_url);
+  }, [user]);
+
   const addImage = async (file?: File | null) => {
     try {
       if (file) {
         const fileUrl = await uploadFileToS3(file, "admins");
         setImageUrl(fileUrl.url);
+      } else {
+        setImageUrl("");
       }
     } catch (err) {
       console.log(err);
@@ -45,7 +51,7 @@ const EditUser: React.FC = () => {
         ...user,
         name: values.name,
         last_name: values.last_name,
-        image_url: imageUrl || user.image_url,
+        image_url: imageUrl,
       };
 
       await updateUser({ ...newUser, email: undefined });
@@ -74,8 +80,8 @@ const EditUser: React.FC = () => {
             <Container justifyContent={"center"} width={"100%"} mt={"40px"}>
               <PicSelect
                 defaultIconName="user"
-                imageUrl={imageUrl || user?.image_url || ""}
                 onSelectImage={addImage}
+                imageUrl={imageUrl || ""}
               />
             </Container>
 

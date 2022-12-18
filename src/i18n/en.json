@@ -4,6 +4,7 @@
     "change-photo": "Change photo",
     "save": "Save",
     "loading": "Loading...",
+    "remove-photo": "Remove photo",
     "Toast": {
       "user-updated": "User successfully updated!",
       "user-updated-error": "There was an error updating the user.",
@@ -35,6 +36,7 @@
     "tabs-coaches": "COACHES",
     "tabs-teachers": "TEACHERS",
     "tabs-sessions": "SESSIONS",
+    "without-sessions": "The selected project has no sessions",
     "SessionTable": {
       "teacher": "Teacher's",
       "coach": "Coaches",
