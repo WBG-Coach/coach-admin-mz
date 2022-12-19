@@ -19,7 +19,9 @@ export const ProductiveFeedbackChart: React.FC = () => {
 
   const value = useMemo(() => {
     if (!data || data.sessions_qty === 0) return 0;
-    return (data.improvement_qty / data.sessions_qty) * 100;
+    return parseInt(
+      ((data.improvement_qty / data.sessions_qty) * 100).toFixed(0)
+    );
   }, [data]);
 
   return !data ? (
