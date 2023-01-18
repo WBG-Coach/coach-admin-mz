@@ -1,46 +1,72 @@
-# Getting Started with Create React App
+# Admin panel - Coach digital
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
 
-## Available Scripts
+### You can access here:
+[https://admin.coachdigital.org/](https://admin.coachdigital.org/)
 
-In the project directory, you can run:
+<div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+  <img width="48%" src="https://user-images.githubusercontent.com/13595853/213301599-ccf7daba-ccd8-4c4f-b926-7e799ca743c8.png" />
+  <img  width="48%" src="https://user-images.githubusercontent.com/13595853/213301627-468fb254-7438-4ea6-8311-1019d944ed43.png" />
+</div>
 
-### `npm start`
+## Get start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Add tour application configuration to your `.env` file in the root of your project:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+REACT_APP_API_URL=
+REACT_APP_AWS_BUCKET_NAME=
+REACT_APP_GOOGLE_MAPS_KEY=
+```
 
-### `npm test`
+Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+$ npm install
+```
 
-### `npm run build`
+Start project:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```shell
+$ npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Directory tree
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    .
+    ├── assets                      # Images
+    │   └── ...                     
+    ├── components                  # All componentes from application
+    │   └── ...                     
+    ├── hooks                       
+    │   └── index.ts                # Custom hooks
+    ├── i18n                        
+    │   ├── en.json                 # English keys
+    │   ├── pt.json                 # Portuguese keys
+    │   └── index.ts                # i18n configuration
+    ├── pages
+    │   └── ...                     # All page files
+    ├── routes
+    │   └── index.ts                # Routes configurations
+    ├── services
+    │   └── ...                     # All apis from the aplications with Redux toolkit query
+    ├── storage
+    │   └── index.ts                # Functions to set and get information in local storage
+    ├── store
+    │   ├── auth                    # Reducers and selectors from auth context
+    │   └── index.ts                # Redux configuration
+    ├── theme
+    │   └── index.ts                # Theme file
+    └── util
+    │   └── index.ts                # Util functions
+    ├── ...
+    └── index.ts                    # Provider configuration
+    
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Main libraries
+<div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
+  <img width="15%" src="https://user-images.githubusercontent.com/13595853/213292865-f145bf92-2aac-419e-bd5d-5fc4c387e9cd.png" />
+  <img width="15%" src="https://user-images.githubusercontent.com/13595853/213292795-8e0fd530-745c-4222-a69d-f6d61b3486d4.png" />
+  <img width="15%" src="https://user-images.githubusercontent.com/13595853/213293171-b7eba42c-b3b7-49d6-bd6b-2ea9abff0e14.png" />
+</div>
