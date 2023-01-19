@@ -1,7 +1,8 @@
 # Admin panel - Coach digital
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/WBG-Coach/coach-admin/blob/main/LICENSE.md)
 
-> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
+> This is the admin frontend application of the "Aprender+" project, created by the World Bank to help evaluate teachers and manage improvements in teaching through feedback.
+
 
 ### You can access here:
 [https://admin.coachdigital.org/](https://admin.coachdigital.org/)
