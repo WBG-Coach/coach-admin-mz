@@ -18,7 +18,7 @@
   },
   "Validations": {
     "required": "Required",
-    "same-password": "The passwords must be equals."
+    "same-password": "The new passwords must match."
   },
   "Login": {
     "email": "Email",
@@ -38,11 +38,11 @@
     "tabs-sessions": "SESSIONS",
     "without-sessions": "The selected project has no sessions",
     "SessionTable": {
-      "teacher": "Teacher's",
+      "teacher": "Teachers",
       "coach": "Coaches",
       "school": "Schools",
       "sessions": "Sessions",
-      "feedbacks": "Feedbacks",
+      "feedbacks": "Feedback",
       "positive-comp": "Comp. positiva",
       "negative-comp": "Comp. negativa"
     },
@@ -67,8 +67,8 @@
     },
     "DashboardReports": {
       "competency-by-feedback": "Competencies most worked on in feedback sessions",
-      "competency-by-feedback-description": "See the most worked competences in feedback with the teacher.",
-      "competence-name": "COMPETENCE",
+      "competency-by-feedback-description": "See the most worked competencies in feedback with the teacher.",
+      "competence-name": "COMPETENCY",
       "sessions-name": "SESSIONS"
     },
     "SchoolReports": {
@@ -90,7 +90,7 @@
       "teachers-feedback": "Teacher reach",
       "teachers-feedback-description": "Teachers who have received feedback.",
       "productive-feedback": "Productive feedback sessions",
-      "productive-feedback-description": "Count of competencies that turned positive after a feedback session."
+      "productive-feedback-description": "Count of competencies that showed improvement after a feedback session."
     }
   },
   "Projects": {
@@ -120,7 +120,7 @@
     "description": "Description",
     "name": "Competencies",
     "add": "Add competency",
-    "update": "Update competence"
+    "update": "Update competency"
   },
   "Questionnaires": {
     "edit": "Edit questionnaire",
@@ -174,7 +174,7 @@
     "update-title": "Update session",
     "add": "Create Session",
     "title": "Sessions",
-    "data-not-found": "No data was found regarding the sessions of this project.",
+    "data-not-found": "No session data was found in this project.",
     "session-title": "Session title",
     "school-name": "School",
     "teacher-name": "Teacher",
@@ -222,7 +222,7 @@
       "name": "Name",
       "surname": "Surname",
       "email": "Email",
-      "button": "Save edition"
+      "button": "Save edits"
     },
     "Users": {
       "new-title": "New admin",
